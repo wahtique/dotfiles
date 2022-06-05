@@ -1,0 +1,94 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd extendedglob nomatch notify
+unsetopt beep
+bindkey -v
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/wahtique/.zshrc'
+
+autoload -Uz compinit
+
+# >>> scala-cli completions >>>
+fpath=("/home/wahtique/.local/share/scalacli/completions/zsh" $fpath)
+# <<< scala-cli completions <<<
+
+compinit
+# End of lines added by compinstall
+# zplug stuff
+source ~/.zplug/init.zsh
+
+# zplug handles itself
+zplug "zplug/zplug", hook-build:"zplug --self-manage"
+# powerline theme
+zplug "romkatv/powerlevel10k", as:theme, depth:1, frozen:1
+# git aliases
+zplug "plugins/git", from:oh-my-zsh
+# aliases exa by ls
+zplug "RitchieS/zsh-exa"
+# ssh agent
+zplug bobsoppe/zsh-ssh-agent, use:ssh-agent.zsh, from:github
+# fzf for tab completion
+zplug "Aloxaf/fzf-tab"
+# better cd using fzf
+zplug "b4b4r07/enhancd", use:init.sh
+# A zsh plugin to search in the local tree of subdirectories for files
+zplug "leophys/zsh-plugin-fzf-finder"
+
+# these should be after the fzf plugins
+zplug "zsh-users/zsh-autosuggestions"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
+zplug "zdharma/fast-syntax-highlighting"
+
+
+#Install plugins if there are plugins that have not been installed
+# also update because running it everytime is annoying
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+           echo; zplug install
+    fi
+    zplug update
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load
+# end of zplug stuff
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# PATH UPDATES
+path+=(
+  # custom tools which dont really belong in /bin or /usr/bin
+  "$HOME/tools"
+  # coursier + g8
+  "$HOME/.local/share/coursier/bin"
+)
+export PATH
+
+# intellij options
+export IDE_VM_OPTIONS="-Xmx2048m"
+
+# first needed by chezmoi
+# most likely also expected by other tools
+export EDITOR=vim
+
+# aliases
+alias sc=scala-cli
