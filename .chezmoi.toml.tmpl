@@ -1,0 +1,21 @@
+{{- $email := "" -}}
+{{- if hasKey . "email" -}}
+{{-   $email = .email -}}
+{{- else -}}
+{{-   $email = promptString "email" -}}
+{{- end -}}
+
+{{- $username := "" -}}
+{{- if hasKey . "username" -}}
+{{-   $username = .username -}}
+{{- else -}}
+{{-   $username = promptString "username" -}}
+{{- end -}}
+
+[data]
+    email = {{ $email | quote }}
+    username = {{ $username | quote}}
+    
+[git]
+    autoCommit = true
+    autoPush = true
