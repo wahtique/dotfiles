@@ -107,5 +107,4 @@ export EDITOR=vim
 # aliases
 alias sc=scala-cli
 alias cz=chezmoi
-alias tt="echo \"hello world\""
 
