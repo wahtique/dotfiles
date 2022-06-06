@@ -47,7 +47,7 @@ zplug "b4b4r07/enhancd", use:init.sh
 # A zsh plugin to search in the local tree of subdirectories for files
 # ALT+R to search hand Read
 # ALT+E to search and Edit
-zplug "leophys/zsh-plugin-fzf-finder"
+zplug "wahtique/zsh-plugin-fzf-finder"
 # CTRL+R to search history
 zplug "joshskidmore/zsh-fzf-history-search"
 
