@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+# .zshrc hash: {{ include "dot_zshrc" | sha256sum }}
+
+if [[ -a ~/.zshrc && ( $(basename $SHELL) = "zsh" )]]
+then
+  echo "Changes detected sourcing .zshrc"
+  source ~/.zshrc
+fi
