@@ -107,4 +107,4 @@ export EDITOR=vim
 # aliases
 alias sc=scala-cli
 alias cz=chezmoi
-
+alias czas=chezmoi apply && source ~.zshrc
