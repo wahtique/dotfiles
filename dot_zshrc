@@ -104,6 +104,9 @@ export IDE_VM_OPTIONS="-Xmx2048m"
 # most likely also expected by other tools
 export EDITOR=vim
 
+# make fzf search hidden files too
+export FZF_DEFAULT_COMMAND="ag --hidden -f -g"
+
 # aliases
 alias sc=scala-cli
 alias cz=chezmoi
