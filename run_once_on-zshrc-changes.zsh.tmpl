@@ -5,5 +5,8 @@
 if [[ -a ~/.zshrc && ( $(basename $SHELL) = "zsh" )]]
 then
   echo "Changes detected sourcing .zshrc"
+  start_dir=$PWD
+  cd ~
   source ~/.zshrc
+  cd $start_dir
 fi
