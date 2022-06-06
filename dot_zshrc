@@ -48,9 +48,8 @@ zplug "b4b4r07/enhancd", use:init.sh
 # ALT+R to search hand Read
 # ALT+E to search and Edit
 zplug "leophys/zsh-plugin-fzf-finder"
-# ALT+J to browse recently visited files and dir
-# re1quires fasd
-zplug "ael-code/zsh-plugin-fasd-fzf"
+# CTRL+R to search history
+zplug "joshskidmore/zsh-fzf-history-search"
 
 # these should be after the fzf plugins
 zplug "zsh-users/zsh-autosuggestions"
