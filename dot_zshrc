@@ -111,6 +111,9 @@ export EDITOR=vim
 # make fzf search hidden files too
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
+# make fzf finder plugin search hidden files too
+export FZF_FINDER_FD_OPTS="--hidden -t f"
+
 # aliases
 alias sc=scala-cli
 alias cz=chezmoi
