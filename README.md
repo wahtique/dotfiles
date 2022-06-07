@@ -1,4 +1,4 @@
-# wahtique's dotfiles
+# wahtique's custom ZSH
 
 Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-chezmoi)
 
