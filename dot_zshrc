@@ -38,6 +38,8 @@ zplug "romkatv/powerlevel10k", as:theme, depth:1, frozen:1
 zplug "plugins/git", from:oh-my-zsh
 # aliases exa by ls
 zplug "RitchieS/zsh-exa"
+# add colors to `man`
+zplug ael-code/zsh-colored-man-pages
 # ssh agent
 zplug bobsoppe/zsh-ssh-agent, use:ssh-agent.zsh, from:github
 # `extract <filename>` and voila !
