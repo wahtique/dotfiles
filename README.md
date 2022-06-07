@@ -22,7 +22,8 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
   - [bat](https://github.com/sharkdp/bat) better pager than `less` 
   - [fd](https://github.com/sharkdp/fd) better `find`
   - [cod](https://github.com/dim-an/cod) which is not necessarily needed but a nice tool all the same
-  - and also mostlikely stuff you already have like python and lua
+  - [exa](https://the.exa.website/) as a more colorful replacement to ls
+  - and also most likely stuff you already have like python and lua
 - Ensure github is properly setup 
   - check here to setup ssh with your a rsa key     
 - Fork this repo ! 
