@@ -50,7 +50,13 @@ zplug "b4b4r07/enhancd", use:init.sh
 zplug "wahtique/zsh-plugin-fzf-finder"
 # CTRL+R to search history
 zplug "joshskidmore/zsh-fzf-history-search"
-
+# CTRL+N for cheatsheets
+# REQUIRES NAVI
+if (( $+commands[navi])); then;
+  zplug "icatalina/zsh-navi-plugin"
+  # use ctrl-n
+  bindkey '^n' navi_widget
+fi
 # these should be after the fzf plugins
 zplug "zsh-users/zsh-autosuggestions"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
