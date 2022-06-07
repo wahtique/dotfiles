@@ -40,22 +40,25 @@ zplug "plugins/git", from:oh-my-zsh
 zplug "RitchieS/zsh-exa"
 # ssh agent
 zplug bobsoppe/zsh-ssh-agent, use:ssh-agent.zsh, from:github
-# fzf for tab completion
-zplug "Aloxaf/fzf-tab"
-# better cd using fzf
-zplug "b4b4r07/enhancd", use:init.sh
-# A zsh plugin to search in the local tree of subdirectories for files
-# ALT+R to search hand Read
-# ALT+E to search and Edit
-zplug "wahtique/zsh-plugin-fzf-finder"
-# CTRL+R to search history
-zplug "joshskidmore/zsh-fzf-history-search"
-# CTRL+N for cheatsheets
-# REQUIRES NAVI
-if (( $+commands[navi])); then;
-  zplug "icatalina/zsh-navi-plugin"
-  # use ctrl-n
-  bindkey '^n' navi_widget
+# FZF dependent plugins
+if (( $+commands[fzf] )); then;
+  # fzf for tab completion
+  zplug "Aloxaf/fzf-tab"
+  # better cd using fzf
+  zplug "b4b4r07/enhancd", use:init.sh
+  # A zsh plugin to search in the local tree of subdirectories for files
+  # ALT+R to search hand Read
+  # ALT+E to search and Edit
+  zplug "wahtique/zsh-plugin-fzf-finder"
+  # CTRL+R to search history
+  zplug "joshskidmore/zsh-fzf-history-search"
+  # CTRL+N for cheatsheets
+  # REQUIRES NAVI
+  if (( $+commands[navi])); then;
+    zplug "icatalina/zsh-navi-plugin"
+    # use ctrl-n
+    bindkey '^n' navi_widget
+  fi
 fi
 # these should be after the fzf plugins
 zplug "zsh-users/zsh-autosuggestions"
