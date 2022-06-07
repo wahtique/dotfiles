@@ -41,7 +41,10 @@ zplug "RitchieS/zsh-exa"
 # ssh agent
 zplug bobsoppe/zsh-ssh-agent, use:ssh-agent.zsh, from:github
 # `extract <filename>` and voila !
-zplug le0me55i/zsh-extract
+(( $+commands[cod] )) && zplug dim-an/cod
+# generate autocompletes from `--help` for most cli tools
+# requires the corresponding bin
+zplug dim-an/cod
 # FZF dependent plugins
 if (( $+commands[fzf] )); then;
   # fzf for tab completion
