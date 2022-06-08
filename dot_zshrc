@@ -30,7 +30,7 @@ compinit
 ############################################
 ################ ZPLUG #####################
 ############################################
-#
+
 source ~/.zplug/init.zsh
 
 # zplug handles itself
@@ -40,16 +40,16 @@ zplug "romkatv/powerlevel10k", as:theme, depth:1, frozen:1
 # git aliases
 zplug "plugins/git", from:oh-my-zsh
 # aliases exa by ls
-zplug "RitchieS/zsh-exa"
+(( $+commands[exa])) && zplug "RitchieS/zsh-exa"
 # add colors to `man`
 zplug ael-code/zsh-colored-man-pages
 # ssh agent
 zplug bobsoppe/zsh-ssh-agent, use:ssh-agent.zsh, from:github
 # `extract <filename>` and voila !
-(( $+commands[cod] )) && zplug dim-an/cod
+zplug le0me55i/zsh-extract
 # generate autocompletes from `--help` for most cli tools
 # requires the corresponding bin
-zplug dim-an/cod
+(( $+commands[cod] )) && zplug dim-an/cod
 # FZF dependent plugins
 if (( $+commands[fzf] )); then;
   # fzf for tab completion
@@ -66,7 +66,7 @@ if (( $+commands[fzf] )); then;
   # REQUIRES NAVI
   if (( $+commands[navi])); then;
     zplug "icatalina/zsh-navi-plugin"
-    # use ctrl-n
+    # use ctrl+n to show cheat sheets
     bindkey '^n' navi_widget
   fi
 fi
@@ -76,7 +76,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
 zplug "zdharma/fast-syntax-highlighting"
 
 
-#Install plugins if there are plugins that have not been installed
+# Install plugins if there are plugins that have not been installed
 # also update because running it everytime is annoying
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
