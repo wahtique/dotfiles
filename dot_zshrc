@@ -117,6 +117,8 @@ path+=(
   "$HOME/tools"
   # coursier + g8
   "$HOME/.local/share/coursier/bin"
+  # rust
+  "$HOME/.cargo/bin"
 )
 export PATH
 
