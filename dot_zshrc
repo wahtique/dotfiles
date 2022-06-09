@@ -136,6 +136,8 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_FINDER_FD_OPTS="--hidden -t f"
 
 # aliases
+# scala 
 alias sc=scala-cli
+alias cs=coursier
+# shell
 alias cz=chezmoi
-
