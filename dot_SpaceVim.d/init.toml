@@ -41,5 +41,5 @@ name = 'shell'
 default_position = 'top'
 default_height = 30
 
-[[layers]]
-name = 'lang#scala'
+#[[layers]]
+#name = 'lang#scala'
