@@ -28,13 +28,6 @@ compinit
 # End of lines added by compinstall
 
 ############################################
-########### PROMPT #########################
-############################################
-
-eval "$(oh-my-posh init zsh)"
-enable_poshtransientprompt
-
-############################################
 ################ ZPLUG #####################
 ############################################
 
@@ -43,7 +36,7 @@ source ~/.zplug/init.zsh
 # zplug handles itself
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
 # powerline theme
-# zplug "romkatv/powerlevel10k", as:theme, depth:1
+zplug "romkatv/powerlevel10k", as:theme, depth:1
 # git aliases
 zplug "plugins/git", from:oh-my-zsh
 # aliases exa by ls
