@@ -47,6 +47,8 @@ zplug ael-code/zsh-colored-man-pages
 zplug bobsoppe/zsh-ssh-agent, use:ssh-agent.zsh, from:github
 # `extract <filename>` and voila !
 zplug le0me55i/zsh-extract
+# timewarrior aliases
+(( $+commands[timew] )) && zplug svenXY/timewarrior
 # generate autocompletes from `--help` for most cli tools
 # requires the corresponding bin
 (( $+commands[cod] )) && zplug dim-an/cod
