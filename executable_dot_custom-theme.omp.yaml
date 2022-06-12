@@ -1,0 +1,150 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+$schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+blocks:
+
+    - alignment: left
+      segments:
+        - background: p:yellow
+          foreground: p:black
+          style: diamond
+          template: ' {{ .CurrentDate | date "15:04:05" }} '
+          trailing_diamond: 
+          type: time
+        - background: p:orange
+          foreground: p:black
+          powerline_symbol: 
+          properties:
+            home_icon: "~"
+            style: unique
+            always_enabled: true
+          style: powerline
+          template: '  {{ path .Path .Location }} '
+          type: path
+        - background: p:green
+          background_templates:
+            - '{{ if or (.Working.Changed) (.Staging.Changed) }}p:yellow{{ end }}'
+            - '{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:red{{ end }}'
+            - '{{ if gt .Ahead 0 }}#49416D{{ end }}'
+            - '{{ if gt .Behind 0 }}#7A306C{{ end }}'
+          foreground: p:black
+          foreground_templates:
+            - '{{ if or (.Working.Changed) (.Staging.Changed) }}p:black{{ end }}'
+            - '{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:white{{ end }}'
+            - '{{ if gt .Ahead 0 }}p:white{{ end }}'
+          powerline_symbol: 
+          properties:
+            branch_max_length: 25
+            fetch_status: true
+            fetch_upstream_icon: true
+            github_icon: 
+          style: powerline
+          template: ' {{ if .UpstreamURL }}{{ url .UpstreamIcon .UpstreamURL }} {{ end }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }} '
+          type: git
+        - background: p:yellow
+          foreground: p:white
+          powerline_symbol: 
+          properties:
+            root_icon: 
+          style: powerline
+          template: '  '
+          type: root
+        - background: p:blue
+          background_templates:
+            - '{{ if gt .Code 0 }}p:red{{ end }}'
+          foreground: p:white
+          leading_diamond: <transparent,background></>
+          properties:
+            style: round
+            threshold: 500
+          style: powerline
+          template: '{{ .FormattedMs }}'
+          powerline_symbol: 
+          type: executiontime
+      type: prompt
+
+    - alignment: right
+      segments:
+        - background: transparent
+          foreground: p:green
+          properties:
+            display_mode: files
+            fetch_package_manager: false
+            home_enabled: false
+          style: plain
+          template: ' '
+          type: node
+        - background: transparent
+          foreground: p:blue
+          properties:
+            fetch_version: false
+          style: powerline
+          template: 'ﳑ '
+          type: go
+        - background: transparent
+          foreground: p:yellow
+          properties:
+            display_mode: files
+            fetch_version: true
+            fetch_virtual_env: false
+          style: plain
+          template: ' '
+          type: python
+      type: prompt
+
+    - alignment: left
+      newline: true
+      type: prompt
+      segments:
+        - type: exit
+          style: plain
+          template: "\u276f "
+          interactive: false
+          properties:
+            always_enabled: true
+          foreground: "#ffffff"
+          foreground_templates:
+            - "{{ if gt .Code 0 }}#ff0000{{ end }}"
+
+
+console_title_template: '{{ .Shell }} in {{ .Folder }}'
+final_space: true
+palette:
+    black: '#262B44'
+    blue: '#4B95E9'
+    green: '#59C9A5'
+    orange: '#f0731f'
+    red: '#D81E5B'
+    white: '#E0DEF4'
+    yellow: '#F3AE35'
+secondary_prompt:
+    background: transparent
+    foreground: p:black
+    template: '<p:yellow,transparent></><,p:yellow> > </><p:yellow,transparent></> '
+tooltips:
+    - background: p:orange
+      foreground: p:white
+      leading_diamond: 
+      properties:
+        display_default: true
+      style: diamond
+      template: '  {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} '
+      tips:
+        - aws
+      trailing_diamond: 
+      type: aws
+    - background: p:blue
+      foreground: p:white
+      leading_diamond: 
+      style: diamond
+      template: ' ﴃ {{ .Name }} '
+      tips:
+        - az
+      trailing_diamond: 
+      type: az
+transient_prompt:
+    background: transparent
+    foreground: p:black
+    template: '<,p:orange> {{ .Folder }} </><p:orange,transparent></> '
+version: 2
+
