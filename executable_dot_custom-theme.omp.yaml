@@ -49,10 +49,8 @@ blocks:
           style: powerline
           template: '  '
           type: root
-        - background: p:blue
-          background_templates:
-            - '{{ if gt .Code 0 }}p:red{{ end }}'
-          foreground: p:white
+        - background: p:white
+          foreground: p:black
           leading_diamond: <transparent,background></>
           properties:
             style: round
