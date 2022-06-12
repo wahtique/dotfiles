@@ -10,7 +10,7 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
   - `fish` like inlin auto-complete
   - `fzf` tab completion
   - auto-completion generation from `--help`
-- powerlevel10k prompt theme
+- custom `oh-my-posh` theme
 - script to auto install dependencies on first run (TODO)
 - custom config for [SpaceVim](https://github.com/SpaceVim/SpaceVim)
 - and much more ( well just a little for now but much more soon ! )
@@ -24,6 +24,7 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
   - [fd](https://github.com/sharkdp/fd) better `find`
   - [cod](https://github.com/dim-an/cod) which is not necessarily needed but a nice tool all the same
   - [exa](https://the.exa.website/) as a more colorful replacement to ls
+  - [oh-my-posh](https://ohmyposh.dev/) for prompt customization
   - SpaceVim is not necessary but custom config WILL be deployed all the same
   - and also most likely stuff you already have like python and lua
 - Ensure github is properly setup 
