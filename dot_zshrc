@@ -37,84 +37,79 @@ eval "$(oh-my-posh init zsh --config ~/.custom-theme.omp.yaml)"
 enable_poshtransientprompt
 
 ############################################
-################ ZPLUG #####################
+############# ZINIT ########################
 ############################################
 
-source ~/.zplug/init.zsh
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
 
-# zplug handles itself
-zplug "zplug/zplug", hook-build:"zplug --self-manage"
-# powerline theme
-# zplug "romkatv/powerlevel10k", as:theme, depth:1
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
 # git aliases
-zplug "plugins/git", from:oh-my-zsh
+zinit snippet OMZP::git
 # <esc> <esc> for the fuck
-(( $+commands[thefuck] )) && zplug laggardkernel/zsh-thefuck
+if (( $+commands[thefuck] )); then 
+  zinit ice wait'1' lucid  
+  zinit light laggardkernel/zsh-thefuck
+fi
 # aliases exa by ls
-(( $+commands[exa])) && zplug "RitchieS/zsh-exa"
+(( $+commands[exa])) && zinit light "RitchieS/zsh-exa"
 # add colors to `man`
-zplug ael-code/zsh-colored-man-pages
+zinit light ael-code/zsh-colored-man-pages
 # ssh agent
-zplug bobsoppe/zsh-ssh-agent, use:ssh-agent.zsh, from:github
+zinit ice use"ssh-agent.zsh" from"github"
+zinit load bobsoppe/zsh-ssh-agent
 # `extract <filename>` and voila !
-zplug le0me55i/zsh-extract
+zinit light le0me55i/zsh-extract
 # timewarrior aliases
-(( $+commands[timew] )) && zplug svenXY/timewarrior
+(( $+commands[timew] )) && zinit light svenXY/timewarrior
 # generate autocompletes from `--help` for most cli tools
 # requires the corresponding bin
-(( $+commands[cod] )) && zplug dim-an/cod
+(( $+commands[cod] )) && zinit wait lucid for dim-an/cod
 # FZF dependent plugins
 if (( $+commands[fzf] )); then;
   # fzf for tab completion
-  zplug "Aloxaf/fzf-tab"
+  zinit light Aloxaf/fzf-tab
   # better cd using fzf
-  zplug "b4b4r07/enhancd", use:init.sh
+  zinit ice use"init.zsh"
+  zinit load "b4b4r07/enhancd"
   # A zsh plugin to search in the local tree of subdirectories for files
   # ALT+R to search hand Read
   # ALT+E to search and Edit
-  zplug "wahtique/zsh-plugin-fzf-finder"
+  zinit load "wahtique/zsh-plugin-fzf-finder"
   # CTRL+R to search history
-  zplug "joshskidmore/zsh-fzf-history-search"
+  zinit ice lucid wait'0'
+  zinit light joshskidmore/zsh-fzf-history-search
   # CTRL+N for cheatsheets
   # REQUIRES NAVI
   if (( $+commands[navi])); then;
-    zplug "icatalina/zsh-navi-plugin"
+    zinit load "icatalina/zsh-navi-plugin"
     # use ctrl+n to show cheat sheets
     bindkey '^n' navi_widget
   fi
 fi
 # these should be after the fzf plugins
-zplug "zsh-users/zsh-autosuggestions"
+zinit load "zsh-users/zsh-autosuggestions"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
-zplug "zdharma/fast-syntax-highlighting"
-
-
-# Install plugins if there are plugins that have not been installed
-# also update because running it everytime is annoying
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-           echo; zplug install
-    fi
-    zplug update
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load
-
-#############################################
-########## POWERLEVEL1OK ####################
-#############################################
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+zinit light "zdharma/fast-syntax-highlighting"
 
 ############################################
 ########### ENVIRONMENT ####################
