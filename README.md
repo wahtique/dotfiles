@@ -4,7 +4,7 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
 
 ## What's included
 
-- plugin list managed with zinit adding
+- plugin list managed with [ZI](https://z.digitalclouds.dev/) adding
   - `ALT+E` to **E**dit or `ALT+R` to **R**ead files chosen with fzf
   - `CTRL+R` to search command history
   - `fish` like inlin auto-complete
