@@ -58,7 +58,7 @@ blocks:
             style: round
             threshold: 500
           style: powerline
-          template: '{{ .FormattedMs }}'
+          template: ' {{ .FormattedMs }} '
           powerline_symbol: 
           type: executiontime
       type: prompt
