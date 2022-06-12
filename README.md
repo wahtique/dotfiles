@@ -19,11 +19,7 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
 
 - CHECK zsh is your default shell, or set it with `chsh`
 - CHECK dependencies are installed 
-  - [fzf](https://github.com/junegunn/fzf) for fuzzy search goodness
-  - [bat](https://github.com/sharkdp/bat) better pager than `less` 
-  - [fd](https://github.com/sharkdp/fd) better `find`
   - [cod](https://github.com/dim-an/cod) which is not necessarily needed but a nice tool all the same
-  - [exa](https://the.exa.website/) as a more colorful replacement to ls
   - [oh-my-posh](https://ohmyposh.dev/) for prompt customization
   - SpaceVim is not necessary but custom config WILL be deployed all the same
   - and also most likely stuff you already have like python and lua
