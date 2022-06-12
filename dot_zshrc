@@ -49,10 +49,7 @@ zplug "zplug/zplug", hook-build:"zplug --self-manage"
 # git aliases
 zplug "plugins/git", from:oh-my-zsh
 # <esc> <esc> for the fuck
-if (( $+commands[thefuck] )); then 
-  zplugin ice wait'1' lucid
-  zplugin light laggardkernel/zsh-thefuck
-fi
+(( $+commands[thefuck] )) && zplug laggardkernel/zsh-thefuck
 # aliases exa by ls
 (( $+commands[exa])) && zplug "RitchieS/zsh-exa"
 # add colors to `man`
