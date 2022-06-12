@@ -48,6 +48,8 @@ zplug "zplug/zplug", hook-build:"zplug --self-manage"
 # zplug "romkatv/powerlevel10k", as:theme, depth:1
 # git aliases
 zplug "plugins/git", from:oh-my-zsh
+# <esc> <esc> for the fuck
+zplug "plugins/thefuck" from:oh-my-zsh
 # aliases exa by ls
 (( $+commands[exa])) && zplug "RitchieS/zsh-exa"
 # add colors to `man`
