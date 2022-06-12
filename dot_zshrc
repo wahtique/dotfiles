@@ -51,11 +51,17 @@ fi
 
 # programs
 
-zi from"gh-r" as"null" for \
-  sbin"fzf" junegunn/fzf \
-  sbin"**/fd" @sharkdp/fd \
-  sbin"**/bat" @sharkdp/bat \
-  sbin"**/exa -> exa" atclone"cp -vf completions/exa.zsh _exa" ogham/exa
+zi ice from'gh-r' as'program'
+zi light @junegunn/fzf
+
+zi ice from'gh-r' as'program' mv'fd* fd' sbin'**/fd(.exe|) -> fd'
+zi light @sharkdp/fd
+
+zi ice from'gh-r' as'program' mv'bat* bat' sbin'**/bat(.exe|) -> bat'
+zi light @sharkdp/bat
+
+zi ice from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
+zi light ogham/exa
 
 zi ice lucid wait as'program' from"gh-r" has'fzf'
 zi light denisidoro/navi
@@ -83,28 +89,27 @@ zi light svenXY/timewarrior
 # generate autocompletes from `--help` for most cli tools
 # requires the corresponding bin
 zi ice wait lucid has"cod" for dim-an/cod
+
 # FZF dependent plugins
-if (( $+commands[fzf] )); then;
-  # fzf for tab completion
-  zi light Aloxaf/fzf-tab
-  # better cd using fzf
-  zi ice use"init.zsh"
-  zi load "b4b4r07/enhancd"
-  # A zsh plugin to search in the local tree of subdirectories for files
-  # ALT+R to search hand Read
-  # ALT+E to search and Edit
-  zi load "wahtique/zsh-plugin-fzf-finder"
-  # CTRL+R to search history
-  zi ice lucid wait'0'
-  zi light joshskidmore/zsh-fzf-history-search
-  # CTRL+N for cheatsheets
-  # REQUIRES NAVI
-  if (( $+commands[navi])); then;
-    zi load "icatalina/zsh-navi-plugin"
-    # use ctrl+n to show cheat sheets
-    bindkey '^n' navi_widget
-  fi
-fi
+# better cd using fzf
+zi ice use"init.zsh" has"fzf"
+zi load "b4b4r07/enhancd"
+# fzf for tab completion
+zi ice has"fzf"
+zi light Aloxaf/fzf-tab
+# A zsh plugin to search in the local tree of subdirectories for files
+# ALT+R to search hand Read
+# ALT+E to search and Edit
+zi ice has"fzf"
+zi light "wahtique/zsh-plugin-fzf-finder"
+# CTRL+R to search history
+zi ice lucid wait'0' has"fzf"
+zi light joshskidmore/zsh-fzf-history-search
+# CTRL+N for cheatsheets
+# REQUIRES NAVI
+zi ice has"navi" has"fzf"
+zi load "icatalina/zsh-navi-plugin"
+
 # these should be after the fzf plugins
 zi load "zsh-users/zsh-autosuggestions"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
@@ -113,6 +118,11 @@ zi light "zdharma/fast-syntax-highlighting"
 ############################################
 ########### ENVIRONMENT ####################
 ############################################
+
+if (( $+commands[navi])); then;
+  # use ctrl+n to show cheat sheets
+  bindkey '^n' navi_widget
+fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
