@@ -37,79 +37,65 @@ eval "$(oh-my-posh init zsh --config ~/.custom-theme.omp.yaml)"
 enable_poshtransientprompt
 
 ############################################
-############# ZINIT ########################
+############# ZI ###########################
 ############################################
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
+# install ZI if necessary
+
+if [[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/zi/init.zsh" ]]; then
+  source "${XDG_CONFIG_HOME:-$HOME/.config}/zi/init.zsh" && zzinit
+else
+  sh -c "$(curl -fsSL https://git.io/get-zi)" -- -a annex 
+  zzinit
 fi
-
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
 
 # git aliases
-zinit snippet OMZP::git
+zi snippet OMZP::git
 # <esc> <esc> for the fuck
 if (( $+commands[thefuck] )); then 
-  zinit ice wait'1' lucid  
-  zinit light laggardkernel/zsh-thefuck
+  zi ice wait'1' lucid  
+  zi light laggardkernel/zsh-thefuck
 fi
 # aliases exa by ls
-(( $+commands[exa])) && zinit light "RitchieS/zsh-exa"
+(( $+commands[exa])) && zi light "RitchieS/zsh-exa"
 # add colors to `man`
-zinit light ael-code/zsh-colored-man-pages
+zi light ael-code/zsh-colored-man-pages
 # ssh agent
-zinit ice use"ssh-agent.zsh" from"github"
-zinit load bobsoppe/zsh-ssh-agent
+zi ice use"ssh-agent.zsh" from"github"
+zi load bobsoppe/zsh-ssh-agent
 # `extract <filename>` and voila !
-zinit light le0me55i/zsh-extract
+zi light le0me55i/zsh-extract
 # timewarrior aliases
-(( $+commands[timew] )) && zinit light svenXY/timewarrior
+(( $+commands[timew] )) && zi light svenXY/timewarrior
 # generate autocompletes from `--help` for most cli tools
 # requires the corresponding bin
-(( $+commands[cod] )) && zinit wait lucid for dim-an/cod
+(( $+commands[cod] )) && zi wait lucid for dim-an/cod
 # FZF dependent plugins
 if (( $+commands[fzf] )); then;
   # fzf for tab completion
-  zinit light Aloxaf/fzf-tab
+  zi light Aloxaf/fzf-tab
   # better cd using fzf
-  zinit ice use"init.zsh"
-  zinit load "b4b4r07/enhancd"
+  zi ice use"init.zsh"
+  zi load "b4b4r07/enhancd"
   # A zsh plugin to search in the local tree of subdirectories for files
   # ALT+R to search hand Read
   # ALT+E to search and Edit
-  zinit load "wahtique/zsh-plugin-fzf-finder"
+  zi load "wahtique/zsh-plugin-fzf-finder"
   # CTRL+R to search history
-  zinit ice lucid wait'0'
-  zinit light joshskidmore/zsh-fzf-history-search
+  zi ice lucid wait'0'
+  zi light joshskidmore/zsh-fzf-history-search
   # CTRL+N for cheatsheets
   # REQUIRES NAVI
   if (( $+commands[navi])); then;
-    zinit load "icatalina/zsh-navi-plugin"
+    zi load "icatalina/zsh-navi-plugin"
     # use ctrl+n to show cheat sheets
     bindkey '^n' navi_widget
   fi
 fi
 # these should be after the fzf plugins
-zinit load "zsh-users/zsh-autosuggestions"
+zi load "zsh-users/zsh-autosuggestions"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
-zinit light "zdharma/fast-syntax-highlighting"
+zi light "zdharma/fast-syntax-highlighting"
 
 ############################################
 ########### ENVIRONMENT ####################
