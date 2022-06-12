@@ -56,7 +56,7 @@ blocks:
           leading_diamond: <transparent,background></>
           properties:
             style: round
-            threshold: 500
+            threshold: 3000
           style: powerline
           template: ' {{ .FormattedMs }} '
           powerline_symbol: 
