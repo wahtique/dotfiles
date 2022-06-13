@@ -42,7 +42,12 @@ enable_poshtransientprompt
 
 # install ZI if necessary
 
-source <(curl -sL https://git.io/zi-loader); zzinit
+if [[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/zi/init.zsh" ]]; then
+  source "${XDG_CONFIG_HOME:-$HOME/.config}/zi/init.zsh" && zzinit
+else 
+  sh -c "$(curl -fsSL https://git.io/get-zi)" -- -a loader
+  source "${XDG_CONFIG_HOME:-$HOME/.config}/zi/init.zsh" && zzinit
+fi
 
 # programs
 
