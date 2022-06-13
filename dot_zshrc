@@ -96,7 +96,7 @@ zi light Aloxaf/fzf-tab
 # ALT+R to search hand Read
 # ALT+E to search and Edit
 zi ice has"fzf"
-zi light "wahtique/zsh-plugin-fzf-finder"
+zi light "leophys/zsh-plugin-fzf-finder"
 # CTRL+R to search history
 zi ice lucid wait'0' has"fzf"
 zi light joshskidmore/zsh-fzf-history-search
@@ -117,6 +117,11 @@ zi light "zdharma/fast-syntax-highlighting"
 if (( $+commands[navi])); then;
   # use ctrl+n to show cheat sheets
   bindkey '^n' navi_widget
+fi
+
+if (( $+commands[fzf] )); then
+  export FZF_FINDER_EDITOR_BINDKEY="^[e"
+  export FZF_FINDER_PAGER_BINDKEY="^[r"
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
