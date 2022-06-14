@@ -60,9 +60,8 @@ zi light @sharkdp/fd
 zi ice from'gh-r' as'program' mv'bat* bat' sbin'**/bat(.exe|) -> bat'
 zi light @sharkdp/bat
 
-# exposes their binaries by altering $PATH
-zi ice rustup cargo'exa;lsd' as'program' pick"bin/(exa|lsd)" nocompile
-zi load z-shell/0
+zi ice from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
+zi light ogham/exa
 
 zi ice lucid wait as'program' from"gh-r" has'fzf'
 zi light @denisidoro/navi
