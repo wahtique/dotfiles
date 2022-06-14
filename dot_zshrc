@@ -66,12 +66,6 @@ zi light ogham/exa
 zi ice lucid wait as'program' from"gh-r" has'fzf'
 zi light denisidoro/navi
 
-zi ice as'program' pick'$ZPFX/sdkman/bin/sdk' id-as'sdkman' run-atpull nocompile \
-  atclone'curl -s "https://get.sdkman.io?rcupdate=false" -o scr.sh; SDKMAN_DIR=$ZPFX/sdkman bash scr.sh' \
-  atpull'SDKMAN_DIR=$ZPFX/sdkman sdk selfupdate' \
-  atinit'export SDKMAN_DIR=$ZPFX/sdkman; source $ZPFX/sdkman/bin/sdkman-init.sh'
-zi light z-shell/0
-
 # plugins 
 
 # git aliases
