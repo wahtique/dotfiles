@@ -101,7 +101,7 @@ zi light Aloxaf/fzf-tab
 # ALT+R to search hand Read
 # ALT+E to search and Edit
 zi ice has"fzf"
-zi light "leophys/zsh-plugin-fzf-finder"
+zi load "leophys/zsh-plugin-fzf-finder"
 # CTRL+R to search history
 zi ice lucid wait'0' has"fzf"
 zi light joshskidmore/zsh-fzf-history-search
