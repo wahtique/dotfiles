@@ -62,7 +62,7 @@ zi light @sharkdp/bat
 
 # the `ls' shim exposing the `exa' binary
 zi ice rustup cargo'!exa -> ls' id-as'exa' as'program' nocompile
-zi load z-shell/0
+zi load z-shell/0
 
 zi ice lucid wait as'program' from"gh-r" has'fzf'
 zi light @denisidoro/navi
