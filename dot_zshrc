@@ -27,7 +27,21 @@ fpath=("/home/wahtique/.local/share/scalacli/completions/zsh" $fpath)
 compinit
 # End of lines added by compinstall
 
-# PROMPT
+# Path is updated here so that ZI conf can be done
+# taking into account installed bins
+
+# PATH UPDATES
+path+=(
+  # custom tools which dont really belong in /bin or /usr/bin
+  "$HOME/tools"
+  # coursier + g8
+  "$HOME/.local/share/coursier/bin"
+  # rust
+  "$HOME/.cargo/bin"
+  # alternative bin
+  "$HOME/.local/bin"
+)
+export PATH
 
 ############################################
 ########### PROMPT #########################
@@ -132,17 +146,6 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# PATH UPDATES
-path+=(
-  # custom tools which dont really belong in /bin or /usr/bin
-  "$HOME/tools"
-  # coursier + g8
-  "$HOME/.local/share/coursier/bin"
-  # rust
-  "$HOME/.cargo/bin"
-)
-export PATH
 
 # intellij options
 export IDE_VM_OPTIONS="-Xmx2048m"
