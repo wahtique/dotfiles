@@ -54,17 +54,17 @@ fi
 zi ice from'gh-r' as'program'
 zi light @junegunn/fzf
 
-zi ice from'gh-r' as'program' mv'fd* fd' sbin'**/fd(.exe|) -> fd'
-zi light @sharkdp/fd
+# zi ice from'gh-r' as'program' mv'fd* fd' sbin'**/fd(.exe|) -> fd'
+# zi light @sharkdp/fd
 
-zi ice from'gh-r' as'program' mv'bat* bat' sbin'**/bat(.exe|) -> bat'
-zi light @sharkdp/bat
+# zi ice from'gh-r' as'program' mv'bat* bat' sbin'**/bat(.exe|) -> bat'
+# zi light @sharkdp/bat
 
-zi ice from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
-zi light ogham/exa
+# zi ice from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
+# zi light ogham/exa
 
-zi ice lucid wait as'program' from"gh-r" has'fzf'
-zi light @denisidoro/navi
+# zi ice lucid wait as'program' from"gh-r" has'fzf'
+# zi light @denisidoro/navi
 
 # plugins 
 
