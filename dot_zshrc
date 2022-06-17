@@ -84,6 +84,8 @@ zi light @denisidoro/navi
 
 # plugins 
 
+# direnv
+zi load ptavares/zsh-direnv
 # git aliases
 zi snippet OMZP::git
 # <esc> <esc> for the fuck
