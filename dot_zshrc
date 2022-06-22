@@ -40,6 +40,8 @@ path+=(
   "$HOME/.cargo/bin"
   # alternative bin
   "$HOME/.local/bin"
+  # golang
+  "/usr/local/go/bin"
 )
 export PATH
 
