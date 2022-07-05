@@ -42,6 +42,8 @@ path+=(
   "$HOME/.local/bin"
   # golang
   "/usr/local/go/bin"
+  # node
+  "$HOME/.nvm"
 )
 export PATH
 
