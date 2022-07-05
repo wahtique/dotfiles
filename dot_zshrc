@@ -168,6 +168,10 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 # make fzf finder plugin search hidden files too
 export FZF_FINDER_FD_OPTS="--hidden -t f"
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # aliases
 # scala 
 alias sc=scala-cli
