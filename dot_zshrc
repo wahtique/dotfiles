@@ -178,3 +178,6 @@ alias sc=scala-cli
 alias cs=coursier
 # shell
 alias cz=chezmoi
+
+# source secrets
+source ~/.secrets
