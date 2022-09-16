@@ -71,8 +71,13 @@ fi
 # some might not work on ubuntu as 
 # their may be name collisions
 
-zi ice from'gh-r' as'program'
-zi light @junegunn/fzf
+zi for atclone'mkdir -p $ZPFX/{bin,man/man1}' atpull'%atclone' from'gh-r' dl'
+  https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh -> _fzf_completion;
+  https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -> key-bindings.zsh;
+  https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf-tmux.1 -> $ZI[MAN_DIR]/man1/fzf-tmux.1;
+  https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1 -> $ZI[MAN_DIR]/man1/fzf.1' \
+    id-as'junegunn/fzf' nocompile pick'/dev/null' sbin'fzf' src'key-bindings.zsh' \
+      junegunn/fzf
 
 zi ice from'gh-r' as'program' mv'fd* fd' sbin'**/fd(.exe|) -> fd'
 zi light @sharkdp/fd
