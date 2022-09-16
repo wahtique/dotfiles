@@ -92,7 +92,7 @@ fi
 
 if [[ $+commands[navi] < 1 ]]; then
   zi ice lucid wait as'program' from"gh-r" has'fzf'
-  zi light @denisidoro/navi
+  zi light denisidoro/navi
 fi
 
 # plugins 
