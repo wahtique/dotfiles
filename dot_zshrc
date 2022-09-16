@@ -69,7 +69,7 @@ fi
 
 # programs
 # some might not work on ubuntu as 
-# their may be name collisions
+# there may be name collisions
 
 zi ice if'[[ -n "$commands[fzf]" ]]'
 zi pack for fzf
