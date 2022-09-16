@@ -91,8 +91,10 @@ if [[ $+commands[exa] < 1 ]]; then
 fi
 
 if [[ $+commands[navi] < 1 ]]; then
-  zi ice lucid wait as'program' from"gh-r" has'fzf' atclone'make install'
-  zi light denisidoro/navi
+# seem broken depending on OS 
+#  zi ice lucid wait as'program' from"gh-r" has'fzf' atclone'make install'
+#  zi light denisidoro/navi
+  bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)
 fi
 
 # plugins 
