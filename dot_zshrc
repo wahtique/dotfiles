@@ -71,8 +71,7 @@ fi
 # some might not work on ubuntu as 
 # their may be name collisions
 
-zi ice from'gh-r' as'program'
-zi light junegunn/fzf
+zi pack for fzf
 
 zi ice from'gh-r' as'program' mv'fd* fd' sbin'**/fd(.exe|) -> fd'
 zi light @sharkdp/fd
