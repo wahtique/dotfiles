@@ -147,8 +147,8 @@ if (( $+commands[navi])); then;
 fi
 
 if (( $+commands[fzf] )); then
-  export FZF_FINDER_EDITOR_BINDKEY="^[e"
-  export FZF_FINDER_PAGER_BINDKEY="^[r"
+  export FZF_FINDER_EDITOR_BINDKEY='^[e'
+  export FZF_FINDER_PAGER_BINDKEY='^[r'
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
