@@ -71,29 +71,20 @@ fi
 # some might not work on ubuntu as 
 # their may be name collisions
 
-if [[ $+commands[fzf] < 1 ]]; then
-  zi pack for fzf
-fi
+zi ice if'[[ -n "$commands[fzf]" ]]'
+zi pack for fzf
 
-if [[ $+commands[fd] < 1 ]]; then 
-  zi ice from'gh-r' as'program' mv'fd* fd' sbin'**/fd(.exe|) -> fd'
-  zi light @sharkdp/fd
-fi
+zi ice if'[[ -n "$commands[fd]" ]]' from'gh-r' as'program' mv'fd* fd' sbin'**/fd(.exe|) -> fd'
+zi light @sharkdp/fd
 
-if [[ $+commands[bat] < 1 ]]; then
-  zi ice from'gh-r' as'program' mv'bat* bat' sbin'**/bat(.exe|) -> bat'
-  zi light @sharkdp/bat
-fi
+zi ice if'[[ -n "$commands[bat]" ]]' from'gh-r' as'program' mv'bat* bat' sbin'**/bat(.exe|) -> bat'
+zi light @sharkdp/bat
 
-if [[ $+commands[exa] < 1 ]]; then
-  zi ice from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
-  zi light ogham/exa
-fi
+zi ice if'[[ -n "$commands[exa]" ]]' from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
+zi light ogham/exa
 
-if [[ $+commands[navi] < 1 ]]; then
-  zi ice lucid wait as'program' from"gh-r" has'fzf' atclone'make install'
-  zi light denisidoro/navi
-fi
+zi ice if'[[ -n "$commands[navi]" ]]' lucid wait as'program' from"gh-r" has'fzf' cloneonly make
+zi light denisidoro/navi
 
 # plugins 
 
