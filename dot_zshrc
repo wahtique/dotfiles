@@ -97,6 +97,13 @@ if [[ $+commands[navi] < 1 ]]; then
   bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)
 fi
 
+if [[ $+commands[zoxide] < 1]]; then 
+  zi ice as'program' from'gh-r' pick'zoxide' \
+  atclone'ln -s completions/_zoxide -> _zoxide;
+  cp man/man1/*.1 $ZI[MAN_DIR]/man1; ./zoxide init zsh --cmd x > init.zsh' \
+  atpull'%atclone' src'init.zsh' nocompile'!'
+  zi light ajeetdsouza/zoxide
+fi 
 # plugins 
 
 # direnv
@@ -125,9 +132,15 @@ zi ice wait lucid has"cod" for dim-an/cod
 
 # FZF dependent plugins
 # better cd using fzf
-zi ice use"init.zsh" has"fzf"
-zi load "b4b4r07/enhancd"
-# fzf for tab completion
+# zi ice use"init.zsh" has"fzf"
+# zi load "b4b4r07/enhancd"
+
+# zoxide : better cd + autojump 
+# `x` for cd 
+# `xi` for interactive cd
+zi has'zoxide' wait lucid for \
+  z-shell/zsh-zoxide
+#fzf for tab completion
 zi ice has"fzf"
 zi light Aloxaf/fzf-tab
 # A zsh plugin to search in the local tree of subdirectories for files
