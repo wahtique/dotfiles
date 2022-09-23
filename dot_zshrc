@@ -120,7 +120,7 @@ zi light le0me55i/zsh-extract
 # zi ice has"timew"
 # zi light svenXY/timewarrior
 # generate autocompletes from `--help` for most cli tools
-requires the corresponding bin
+# requires the corresponding bin
 zi ice wait lucid has"cod" for dim-an/cod
 
 # FZF dependent plugins
