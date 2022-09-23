@@ -191,4 +191,6 @@ alias cs=coursier
 alias cz=chezmoi
 
 # source secrets
-source ~/.secrets
+if [[ -f ~/.secrets ]]; then
+  source ~/.secrets
+fi
