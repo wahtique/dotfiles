@@ -97,13 +97,15 @@ if [[ $+commands[navi] < 1 ]]; then
   bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)
 fi
 
-if [[ $+commands[zoxide] <  1]]; then 
-  zi ice as'program' from'gh-r' pick'zoxide' \
-  atclone'ln -s completions/_zoxide -> _zoxide;
-  cp man/man1/*.1 $ZI[MAN_DIR]/man1; ./zoxide init zsh --cmd x > init.zsh' \
-  atpull'%atclone' src'init.zsh' nocompile'!'
-  zi light ajeetdsouza/zoxide
-fi 
+# INSTALL FROM GIT IS BROKEN
+# if [[ $+commands[zoxide] <  1]]; then 
+#   zi ice as'program' from'gh-r' pick'zoxide' \
+#  atclone'ln -s completions/_zoxide -> _zoxide;
+#  cp man/man1/*.1 $ZI[MAN_DIR]/man1; ./zoxide init zsh --cmd x > init.zsh' \
+#  atpull'%atclone' src'init.zsh' nocompile'!'
+#  zi light ajeetdsouza/zoxide
+#fi 
+
 # plugins 
 
 # direnv
