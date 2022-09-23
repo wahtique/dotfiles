@@ -91,7 +91,7 @@ if [[ $+commands[exa] < 1 ]]; then
 fi
 
 if [[ $+commands[navi] < 1 ]]; then
-# seem broken depending on OS 
+# seem broken depending on some OS 
 #  zi ice lucid wait as'program' from"gh-r" has'fzf' atclone'make install'
 #  zi light denisidoro/navi
   bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)
@@ -117,11 +117,11 @@ zi load bobsoppe/zsh-ssh-agent
 # `extract <filename>` and voila !
 zi light le0me55i/zsh-extract
 # timewarrior aliases
-zi ice has"timew"
-zi light svenXY/timewarrior
+# zi ice has"timew"
+# zi light svenXY/timewarrior
 # generate autocompletes from `--help` for most cli tools
 # requires the corresponding bin
-zi ice wait lucid has"cod" for dim-an/cod
+# zi ice wait lucid has"cod" for dim-an/cod
 
 # FZF dependent plugins
 # better cd using fzf
