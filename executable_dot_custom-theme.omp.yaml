@@ -19,7 +19,7 @@ blocks:
             style: unique
             always_enabled: true
           style: powerline
-          template: '  {{ path .Path .Location }} '
+          template: '  {{ .Path }} '
           type: path
         - background: p:green
           background_templates:
