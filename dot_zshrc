@@ -165,6 +165,17 @@ zi load "icatalina/zsh-navi-plugin"
 # these should be after the fzf plugins
 zi load "zsh-users/zsh-autosuggestions"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
+
+# fix for broken history 
+# leave it before syntax highlighting plugin to not break 
+# syntax highlighting in history search 
+autoload up-line-or-beginning-search
+autoload down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+
 zi light "zdharma/fast-syntax-highlighting"
 
 ############################################
