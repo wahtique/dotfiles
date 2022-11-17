@@ -213,6 +213,13 @@ export FZF_FINDER_FD_OPTS="--hidden -t f"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# sbt 
+if (( $+commands[sbt] )); then 
+  alias sbtc="sbt --client"
+  # path=($path /path/to/dir/containing/sbtc)
+  fpath=($fpath ${SBT_SOURCE_DIR}/client/completions)
+fi
+
 # aliases
 # scala 
 alias sc=scala-cli
