@@ -218,6 +218,7 @@ if (( $+commands[sbt] )); then;
   alias sbtc="sbt --client"
   # path=($path /path/to/dir/containing/sbtc)
   fpath=($fpath ${SBT_SOURCE_DIR}/client/completions)
+  export SBT_OPTS="-Xms1g -Xmx4g"
 fi
 
 # aliases
