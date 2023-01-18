@@ -232,3 +232,8 @@ alias cz=chezmoi
 if [[ -f ~/.secrets ]]; then
   source ~/.secrets
 fi
+
+# source profile 
+if [[ -f ~/.profile ]]; then
+  source ~/.profile
+fi
