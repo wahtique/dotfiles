@@ -44,6 +44,8 @@ path+=(
   "/usr/local/go/bin"
   # node
   "$HOME/.nvm"
+  # solidity stuff 
+  "$HOME/.bifrost/bin" 
 )
 export PATH
 
