@@ -42,6 +42,8 @@ path+=(
   "$HOME/.local/bin"
   # golang
   "/usr/local/go/bin"
+  # go binaries
+  "$HOME/go/bin"
   # node
   "$HOME/.nvm"
   # solidity stuff 
