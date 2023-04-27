@@ -243,4 +243,4 @@ if [[ -f ~/.profile ]]; then
 fi
 
 # reload completions for scripts not added by plugins
-zi compinit -q
+zi cdreplay -q
