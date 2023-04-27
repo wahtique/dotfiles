@@ -180,7 +180,8 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
-zi light "zdharma/fast-syntax-highlighting"
+zi wait lucid atload"zicompinit; zicdreplay" blockf for \
+  zdharma/fast-syntax-highlighting
 
 ############################################
 ########### ENVIRONMENT ####################
@@ -242,5 +243,3 @@ if [[ -f ~/.profile ]]; then
   source ~/.profile
 fi
 
-# reload completions for scripts not added by plugins
-zi cdreplay -q
