@@ -245,12 +245,12 @@ fi
 # additional completions
 
 zi ice lucid wait has'anvil'
-zi snippet "$HOME/.zi/completions/_anvil"
+zi light "$HOME/.zi/completions/_anvil"
 
 zi ice lucid wait has'forge'
-zi snippet "$HOME/.zi/completions/_forge"
+zi light "$HOME/.zi/completions/_forge"
 
 zi ice lucid wait has'cast'
-zi snippet "$HOME/.zi/completions/_cast"
+zi light "$HOME/.zi/completions/_cast"
 
 
