@@ -242,15 +242,5 @@ if [[ -f ~/.profile ]]; then
   source ~/.profile
 fi
 
-# additional completions
-
-zi ice lucid wait has'anvil'
-zi light "$HOME/.zi/completions/_anvil"
-
-zi ice lucid wait has'forge'
-zi light "$HOME/.zi/completions/_forge"
-
-zi ice lucid wait has'cast'
-zi light "$HOME/.zi/completions/_cast"
-
-
+# reload completions for scripts not added by plugins
+zi compinit -q
