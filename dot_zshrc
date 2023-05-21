@@ -233,10 +233,10 @@ alias cs=coursier
 # shell
 alias cz=chezmoi
 # vscode
-if [[ $+commands[code] < 1 ]]; then
+if (( $+commands[code] )); then
   alias c=code
 fi
-if [[ $+commands[code-insiders] < 1 ]]; then
+if (( $+commands[code-insiders] )); then
   alias ci=code-insiders
 fi
 
