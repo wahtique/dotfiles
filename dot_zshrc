@@ -232,6 +232,13 @@ alias sc=scala-cli
 alias cs=coursier
 # shell
 alias cz=chezmoi
+# vscode
+if [[ $+commands[code] < 1 ]]; then
+  alias c=code
+fi
+if [[ $+commands[code-insiders] < 1 ]]; then
+  alias ci=code-insiders
+fi
 
 # source secrets
 if [[ -f ~/.secrets ]]; then
