@@ -15,9 +15,9 @@ blocks:
           foreground: p:black
           powerline_symbol: 
           properties:
-            style: powerlevel
+            style: mixed
           style: powerline
-          template: ' {{ .Path }}'
+          template: "  {{ .Path }} "
           type: path
         - background: p:green
           background_templates:
