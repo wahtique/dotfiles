@@ -18,7 +18,7 @@ blocks:
             home_icon: "~"
             style: unique
             always_enabled: true
-          style: powerlevel
+          style: powerline
           template: '  {{ .Path }} '
           type: path
         - background: p:green
