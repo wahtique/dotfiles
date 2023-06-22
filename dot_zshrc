@@ -58,6 +58,15 @@ export PATH
 eval "$(oh-my-posh init zsh --config ~/.custom-theme.omp.yaml)"
 enable_poshtransientprompt
 
+
+############################################
+######### NIX ##############################
+############################################
+
+if (( $+commands[nix] )); then
+   source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+
 ############################################
 ############# ZI ###########################
 ############################################
