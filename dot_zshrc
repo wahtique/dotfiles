@@ -63,12 +63,13 @@ enable_poshtransientprompt
 ######### NIX ##############################
 ############################################
 
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
-   source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+if (( $+commands[nix] )); then
+  source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi
 
-if [ -e $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh ]; then
-   source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+if (( $+commands[home-manager] )); then
+  source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+  home-manager switch &> /dev/null
 fi
 
 ############################################
