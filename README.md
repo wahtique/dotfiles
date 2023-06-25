@@ -11,18 +11,28 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
   - `fzf` tab completion
   - auto-completion generation from `--help`
 - custom `oh-my-posh` theme
-- script to auto install dependencies on first run (TODO)
+- [home-manager](https://github.com/nix-community/home-manager) config to setup dependencies
+  - TODO : templatize that to take a username 
 - custom config for [SpaceVim](https://github.com/SpaceVim/SpaceVim)
 - and much more ( well just a little for now but much more soon ! )
 
 ## Installation
 
 - CHECK zsh is your default shell, or set it with `chsh`
-- CHECK dependencies are installed 
-  - [cod](https://github.com/dim-an/cod) which is not necessarily needed but a nice tool all the same
-  - [oh-my-posh](https://ohmyposh.dev/) for prompt customization
+- CHECK dependencies are installed, with `unstable` channel
+  - [nix](https://nixos.org/download.html)
+    ```bash
+      sh <(curl -L https://nixos.org/nix/install) --no-daemon
+    ```
+  - [home-manager](https://nix-community.github.io/home-manager/index.html#sec-install-standalone)
+    ```bash
+      nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+      nix-channel --update
+      nix-shell '<home-manager>' -A install
+    ```
+- CHECK optional dependencies
+  - [cod](https://github.com/dim-an/cod) : not manage by `home-manager` as Nix package and git install are broken
   - SpaceVim is not necessary but custom config WILL be deployed all the same
-  - and also most likely stuff you already have like python and lua
 - Ensure github is properly setup 
   - check [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) to setup ssh with your a rsa key     
 - Fork this repo ! 
