@@ -35,7 +35,7 @@
     # dev
     pkgs.git
     # java
-    pkgs.jdk17
+    pkgs.jdk19_headless
     # scala
     pkgs.coursier
     pkgs.sbt
