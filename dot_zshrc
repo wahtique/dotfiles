@@ -70,7 +70,7 @@ fi
 
 HM_INIT="$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 if [ -e $HM_INIT ]; then
-  source "$HM_INIT
+  source $HM_INIT
   home-manager switch &> /dev/null
 fi
 
