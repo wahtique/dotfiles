@@ -27,6 +27,7 @@
     pkgs.exa
     pkgs.navi
     pkgs.zoxide
+    pkgs.direnv
     # broken
     # pkgs.cod
     pkgs.htop
