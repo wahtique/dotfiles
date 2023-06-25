@@ -27,7 +27,8 @@
     pkgs.exa
     pkgs.navi
     pkgs.zoxide
-    pkgs.cod
+    # broken
+    # pkgs.cod
     pkgs.htop
     pkgs.neofetch
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
