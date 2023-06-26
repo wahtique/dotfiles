@@ -37,7 +37,7 @@
     pkgs.git
     (builtins.fetchGit {
         url = "https://github.com/nix-community/nix-direnv.git";
-        ref = "refs/tags/latest";
+        ref = "master";
       }
     )
     # java
