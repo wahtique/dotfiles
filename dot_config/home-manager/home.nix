@@ -35,11 +35,11 @@
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     # dev
     pkgs.git
-    (builtins.fetchGit {
+    (import (builtins.fetchGit {
         url = "https://github.com/cachix/devenv.git";
         ref = "refs/tags/latest";
       }
-    )
+    ).default)
     # java
     pkgs.jdk19_headless
     # scala
