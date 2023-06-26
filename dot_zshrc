@@ -24,7 +24,6 @@ autoload -Uz compinit
 fpath=("$HOME/.local/share/scalacli/completions/zsh" $fpath)
 # <<< scala-cli completions <<<
 
-compinit
 # End of lines added by compinstall
 
 # Path is updated here so that ZI conf can be done
@@ -58,7 +57,6 @@ export PATH
 eval "$(oh-my-posh init zsh --config ~/.custom-theme.omp.yaml)"
 enable_poshtransientprompt
 
-
 ############################################
 ######### NIX ##############################
 ############################################
@@ -66,14 +64,12 @@ enable_poshtransientprompt
 NIX_INIT="$HOME/.nix-profile/etc/profile.d/nix.sh" 
 if [ -e $NIX_INIT ]; then
   source $NIX_INIT
-  compinit
 fi
 
 HM_INIT="$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 if [ -e $HM_INIT ]; then
   source $HM_INIT
   home-manager switch &> /dev/null
-  compinit
 fi
 
 ############################################
@@ -128,6 +124,9 @@ if [[ $+commands[zoxide] <  1 ]]; then
 #  zi light ajeetdsouza/zoxide
   curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 fi 
+
+# init comletions after all installs are done
+compinit
 
 # plugins 
 
