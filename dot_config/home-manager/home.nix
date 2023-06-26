@@ -39,7 +39,7 @@
         url = "https://github.com/cachix/devenv.git";
         ref = "refs/tags/latest";
       }
-    ).default)
+    )).default
     # java
     pkgs.jdk19_headless
     # scala
