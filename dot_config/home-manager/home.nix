@@ -36,8 +36,8 @@
     # dev
     pkgs.git
     (builtins.fetchGit {
-        url = "https://github.com/nix-community/nix-direnv.git";
-        ref = "master";
+        url = "https://github.com/cachix/devenv.git";
+        ref = "refs/tags/latest";
       }
     )
     # java
