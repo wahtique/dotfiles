@@ -35,6 +35,11 @@
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     # dev
     pkgs.git
+    (builtins.fetchGit {
+        url = "https://github.com/nix-community/nix-direnv.git";
+        ref = "latest";
+      }
+    )
     # java
     pkgs.jdk19_headless
     # scala
