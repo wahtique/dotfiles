@@ -125,6 +125,11 @@ if [[ $+commands[zoxide] <  1 ]]; then
   curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 fi 
 
+# add completion for nix 
+if (( $+commands[nix] )); then
+  zi load "nix-community/nix-zsh-completions"
+fi
+
 # init comletions after all installs are done
 compinit
 
@@ -182,8 +187,6 @@ zi light joshskidmore/zsh-fzf-history-search
 # REQUIRES NAVI
 zi ice has"navi" has"fzf"
 zi load "icatalina/zsh-navi-plugin"
-
-zi load "nix-community/nix-zsh-completions"
 
 # these should be after the fzf plugins
 zi load "zsh-users/zsh-autosuggestions"
