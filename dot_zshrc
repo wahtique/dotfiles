@@ -183,6 +183,8 @@ zi light joshskidmore/zsh-fzf-history-search
 zi ice has"navi" has"fzf"
 zi load "icatalina/zsh-navi-plugin"
 
+zi load "nix-community/nix-zsh-completions"
+
 # these should be after the fzf plugins
 zi load "zsh-users/zsh-autosuggestions"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
