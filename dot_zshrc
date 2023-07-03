@@ -29,27 +29,6 @@ fpath=("$HOME/.local/share/scalacli/completions/zsh" $fpath)
 # Path is updated here so that ZI conf can be done
 # taking into account installed bins
 
-# PATH UPDATES
-path+=(
-  # custom tools which dont really belong in /bin or /usr/bin
-  "$HOME/tools"
-  # coursier + g8
-  "$HOME/.local/share/coursier/bin"
-  # rust
-  "$HOME/.cargo/bin"
-  # alternative bin
-  "$HOME/.local/bin"
-  # golang
-  "/usr/local/go/bin"
-  # go binaries
-  "$HOME/go/bin"
-  # node
-  "$HOME/.nvm"
-  # solidity stuff 
-  "$HOME/.bifrost/bin" 
-)
-export PATH
-
 ############################################
 ######### NIX ##############################
 ############################################
@@ -65,6 +44,12 @@ if [ -e $HM_INIT ]; then
   home-manager switch &> /dev/null
 fi
 
+zi load "nix-community/nix-zsh-completions"
+
+############################################
+
+compinit
+
 ############################################
 ########### PROMPT #########################
 ############################################
@@ -76,62 +61,6 @@ enable_poshtransientprompt
 ############# ZI ###########################
 ############################################
 
-# install ZI if necessary
-
-if [[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/zi/init.zsh" ]]; then
-  source "${XDG_CONFIG_HOME:-$HOME/.config}/zi/init.zsh" && zzinit
-else 
-  sh -c "$(curl -fsSL https://git.io/get-zi)" -- -a loader
-  source "${XDG_CONFIG_HOME:-$HOME/.config}/zi/init.zsh" && zzinit
-fi
-
-# programs
-# some might not work on ubuntu as 
-# there may be name collisions
-
-if [[ $+commands[fzf] < 1 ]]; then
-  zi pack for fzf
-fi
-
-if [[ $+commands[fd] < 1 ]]; then 
-  zi ice from'gh-r' as'program' mv'fd* fd' sbin'**/fd(.exe|) -> fd'
-  zi light @sharkdp/fd
-fi
-
-if [[ $+commands[bat] < 1 ]]; then
-  zi ice from'gh-r' as'program' mv'bat* bat' sbin'**/bat(.exe|) -> bat'
-  zi light @sharkdp/bat
-fi
-
-if [[ $+commands[exa] < 1 ]]; then
-  zi ice from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
-  zi light ogham/exa
-fi
-
-if [[ $+commands[navi] < 1 ]]; then
-# seem broken depending on some OS 
-#  zi ice lucid wait as'program' from"gh-r" has'fzf' atclone'make install'
-#  zi light denisidoro/navi
-  bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)
-fi
-
-# INSTALL FROM GIT IS BROKEN
-if [[ $+commands[zoxide] <  1 ]]; then 
-#   zi ice as'program' from'gh-r' pick'zoxide' \
-#  atclone'ln -s completions/_zoxide -> _zoxide;
-#  cp man/man1/*.1 $ZI[MAN_DIR]/man1; ./zoxide init zsh --cmd x > init.zsh' \
-#  atpull'%atclone' src'init.zsh' nocompile'!'
-#  zi light ajeetdsouza/zoxide
-  curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
-fi 
-
-# add completion for nix 
-if (( $+commands[nix] )); then
-  zi load "nix-community/nix-zsh-completions"
-fi
-
-# init comletions after all installs are done
-compinit
 
 # plugins 
 
@@ -209,26 +138,14 @@ zi wait lucid atload"zicompinit; zicdreplay" blockf for \
 ########### ENVIRONMENT ####################
 ############################################
 
-if (( $+commands[navi] )); then;
-  # use ctrl+n to show cheat sheets
-  bindkey '^n' navi_widget
-fi
+# use ctrl+n to show cheat sheets
+bindkey '^n' navi_widget
 
-if (( $+commands[fzf] )); then
-  export FZF_FINDER_EDITOR_BINDKEY='^[e'
-  export FZF_FINDER_PAGER_BINDKEY='^[r'
-fi
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export FZF_FINDER_EDITOR_BINDKEY='^[e'
+export FZF_FINDER_PAGER_BINDKEY='^[r'fi
 
 # intellij options
 export IDE_VM_OPTIONS="-Xmx2048m"
-
-# first needed by chezmoi
-# most likely also expected by other tools
-export EDITOR=vim
 
 # make fzf search hidden files too
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
@@ -236,24 +153,10 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 # make fzf finder plugin search hidden files too
 export FZF_FINDER_FD_OPTS="--hidden -t f"
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# path=($path /path/to/dir/containing/sbtc)
+fpath=($fpath ${SBT_SOURCE_DIR}/client/completions)
+export SBT_OPTS="-Xms1g -Xmx4g -Xss8M -XX:ReservedCodeCacheSize=256m -XX:+UseParallelGC"
 
-# sbt 
-if (( $+commands[sbt] )); then; 
-  alias sbtc="sbt --client"
-  # path=($path /path/to/dir/containing/sbtc)
-  fpath=($fpath ${SBT_SOURCE_DIR}/client/completions)
-  export SBT_OPTS="-Xms1g -Xmx4g -Xss8M -XX:ReservedCodeCacheSize=256m -XX:+UseParallelGC"
-fi
-
-# aliases
-# scala 
-alias sc=scala-cli
-alias cs=coursier
-# shell
-alias cz=chezmoi
 # vscode
 if (( $+commands[code] )); then
   alias c=code

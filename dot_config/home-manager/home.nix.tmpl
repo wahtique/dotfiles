@@ -5,8 +5,6 @@
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     username = "{{ .username }}";
-
-
     homeDirectory = "/home/{{ .username }}";
 
     # This value determines the Home Manager release that your configuration is
@@ -33,10 +31,7 @@
       pkgs.devbox
       # scala
       pkgs.coursier
-      pkgs.sbt
       pkgs.scala-cli
-      # go
-      pkgs.go
       # nix
       pkgs.rnix-lsp
       # # You can also create simple shell scripts directly inside your
@@ -73,7 +68,33 @@
     #
     # if you don't want to manage your shell through Home Manager.
     sessionVariables = {
-      # EDITOR = "emacs";
+      EDITOR = "vim";
+    };
+
+    sessionPath = [
+      # custom tools which dont really belong in /bin or /usr/bin
+      "$HOME/tools"
+      # coursier + g8
+      "$HOME/.local/share/coursier/bin"
+      # rust
+      "$HOME/.cargo/bin"
+      # alternative bin
+      "$HOME/.local/bin"
+      # golang
+      "/usr/local/go/bin"
+      # go binaries
+      "$HOME/go/bin"
+      # solidity stuff 
+      "$HOME/.bifrost/bin"
+    ];
+
+    shellAliases = {
+      # scala 
+      sc = "scala-cli";
+      cs = "coursier";
+      sbtc = "sbt --client";
+      # shell
+      cz = "chezmoi";
     };
   };
 
@@ -94,6 +115,8 @@
     htop.enable = true;
     bat.enable = true;
     java.enable = true;
+    sbt.enable = true;
+    go.enable = true;
   };
 
 }
