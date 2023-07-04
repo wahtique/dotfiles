@@ -142,11 +142,13 @@ zi wait lucid atload"zicompinit; zicdreplay" blockf for \
 
 # aliases
 
+# home manager
+alias hm="home-manager"
 # scala 
-export sc="scala-cli"
-export sbtc="sbt --client"
+alias sc="scala-cli"
+alias sbtc="sbt --client"
 # shell
-export cz="chezmoi"
+alias cz="chezmoi"
 
 # use ctrl+n to show cheat sheets
 bindkey '^n' navi_widget
