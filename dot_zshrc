@@ -65,7 +65,6 @@ enable_poshtransientprompt
 ############# ZI ###########################
 ############################################
 
-
 # plugins 
 
 # autopair delimiters for zsh
@@ -153,13 +152,6 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 # make fzf finder plugin search hidden files too
 export FZF_FINDER_FD_OPTS="--hidden -t f"
-
-# aliases
-# scala 
-alias sc=scala-cli
-alias sbtc="sbt --client"
-# shell
-alias cz=chezmoi
 
 # vscode
 if (( $+commands[code] )); then
