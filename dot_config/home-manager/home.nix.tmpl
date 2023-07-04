@@ -21,9 +21,11 @@
     packages = [
       # shell
       pkgs.zi
+      pkgs.starship
       pkgs.oh-my-posh
       pkgs.fd
       pkgs.cod
+      pkgs.zoxide
       pkgs.neofetch
       pkgs.silver-searcher
       (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -69,9 +71,9 @@
     # if you don't want to manage your shell through Home Manager.
     sessionVariables = {
       EDITOR = "vim";
-      SBT_OPTS="-Xms1g -Xmx4g -Xss8M -XX:ReservedCodeCacheSize=256m -XX:+UseParallelGC";
+      SBT_OPTS = "-Xms1g -Xmx4g -Xss8M -XX:ReservedCodeCacheSize=256m -XX:+UseParallelGC";
       # intellij options
-      IDE_VM_OPTIONS="-Xmx2048m";
+      IDE_VM_OPTIONS = "-Xmx2048m";
     };
 
     sessionPath = [
@@ -88,13 +90,6 @@
       # solidity stuff 
       "$HOME/.bifrost/bin"
     ];
-    shellAliases = {
-      # scala 
-      sc = "scala-cli";
-      sbtc = "sbt --client";
-      # shell
-      cz = "chezmoi";
-    };
   };
 
   nixpkgs.config = {
@@ -105,7 +100,6 @@
 
   programs = {
     home-manager.enable = true;
-    zoxide.enable = true;
     direnv.enable = true;
     navi.enable = true;
     git.enable = true;
@@ -116,7 +110,6 @@
     java.enable = true;
     sbt.enable = true;
     go.enable = true;
-    zsh.enable = true;
   };
 
 }

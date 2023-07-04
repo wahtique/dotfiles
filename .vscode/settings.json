@@ -1,0 +1,5 @@
+{
+  "files.associations": {
+    "**/*.nix.tmpl": "nix"
+  }
+}

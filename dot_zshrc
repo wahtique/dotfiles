@@ -42,7 +42,6 @@ fi
 HM_INIT="$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 if [ -e $HM_INIT ]; then
   source $HM_INIT
-  home-manager switch &> /dev/null
 fi
 
 zi load "nix-community/nix-zsh-completions"
@@ -140,6 +139,14 @@ zi wait lucid atload"zicompinit; zicdreplay" blockf for \
 ############################################
 ########### ENVIRONMENT ####################
 ############################################
+
+# aliases
+
+# scala 
+export sc="scala-cli"
+export sbtc="sbt --client"
+# shell
+export cz="chezmoi"
 
 # use ctrl+n to show cheat sheets
 bindkey '^n' navi_widget
