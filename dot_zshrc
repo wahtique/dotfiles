@@ -15,19 +15,20 @@ bindkey -v
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 # End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename "$HOME/.zshrc"
 
-autoload -Uz compinit
+fpath+=(
+  # scala-cli completions
+  "$HOME/.local/share/scalacli/completions/zsh"
+  # sbt client completions
+  ${SBT_SOURCE_DIR}/client/completions 
+)
 
-# >>> scala-cli completions >>>
-fpath=("$HOME/.local/share/scalacli/completions/zsh" $fpath)
-# <<< scala-cli completions <<<
+############################################
+######### ZI ###############################
+############################################
 
-# End of lines added by compinstall
-
-# Path is updated here so that ZI conf can be done
-# taking into account installed bins
+# init ZI
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zi/init.zsh" && zzinit
 
 ############################################
 ######### NIX ##############################
@@ -48,6 +49,9 @@ zi load "nix-community/nix-zsh-completions"
 
 ############################################
 
+# init completion after Nix and ZI
+zstyle :compinstall filename "$HOME/.zshrc"
+autoload -Uz compinit
 compinit
 
 ############################################
@@ -144,18 +148,18 @@ bindkey '^n' navi_widget
 export FZF_FINDER_EDITOR_BINDKEY='^[e'
 export FZF_FINDER_PAGER_BINDKEY='^[r'fi
 
-# intellij options
-export IDE_VM_OPTIONS="-Xmx2048m"
-
 # make fzf search hidden files too
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 # make fzf finder plugin search hidden files too
 export FZF_FINDER_FD_OPTS="--hidden -t f"
 
-# path=($path /path/to/dir/containing/sbtc)
-fpath=($fpath ${SBT_SOURCE_DIR}/client/completions)
-export SBT_OPTS="-Xms1g -Xmx4g -Xss8M -XX:ReservedCodeCacheSize=256m -XX:+UseParallelGC"
+# aliases
+# scala 
+alias sc=scala-cli
+alias sbtc="sbt --client"
+# shell
+alias cz=chezmoi
 
 # vscode
 if (( $+commands[code] )); then
