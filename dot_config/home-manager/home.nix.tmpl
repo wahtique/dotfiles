@@ -102,7 +102,37 @@
     home-manager.enable = true;
     direnv.enable = true;
     navi.enable = true;
-    git.enable = true;
+    git = {
+      enable = true;
+      userName = "{{ .username }}";
+      userEmail = "{{ .email }}";
+      delta.enable = true;
+      extraConfig = {
+        core = {
+          editor = "vim";
+        };
+        init = {
+          defaultBranch = "main";
+        };
+        pull = {
+          rebase = "true";
+        };
+        rebase = {
+          autoStash = "true";
+        };
+        delta = {
+          navigate = true;
+          light = false;
+          side-by-side = true;
+        };
+        merge = {
+          conflictStyle = "diff3";
+        };
+        diff = {
+          colorMoved = "default";
+        };
+      };
+    };
     fzf.enable = true;
     exa.enable = true;
     htop.enable = true;
