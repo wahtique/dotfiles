@@ -109,6 +109,8 @@ zi ice wait lucid has"cod" for dim-an/cod
 # `xi` for interactive cd
 zi has'zoxide' wait lucid for \
   z-shell/zsh-zoxide
+bindkey '^[x' xi
+
 #fzf for tab completion
 zi ice has"fzf"
 zi light Aloxaf/fzf-tab
