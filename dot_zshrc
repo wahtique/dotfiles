@@ -57,9 +57,14 @@ compinit
 ########### PROMPT #########################
 ############################################
 
-# eval "$(oh-my-posh init zsh --config ~/.custom-theme.omp.yaml)"
-# enable_poshtransientprompt
-eval "$(starship init zsh)"
+# pick one
+
+# oh-my-posh
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/dfrx-gray-standard.omp.json)"
+enable_poshtransientprompt
+
+# Starship
+#eval "$(starship init zsh)"
 
 ############################################
 ############# ZI ###########################
