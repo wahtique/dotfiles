@@ -57,8 +57,9 @@ compinit
 ########### PROMPT #########################
 ############################################
 
-eval "$(oh-my-posh init zsh --config ~/.custom-theme.omp.yaml)"
-enable_poshtransientprompt
+# eval "$(oh-my-posh init zsh --config ~/.custom-theme.omp.yaml)"
+# enable_poshtransientprompt
+eval "$(starship init zsh)"
 
 ############################################
 ############# ZI ###########################
@@ -154,7 +155,7 @@ alias cz="chezmoi"
 bindkey '^n' navi_widget
 
 export FZF_FINDER_EDITOR_BINDKEY='^[e'
-export FZF_FINDER_PAGER_BINDKEY='^[r'fi
+export FZF_FINDER_PAGER_BINDKEY='^[r'
 
 # make fzf search hidden files too
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
