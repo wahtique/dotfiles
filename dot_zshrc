@@ -57,14 +57,9 @@ compinit
 ########### PROMPT #########################
 ############################################
 
-# pick one
-
 # oh-my-posh
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/dfrx-gray-standard.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/bubbles-white.omp.json)"
 enable_poshtransientprompt
-
-# Starship
-#eval "$(starship init zsh)"
 
 ############################################
 ############# ZI ###########################
@@ -127,6 +122,8 @@ zi light joshskidmore/zsh-fzf-history-search
 # REQUIRES NAVI
 zi ice has"navi" has"fzf"
 zi load "icatalina/zsh-navi-plugin"
+# alias finder
+zi light akash329d/zsh-alias-finder
 
 # these should be after the fzf plugins
 zi load "zsh-users/zsh-autosuggestions"
@@ -156,8 +153,11 @@ alias hm="home-manager"
 # scala 
 alias sc="scala-cli"
 alias sbtc="sbt --client"
-# shell
+# chezmoi
 alias cz="chezmoi"
+alias cza="chezmoi apply"
+# re-apply dotfiles, rebuild home and source everything 
+alias f5="chezmoi apply && source ~/.zshrc"
 
 # use ctrl+n to show cheat sheets
 bindkey '^n' navi_widget
