@@ -111,7 +111,7 @@ zi has'zoxide' wait lucid for \
   z-shell/zsh-zoxide
 # ALT + \ for interactive zi
 zle -N __zoxide_zi
-bindkey "^[\" __zoxide_zi
+bindkey '^[\\' __zoxide_zi
 #fzf for tab completion
 zi ice has"fzf"
 zi light Aloxaf/fzf-tab
