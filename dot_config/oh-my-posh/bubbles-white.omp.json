@@ -28,9 +28,9 @@
           "foreground": "#111111",
           "background": "#f1f1f1",
           "properties": {
-            "style": "mixed"
+            "style": "letter"
           },
-          "template": " {{if eq .Path \"~\"}}\uf74b {{.UserName}}{{else}}\uf74a {{.Path}}{{end}} {{if not (.Segments.Contains \"git\")}}<#f1f1f1,transparent>\ue0b4</>{{end}}"
+          "template": " \uf74a {{.Path}} {{if not (.Segments.Contains \"git\")}}<#f1f1f1,transparent>\ue0b4</>{{end}}"
         },
         {
           "alias": "git",
@@ -187,7 +187,7 @@
   ],
   "transient_prompt": {
     "foreground": "#111111",
-    "template": "<#f1f1f1, transparent>\ue0b6</><#111111,#f1f1f1> \uf64f {{.Segments.Time.CurrentDate | date \"15:04:05\"}} </><#f1f1f1, transparent>\ue0b4</> <#f1f1f1, transparent>\ue0b6</><#111111,#f1f1f1> {{if eq .Segments.Path.Path \"~\"}}\uf74b {{.UserName}}{{else}}\uf74a {{.Segments.Path.Path}}{{end}} </><#f1f1f1, transparent>\ue0b4</> <#f1f1f1, transparent>\ue0b6</><#111111,#f1f1f1> \uf608 {{.Segments.Executiontime.FormattedMs}} </>{{if gt .Code 0}}<#f1f1f1,#898989>\ue0b4</><#111111,#898989> {{if gt .Code 0}}\uf7d3{{else}}\uf7d0{{end}} </><#898989,transparent>\ue0b4</>{{else}}<#f1f1f1,#bcbcbc>\ue0b4</><#111111,#bcbcbc> {{if gt .Code 0}}\uf7d3{{else}}\uf7d0{{end}} </><#bcbcbc,transparent>\ue0b4</>{{end}} <#f1f1f1>\u2771</> "
+    "template": "<#f1f1f1, transparent>\ue0b6</><#111111,#f1f1f1> \uf64f {{.Segments.Time.CurrentDate | date \"15:04:05\"}} </><#f1f1f1, transparent>\ue0b4</> <#f1f1f1, transparent>\ue0b6</><#111111,#f1f1f1> \uf74a {{.Segments.Path.Path}} </><#f1f1f1, transparent>\ue0b4</> <#f1f1f1, transparent>\ue0b6</><#111111,#f1f1f1> \uf608 {{.Segments.Executiontime.FormattedMs}} </>{{if gt .Code 0}}<#f1f1f1,#898989>\ue0b4</><#111111,#898989> {{if gt .Code 0}}\uf7d3{{else}}\uf7d0{{end}} </><#898989,transparent>\ue0b4</>{{else}}<#f1f1f1,#bcbcbc>\ue0b4</><#111111,#bcbcbc> {{if gt .Code 0}}\uf7d3{{else}}\uf7d0{{end}} </><#bcbcbc,transparent>\ue0b4</>{{end}} <#f1f1f1>\u2771</> "
   },
   "secondary_prompt": {
     "foreground": "#f1f1f1",
