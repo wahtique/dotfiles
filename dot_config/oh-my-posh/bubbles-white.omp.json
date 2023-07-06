@@ -28,7 +28,7 @@
           "foreground": "#111111",
           "background": "#f1f1f1",
           "properties": {
-            "style": "unique"
+            "style": "mixed"
           },
           "template": " {{if eq .Path \"~\"}}\uf74b {{.UserName}}{{else}}\uf74a {{.Path}}{{end}} {{if not (.Segments.Contains \"git\")}}<#f1f1f1,transparent>\ue0b4</>{{end}}"
         },
