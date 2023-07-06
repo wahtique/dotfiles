@@ -29,6 +29,8 @@
       pkgs.neofetch
       pkgs.silver-searcher
       (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      # fancy diff
+      pkgs.diff-so-fancy
       # dev
       pkgs.devbox
       pkgs.spacevim
@@ -107,10 +109,10 @@
       enable = true;
       userName = "{{ .username }}";
       userEmail = "{{ .email }}";
-      delta.enable = true;
       extraConfig = {
         core = {
           editor = "vim";
+          pager = "diff-so-fancy | bat";
         };
         init = {
           defaultBranch = "main";
@@ -121,16 +123,19 @@
         rebase = {
           autoStash = "true";
         };
-        delta = {
-          navigate = true;
-          light = false;
-          side-by-side = true;
-        };
+        # delta = {
+        #   navigate = true;
+        #   light = false;
+        #   side-by-side = true;
+        # };
         merge = {
           conflictStyle = "diff3";
         };
         diff = {
           colorMoved = "default";
+        };
+        interactive = {
+          diffFilter = "diff-so-fancy --patch";
         };
       };
     };

@@ -73,6 +73,7 @@ zi load hlissner/zsh-autopair
 # direnv
 zi load ptavares/zsh-direnv
 # git aliases
+# some aliases are overriden by forgit
 zi snippet OMZP::git
 # <esc> <esc> for the fuck
 zi ice wait'1' lucid  has"thefuck"
@@ -123,7 +124,11 @@ zi light joshskidmore/zsh-fzf-history-search
 zi ice has"navi" has"fzf"
 zi load "icatalina/zsh-navi-plugin"
 # alias finder
+zi ice wait lucid has"fzf"
 zi light akash329d/zsh-alias-finder
+# git fzf
+zi ice wait lucid has"fzf"
+zi load wfxr/forgit
 
 # these should be after the fzf plugins
 zi load "zsh-users/zsh-autosuggestions"
