@@ -33,7 +33,8 @@
       pkgs.diff-so-fancy
       # dev
       pkgs.devbox
-      pkgs.spacevim
+      # lua 
+      pkgs.lua
       # scala
       pkgs.coursier
       pkgs.scala-cli
@@ -124,7 +125,7 @@
           autoStash = "true";
         };
         # delta = {
-        #   navigate = true;
+        #   navigate = true;k
         #   light = false;
         #   side-by-side = true;
         # };
@@ -146,6 +147,12 @@
     java.enable = true;
     sbt.enable = true;
     go.enable = true;
+    neovim = {
+      enable = true;
+      withPython3 = true;
+      vimAlias = true;
+      viAlias = true;
+    };
   };
 
 }
