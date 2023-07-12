@@ -18,27 +18,12 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
 - [SpaceVim](https://github.com/SpaceVim/SpaceVim) config
 - and much more ( well just a little for now but much more soon ! )
 
+Programs are managed using [nix](https://nixos.org/) and [home-manager](https://github.com/nix-community/home-manager).
+They can be installed before applying chezmoi's dotfiles for the first time but included install script will try to do if they are not found on your system.
+
 ## Installation
 
 - CHECK zsh is your default shell, or set it with `chsh`
-- CHECK dependencies are installed, with `unstable` channel
-  - [nix](https://nixos.org/download.html)
-
-    ```bash
-      sh <(curl -L https://nixos.org/nix/install) --no-daemon
-    ```
-
-  - [home-manager](https://nix-community.github.io/home-manager/index.html#sec-install-standalone)
-
-    ```bash
-      nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-      nix-channel --update
-      nix-shell '<home-manager>' -A install
-    ```
-
-- CHECK optional dependencies
-  - [cod](https://github.com/dim-an/cod) : not manage by `home-manager` as Nix package and git install are broken
-  - SpaceVim is not necessary but custom config WILL be deployed all the same
 - Ensure github is properly setup
   - check [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) to setup ssh with your a rsa key
 - Fork this repo !
@@ -49,3 +34,4 @@ sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply $GITHUB_USERNAME
 ```
 
 - Run `chezmoi apply` and (hopefully) rock'n roll baby !
+-
