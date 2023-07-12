@@ -20,26 +20,32 @@
     # environment.
     packages = [
       # shell
-      pkgs.zi
-      pkgs.oh-my-posh
-      pkgs.fd
-      pkgs.cod
-      pkgs.tree
-      pkgs.zoxide
-      pkgs.neofetch
-      pkgs.silver-searcher
+      pkgs.zi # plugin manager
+      pkgs.oh-my-posh # prompt
+      pkgs.fd # better find
+      pkgs.cod # turn any --help into completion
+      pkgs.tree # pretty print directories
+      pkgs.zoxide # z on steroids
+      pkgs.neofetch # flexx you OS
+      pkgs.silver-searcher # ag
       (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-      # fancy diff
-      pkgs.diff-so-fancy
+      pkgs.diff-so-fancy # fancy diffs ( for git )
+      pkgs.tealdeer # tldr in rust
+      pkgs.ripgrep # better grep
       # dev
       pkgs.devbox
-      # lua 
-      pkgs.lua
       # scala
-      pkgs.coursier
+      pkgs.coursier # scala package manager
       pkgs.scala-cli
       # nix
       pkgs.rnix-lsp
+      # runtimes / interpreters
+      pkgs.lua
+      pkgs.nodejs-slim
+      pkgs.nodePackages.npm
+      pkgs.python311
+      pkgs.python311Packages.pip
+
       # # You can also create simple shell scripts directly inside your
       # # configuration. For example, this adds a command 'my-hello' to your
       # # environment:
@@ -124,11 +130,6 @@
         rebase = {
           autoStash = "true";
         };
-        # delta = {
-        #   navigate = true;k
-        #   light = false;
-        #   side-by-side = true;
-        # };
         merge = {
           conflictStyle = "diff3";
         };
