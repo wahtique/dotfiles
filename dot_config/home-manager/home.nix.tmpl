@@ -76,7 +76,7 @@
     #
     # or
     #
-    #  /etc/profiles/per-user/wahtique/etc/profile.d/hm-session-vars.sh
+    #  /etc/profiles/per-user/$USERNAME/etc/profile.d/hm-session-vars.sh
     #
     # if you don't want to manage your shell through Home Manager.
     sessionVariables = {
@@ -114,7 +114,7 @@
     navi.enable = true;
     git = {
       enable = true;
-      userName = "{{ .username }}";
+      userName = "{{ .githubUsername }}";
       userEmail = "{{ .email }}";
       extraConfig = {
         core = {

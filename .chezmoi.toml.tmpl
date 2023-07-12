@@ -12,9 +12,17 @@
 {{-   $username = promptString "username" -}}
 {{- end -}}
 
+{{- $githubUsername := "" -}}
+{{- if hasKey . "githubUsername" -}}
+{{-   $githubUsername = .githubUsername -}}
+{{- else -}}
+{{-   $githubUsername = promptString "githubUsername" -}}
+{{- end -}}
+
 [data]
     email = {{ $email | quote }}
     username = {{ $username | quote}}
+    githubUsername = {{ $githubUsername | quote }}
     
 [git]
     autoCommit = true
