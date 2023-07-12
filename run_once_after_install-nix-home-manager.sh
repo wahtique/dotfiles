@@ -7,4 +7,5 @@ fi
 if ! command -v home-manager >/dev/null 2>&1; then
   nix-channel --update
   nix-shell '<home-manager>' -A install
+  home-manager switch
 fi
