@@ -34,4 +34,3 @@ sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply $GITHUB_USERNAME
 ```
 
 - Run `chezmoi apply` and (hopefully) rock'n roll baby !
--
