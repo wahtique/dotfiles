@@ -2,8 +2,6 @@
 
 Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-chezmoi)
 
-![prompt](prompt.png)
-
 ## What's included
 
 - plugin list managed with [ZI](https://z.digitalclouds.dev/) adding
@@ -14,6 +12,9 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
   - `fzf` tab completion
   - auto-completion generation from `--help`
 - custom `oh-my-posh` theme
+
+![prompt](prompt.png)
+
 - [home-manager](https://github.com/nix-community/home-manager) config to setup dependencies
 - [SpaceVim](https://github.com/SpaceVim/SpaceVim) config
 - and much more ( well just a little for now but much more soon ! )
