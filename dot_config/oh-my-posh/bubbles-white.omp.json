@@ -10,27 +10,15 @@
       "newline": true,
       "segments": [
         {
-          "type": "time",
-          "style": "diamond",
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4",
-          "foreground": "#111111",
-          "background": "#f1f1f1",
-          "properties": {
-            "time_format": "15:04:05"
-          },
-          "template": " \uf64f {{.CurrentDate | date .Format}} "
-        },
-        {
           "type": "path",
           "style": "diamond",
-          "leading_diamond": " \ue0b6",
+          "leading_diamond": "\ue0b6",
           "foreground": "#111111",
           "background": "#f1f1f1",
           "properties": {
             "style": "letter"
           },
-          "template": " \uf74a {{.Path}} {{if not (.Segments.Contains \"git\")}}<#f1f1f1,transparent>\ue0b4</>{{end}}"
+          "template": " \uf74a {{.Path}} {{ if not (.Segments.Contains \"git\") }}{{ .Var.right_diam_white }}{{ end }}"
         },
         {
           "alias": "git",
@@ -63,29 +51,22 @@
           "template": " {{if .UpstreamIcon}}{{.UpstreamIcon}} | {{else}}\uf7a1 | {{end}}{{.HEAD}} | {{if .BranchStatus}}{{.BranchStatus}}{{end}}{{if .Working.Changed}} | \uf044 {{.Working.String}}{{end}}{{if .Staging.Changed}} | \uf046 {{.Staging.String}}{{end}}{{if gt .StashCount 0}} | \uf692 {{.StashCount}}{{end}} "
         },
         {
+          "type": "exit",
+          "style": "diamond",
+          "leading_diamond": " \ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "background": "#f1f1f1",
+          "foreground": "#111111",
+          "template": " \uf7d3 {{.Meaning}} "
+        },
+        {
           "type": "executiontime",
           "style": "diamond",
           "leading_diamond": " \ue0b6",
-          "foreground": "#111111",
+          "trailing_diamond": "\ue0b4",
           "background": "#f1f1f1",
-          "properties": {
-            "always_enabled": true
-          },
-          "template": " \uf608 {{.FormattedMs}} "
-        },
-        {
-          "type": "exit",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b4",
           "foreground": "#111111",
-          "background": "#bcbcbc",
-          "background_templates": [
-            "{{if gt .Code 0}}#717171{{end}}"
-          ],
-          "properties": {
-            "always_enabled": true
-          },
-          "template": " {{if gt .Code 0}}\uf7d3{{else}}\uf7d0{{end}} "
+          "template": " \uf608 {{.FormattedMs}} "
         }
       ]
     },
@@ -187,7 +168,7 @@
   ],
   "transient_prompt": {
     "foreground": "#111111",
-    "template": "<#f1f1f1, transparent>\ue0b6</><#111111,#f1f1f1> \uf64f {{.Segments.Time.CurrentDate | date \"15:04:05\"}} </><#f1f1f1, transparent>\ue0b4</> <#f1f1f1, transparent>\ue0b6</><#111111,#f1f1f1> \uf74a {{.Segments.Path.Path}} </><#f1f1f1, transparent>\ue0b4</> <#f1f1f1, transparent>\ue0b6</><#111111,#f1f1f1> \uf608 {{.Segments.Executiontime.FormattedMs}} </>{{if gt .Code 0}}<#f1f1f1,#898989>\ue0b4</><#111111,#898989> {{if gt .Code 0}}\uf7d3{{else}}\uf7d0{{end}} </><#898989,transparent>\ue0b4</>{{else}}<#f1f1f1,#bcbcbc>\ue0b4</><#111111,#bcbcbc> {{if gt .Code 0}}\uf7d3{{else}}\uf7d0{{end}} </><#bcbcbc,transparent>\ue0b4</>{{end}} <#f1f1f1>\u2771</> "
+    "template": "<#f1f1f1, transparent>\ue0b6</><#111111,#f1f1f1> \uf74a {{.Segments.Path.Path}} </><#f1f1f1, transparent>\ue0b4</> "
   },
   "secondary_prompt": {
     "foreground": "#f1f1f1",
