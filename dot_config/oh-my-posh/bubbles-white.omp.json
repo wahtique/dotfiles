@@ -18,7 +18,7 @@
           "properties": {
             "style": "letter"
           },
-          "template": " \uf74a {{.Path}} {{ if not (.Segments.Contains \"git\") }}{{ .Var.right_diam_white }}{{ end }}"
+          "template": " \uf74a {{.Path}} {{ if not (.Segments.Contains \"git\") }}<#f1f1f1,transparent>\ue0b4</>{{ end }}"
         },
         {
           "alias": "git",
