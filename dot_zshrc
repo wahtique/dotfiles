@@ -134,6 +134,9 @@ zi load wfxr/forgit
 zi load "zsh-users/zsh-autosuggestions"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
 
+# ssh completion using $HOME/.ssh/config
+zi light sunlei/zsh-ssh
+
 # fix for broken history 
 # leave it before syntax highlighting plugin to not break 
 # syntax highlighting in history search 
