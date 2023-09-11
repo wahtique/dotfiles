@@ -166,6 +166,9 @@ alias cz="chezmoi"
 alias cza="chezmoi apply"
 # re-apply dotfiles, rebuild home and source everything 
 alias f5="chezmoi apply && source ~/.zshrc"
+# exa is not maintainned
+# eza is a maintainned fork
+alias exa="eza"
 
 # use ctrl+n to show cheat sheets
 bindkey '^n' navi_widget
