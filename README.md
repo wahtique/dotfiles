@@ -16,7 +16,7 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
 ![prompt](prompt.png)
 
 - [home-manager](https://github.com/nix-community/home-manager) config to setup dependencies
-- [SpaceVim](https://github.com/SpaceVim/SpaceVim) config
+- [LunarVim](https://www.lunarvim.org/) config
 - and much more ( well just a little for now but much more soon ! )
 
 Programs are managed using [nix](https://nixos.org/) and [home-manager](https://github.com/nix-community/home-manager).

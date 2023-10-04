@@ -53,7 +53,6 @@
       # runtimes / interpreters
       pkgs.lua
       pkgs.nodejs-slim
-      pkgs.nodePackages.npm
       pkgs.python311
       pkgs.python311Packages.pip
       pkgs.python311Packages.build
@@ -153,6 +152,7 @@
         };
       };
     };
+    lazygit.enable = true;
     fzf.enable = true;
     htop.enable = true;
     bat.enable = true;
@@ -168,6 +168,13 @@
     pyenv = {
       enable = true;
     };
+    # npm = {
+    #   enable = true;
+    #   npmrc = 
+    #   ''
+    #     prefix = ~/.npm-global
+    #     color = true
+    #   '';
+    # };
   };
-
 }
