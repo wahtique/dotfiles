@@ -3,4 +3,35 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
--- vim.opt.guifont = "JetBrainsMonoNL Nerd Font:h17"
+-- make sure debugger is active
+lvim.builtin.dap.active = true
+
+-- scala
+lvim.plugins = {
+  {
+    "scalameta/nvim-metals",
+    config = function()
+      require("user.metals").config()
+    end,
+  },
+}
+
+dap.configurations.scala = {
+{
+  type = "scala",
+  request = "launch",
+  name = "Run or Test Target",
+  metals = {
+    runType = "runOrTestFile",
+  },
+},
+{
+  type = "scala",
+  request = "launch",
+  name = "Test Target",
+  metals = {
+    runType = "testTarget",
+  },
+},
+}
+
