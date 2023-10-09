@@ -31,7 +31,7 @@
             "{{if gt .Ahead 0}}#bcbcbc{{end}}",
             "{{if gt .Behind 0}}#bcbcbc{{end}}"
           ],
-          "template": " {{if .UpstreamIcon}}{{.UpstreamIcon}} | {{else}}\udb80\udea2 | {{end}}{{.HEAD}} | {{if .BranchStatus}}{{.BranchStatus}}{{end}}{{if .Working.Changed}} | \uf044 {{.Working.String}}{{end}}{{if .Staging.Changed}} | \uf046 {{.Staging.String}}{{end}}{{if gt .StashCount 0}} | \udb80\udd93 {{.StashCount}}{{end}} ",
+          "template": " {{if .UpstreamIcon}}{{.UpstreamIcon}} | {{else}} \udb80\udea2 | {{end}}{{.HEAD}} | {{if .BranchStatus}}{{.BranchStatus}}{{end}}{{if .Working.Changed}} | \uf044 {{.Working.String}}{{end}}{{if .Staging.Changed}} | \uf046 {{.Staging.String}}{{end}}{{if gt .StashCount 0}} | \udb80\udd93 {{.StashCount}}{{end}} ",
           "properties": {
             "branch_icon": "\ue725 ",
             "branch_max_length": 20,
@@ -40,7 +40,7 @@
             "fetch_status": true,
             "fetch_upstream_icon": true,
             "git_icon": "\udb80\udea2",
-            "github_icon": "\uf7a3",
+            "github_icon": "\uf09b",
             "merge_icon": "\ue727 ",
             "no_commits_icon": "\udb80\udc96 ",
             "rebase_icon": "\ue728 ",
