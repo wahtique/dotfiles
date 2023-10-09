@@ -11,12 +11,13 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
   - `fish` like inline auto-complete
   - `fzf` tab completion
   - auto-completion generation from `--help`
-- custom `oh-my-posh` theme
+- custom `oh-my-posh` theme based on [Dofoerix's theme](https://github.com/Dofoerix/Dfrx-Prompt-Theme)
 
 ![prompt](prompt.png)
 
 - [home-manager](https://github.com/nix-community/home-manager) config to setup dependencies
 - ~~[LunarVim](https://www.lunarvim.org/) config~~
+- [NvChad](https://nvchad.com/) config
 - and much more ( well just a little for now but much more soon ! )
 
 Programs are managed using [nix](https://nixos.org/) and [home-manager](https://github.com/nix-community/home-manager).
