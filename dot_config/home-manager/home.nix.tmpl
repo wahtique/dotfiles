@@ -49,7 +49,7 @@
       # scala
       pkgs.coursier # scala package manager
       pkgs.scala-cli
-      # pkgs.metals
+      pkgs.metals
       pkgs.scalafmt
       # rust
       pkgs.rustc
@@ -175,7 +175,8 @@
     bat.enable = true;
     java = {
       enable = true;
-      package = pkgs.zulu;
+      # use oracle or openjdk 8, 11, or 17 for scala metals
+      package = pkgs.openjdk17-bootstrap;
     };
     sbt.enable = true;
     go.enable = true;
