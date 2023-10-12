@@ -45,10 +45,11 @@
       pkgs.sops # secret ops using AGE
       pkgs.just # make for humans
       pkgs.helix
+      pkgs.direnv
       # scala
       pkgs.coursier # scala package manager
       pkgs.scala-cli
-      pkgs.metals
+      # pkgs.metals
       pkgs.scalafmt
       # rust
       pkgs.rustc
@@ -136,7 +137,8 @@
 
   programs = {
     home-manager.enable = true;
-    direnv.enable = true;
+    # nix-direnv not used
+    # direnv.enable = true;
     navi.enable = true;
     git = {
       enable = true;
@@ -173,7 +175,7 @@
     bat.enable = true;
     java = {
       enable = true;
-      package = pkgs.temurin-bin-17;
+      package = pkgs.zulu;
     };
     sbt.enable = true;
     go.enable = true;
