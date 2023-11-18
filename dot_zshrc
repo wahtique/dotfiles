@@ -81,6 +81,8 @@ zi light laggardkernel/zsh-thefuck
 # aliases exa by ls
 zi ice has"exa"
 zi light "RitchieS/zsh-exa"
+# fix for latest versions of eza 
+alias ls='exa --group-directories-first --icons --color-scale all'
 # add colors to `man`
 zi light ael-code/zsh-colored-man-pages
 # ssh agent
