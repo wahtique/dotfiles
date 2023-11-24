@@ -149,6 +149,9 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
+zi ice pick'cli.zsh'
+zi light sudosubin/zsh-github-cli
+
 zi wait lucid atload"zicompinit; zicdreplay" blockf for \
   zdharma/fast-syntax-highlighting
 
