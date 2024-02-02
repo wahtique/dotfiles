@@ -45,7 +45,7 @@
       pkgs.sops # secret ops using AGE
       pkgs.just # make for humans
       pkgs.helix # modern vim ? 
-      pkgs.direnv 
+      pkgs.direnv
       pkgs.graphite-cli # stack ! 
       pkgs.aoc-cli # advent of code cli
       pkgs.openapi-generator-cli # generate SDKs from open-api specs
@@ -56,6 +56,7 @@
       pkgs.scalafmt
       pkgs.mill
       # rust
+      # pkgs.rust-bin.stable.latest.default
       pkgs.rustc
       pkgs.rust-analyzer
       pkgs.rustfmt
@@ -140,7 +141,9 @@
   };
 
   programs = {
-    home-manager.enable = true;
+    home-manager = {
+      enable = true;
+    };
     # nix-direnv not used
     # direnv.enable = true;
     navi.enable = true;
