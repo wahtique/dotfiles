@@ -1,6 +1,18 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs = {
+    overlays = [
+      # fenix for rust toolchain
+      (import "${fetchTarball "https://github.com/nix-community/fenix/archive/main.tar.gz"}/overlay.nix")
+    ];
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+      allowBroken = true;
+    };
+  };
+
   home = {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
@@ -18,7 +30,7 @@
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
-    packages = [
+    packages = with pkgs; [
       #
       # shell
       #
@@ -39,65 +51,67 @@
       #
       # dev
       #
-      pkgs.devbox
-      pkgs.gh
-      pkgs.melody # regex but readable
-      pkgs.sops # secret ops using AGE
-      pkgs.just # make for humans
-      pkgs.helix # modern vim ? 
-      pkgs.direnv
-      pkgs.graphite-cli # stack ! 
-      pkgs.aoc-cli # advent of code cli
-      pkgs.openapi-generator-cli # generate SDKs from open-api specs
+      devbox
+      gh
+      melody # regex but readable
+      sops # secret ops using AGE
+      just # make for humans
+      helix # modern vim ? 
+      direnv
+      graphite-cli # stack ! 
+      aoc-cli # advent of code cli
+      openapi-generator-cli # generate SDKs from open-api specs
       # scala
-      # pkgs.coursier # scala package manager
-      pkgs.scala-cli
-      pkgs.metals
-      pkgs.scalafmt
-      pkgs.mill
+      # coursier # scala package manager
+      scala-cli
+      metals
+      scalafmt
+      mill
       # rust
-      # pkgs.rust-bin.stable.latest.default
-      pkgs.rustc
-      pkgs.rust-analyzer
-      pkgs.rustfmt
-      pkgs.clippy
-      pkgs.cargo
-      # nix
-      pkgs.rnix-lsp
+      (fenix.complete.withComponents [
+        "cargo"
+        "clippy"
+        "rust-src"
+        "rustc"
+        "rustfmt"
+      ])
+      rust-analyzer
+      rnix-lsp
+      cachix
       # runtimes / interpreters
-      pkgs.lua
-      pkgs.nodejs_18
-      # pkgs.nodePackages.npm
+      lua
+      nodejs_18
+      # nodePackages.npm
       # python stuff
       # commented out because a bit too messy with Nix
-      # pkgs.python311
-      # pkgs.poetry
-      # pkgs.python311Packages.pip
-      # pkgs.python311Packages.build
-      # pkgs.python311Packages.pynvim
+      # python311
+      # poetry
+      # python311Packages.pip
+      # python311Packages.build
+      # python311Packages.pynvim
 
       # # You can also create simple shell scripts directly inside your
       # # configuration. For example, this adds a command 'my-hello' to your
       # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
+      # (writeShellScriptBin "my-hello" ''
       #   echo "Hello, ${config.home.username}!"
       # '')
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
-    file = {
-      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-      # # symlink to the Nix store copy.
-      # ".screenrc".source = dotfiles/screenrc;
+    # file = {
+    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
 
-      # # You can also set the file content immediately.
-      # ".gradle/gradle.properties".text = ''
-      #   org.gradle.console=verbose
-      #   org.gradle.daemon.idletimeout=3600000
-      # '';
-    };
+    # # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #   org.gradle.console=verbose
+    #   org.gradle.daemon.idletimeout=3600000
+    # '';
+    # };
 
     # You can also manage environment variables but you will have to manually
     # source
@@ -114,6 +128,8 @@
       SBT_OPTS = "-Xms1g -Xmx4g -Xss8M -XX:ReservedCodeCacheSize=256m -XX:+UseParallelGC";
       # intellij options
       IDE_VM_OPTIONS = "-Xmx2048m";
+      # rust 
+      # RUST_SRC_PATH = ""
     };
 
     sessionPath = [
@@ -134,16 +150,8 @@
     ];
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowUnfreePredicate = _: true;
-    allowBroken = true;
-  };
-
   programs = {
-    home-manager = {
-      enable = true;
-    };
+    home-manager.enable = true;
     # nix-direnv not used
     # direnv.enable = true;
     navi.enable = true;
@@ -183,7 +191,7 @@
     java = {
       enable = true;
       # use oracle or openjdk 8, 11, or 17 for scala metals
-      # package = pkgs.zulu;
+      # package = zulu;
     };
     sbt.enable = true;
     go.enable = true;
