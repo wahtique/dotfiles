@@ -61,13 +61,17 @@
       graphite-cli # stack ! 
       aoc-cli # advent of code cli
       openapi-generator-cli # generate SDKs from open-api specs
+      #
       # scala
+      #
       # coursier # scala package manager
       scala-cli
       metals
       scalafmt
       mill
+      #
       # rust
+      #
       (fenix.complete.withComponents [
         "cargo"
         "clippy"
@@ -76,12 +80,16 @@
         "rustfmt"
       ])
       rust-analyzer
+      #
+      # nix
+      #
       rnix-lsp
       cachix
+      #
       # runtimes / interpreters
+      #
       lua
       nodejs_18
-      # nodePackages.npm
       # python stuff
       # commented out because a bit too messy with Nix
       # python311
