@@ -1,15 +1,21 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs = {
-    overlays = [
-      # fenix for rust toolchain
-      (import "${fetchTarball "https://github.com/nix-community/fenix/archive/main.tar.gz"}/overlay.nix")
-    ];
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-      allowBroken = true;
+  imports = [
+    ./packages.nix
+    ./session.nix
+    ./rust.nix
+    ./git.nix
+  ];
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
+    allowBroken = true;
+    packageOverrides = pkgs: {
+      nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+        inherit pkgs;
+      };
     };
   };
 
@@ -28,84 +34,6 @@
     # release notes.
     stateVersion = "23.11"; # Please read the comment before changing.
 
-    # The home.packages option allows you to install Nix packages into your
-    # environment.
-    packages = with pkgs; [
-      #
-      # shell
-      #
-      pkgs.zi # plugin manager
-      pkgs.oh-my-posh # prompt
-      pkgs.fd # better find
-      pkgs.cod # turn any --help into completion
-      pkgs.tree # pretty print directories
-      pkgs.zoxide # z on steroids
-      pkgs.neofetch # flexx your OS
-      pkgs.silver-searcher # ag
-      pkgs.eza # maintained fork of exa
-      (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-      pkgs.diff-so-fancy # fancy diffs ( for git )
-      pkgs.tealdeer # tldr in rust
-      pkgs.ripgrep # better grep
-      pkgs.meld # gui differ
-      #
-      # dev
-      #
-      devbox
-      gh
-      melody # regex but readable
-      sops # secret ops using AGE
-      just # make for humans
-      helix # modern vim ? 
-      direnv
-      graphite-cli # stack ! 
-      aoc-cli # advent of code cli
-      openapi-generator-cli # generate SDKs from open-api specs
-      #
-      # scala
-      #
-      # coursier # scala package manager
-      scala-cli
-      metals
-      scalafmt
-      mill
-      #
-      # rust
-      #
-      (fenix.complete.withComponents [
-        "cargo"
-        "clippy"
-        "rust-src"
-        "rustc"
-        "rustfmt"
-      ])
-      rust-analyzer
-      #
-      # nix
-      #
-      rnix-lsp
-      cachix
-      #
-      # runtimes / interpreters
-      #
-      lua
-      nodejs_18
-      # python stuff
-      # commented out because a bit too messy with Nix
-      # python311
-      # poetry
-      # python311Packages.pip
-      # python311Packages.build
-      # python311Packages.pynvim
-
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
-    ];
-
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
     # file = {
@@ -120,43 +48,6 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     # };
-
-    # You can also manage environment variables but you will have to manually
-    # source
-    #
-    #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-    #
-    # or
-    #
-    #  /etc/profiles/per-user/$USERNAME/etc/profile.d/hm-session-vars.sh
-    #
-    # if you don't want to manage your shell through Home Manager.
-    sessionVariables = {
-      EDITOR = "vim";
-      SBT_OPTS = "-Xms1g -Xmx4g -Xss8M -XX:ReservedCodeCacheSize=256m -XX:+UseParallelGC";
-      # intellij options
-      IDE_VM_OPTIONS = "-Xmx2048m";
-      # rust 
-      # RUST_SRC_PATH = ""
-
-    };
-
-    sessionPath = [
-      # coursier + g8
-      "$HOME/.local/share/coursier/bin"
-      # rust
-      "$HOME/.cargo/bin"
-      # alternative bin
-      "$HOME/.local/bin"
-      # golang
-      "/usr/local/go/bin"
-      # go binaries
-      "$HOME/go/bin"
-      # solidity stuff 
-      "$HOME/.bifrost/bin"
-      # npm packages
-      "$HOME/.npm-packages/bin"
-    ];
   };
 
   programs = {
@@ -164,35 +55,6 @@
     # nix-direnv not used
     # direnv.enable = true;
     navi.enable = true;
-    git = {
-      enable = true;
-      userName = "{{ .githubUsername }}";
-      userEmail = "{{ .email }}";
-      extraConfig = {
-        core = {
-          editor = "vim";
-          pager = "diff-so-fancy | bat";
-        };
-        init = {
-          defaultBranch = "main";
-        };
-        pull = {
-          rebase = "true";
-        };
-        rebase = {
-          autoStash = "true";
-        };
-        merge = {
-          conflictStyle = "diff3";
-        };
-        diff = {
-          colorMoved = "default";
-        };
-        interactive = {
-          diffFilter = "diff-so-fancy --patch";
-        };
-      };
-    };
     lazygit.enable = true;
     fzf.enable = true;
     htop.enable = true;
@@ -211,16 +73,5 @@
       viAlias = true;
     };
     thefuck.enable = true;
-    # pyenv = {
-    #   enable = true;
-    # };
-    # npm = {
-    #   enable = true;
-    #   npmrc = 
-    #   ''
-    #     prefix = ~/.npm-global
-    #     color = true
-    #   '';
-    # };
   };
 }

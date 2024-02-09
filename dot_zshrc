@@ -34,16 +34,6 @@ source "${XDG_CONFIG_HOME:-$HOME/.config}/zi/init.zsh" && zzinit
 ######### NIX ##############################
 ############################################
 
-NIX_INIT="$HOME/.nix-profile/etc/profile.d/nix.sh" 
-if [ -e $NIX_INIT ]; then
-  source $NIX_INIT
-fi
-
-HM_INIT="$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-if [ -e $HM_INIT ]; then
-  source $HM_INIT
-fi
-
 zi load "nix-community/nix-zsh-completions"
 
 ############################################
