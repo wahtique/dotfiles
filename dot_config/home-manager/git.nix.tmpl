@@ -1,31 +1,34 @@
 {
-  programs.git = {
-    enable = true;
-    userName = "{{ .githubUsername }}";
-    userEmail = "{{ .email }}";
-    extraConfig = {
-      core = {
-        editor = "vim";
-        pager = "diff-so-fancy | bat";
-      };
-      init = {
-        defaultBranch = "main";
-      };
-      pull = {
-        rebase = "true";
-      };
-      rebase = {
-        autoStash = "true";
-      };
-      merge = {
-        conflictStyle = "diff3";
-      };
-      diff = {
-        colorMoved = "default";
-      };
-      interactive = {
-        diffFilter = "diff-so-fancy --patch";
+  programs = {
+    git = {
+      enable = true;
+      userName = "{{ .githubUsername }}";
+      userEmail = "{{ .email }}";
+      extraConfig = {
+        core = {
+          editor = "vim";
+          pager = "diff-so-fancy | bat";
+        };
+        init = {
+          defaultBranch = "main";
+        };
+        pull = {
+          rebase = "true";
+        };
+        rebase = {
+          autoStash = "true";
+        };
+        merge = {
+          conflictStyle = "diff3";
+        };
+        diff = {
+          colorMoved = "default";
+        };
+        interactive = {
+          diffFilter = "diff-so-fancy --patch";
+        };
       };
     };
+    lazygit.enable = true;
   };
 }

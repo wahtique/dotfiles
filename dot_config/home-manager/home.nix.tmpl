@@ -5,6 +5,7 @@
     ./packages.nix
     ./session.nix
     ./rust.nix
+    ./scala.nix
     ./git.nix
   ];
 
@@ -48,14 +49,60 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     # };
+
+    packages = with pkgs; [
+      #
+      # shell
+      #
+      zi # plugin manager
+      oh-my-posh # prompt
+      fd # better find
+      cod # turn any --help into completion
+      tree # pretty print directories
+      zoxide # z on steroids
+      neofetch # flexx your OS
+      silver-searcher # ag
+      eza # maintained fork of exa
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      diff-so-fancy # fancy diffs ( for git )
+      tealdeer # tldr in rust
+      ripgrep # better grep
+      meld # gui differ
+      banner # print big banners
+      #
+      # dev
+      #
+      devbox
+      gh
+      melody # regex but readable
+      sops # secret ops using AGE
+      just # make for humans
+      helix # modern vim ? 
+      aoc-cli # advent of code cli
+      openapi-generator-cli # generate SDKs from open-api specs
+      #
+      # nix
+      #
+      rnix-lsp
+      cachix
+      #
+      # runtimes / interpreters
+      #
+      lua
+      nodejs_18
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (writeShellScriptBin "my-hello" ''
+      #   echo "Hello, ${config.home.username}!"
+      # '')
+    ];
   };
 
   programs = {
     home-manager.enable = true;
-    # nix-direnv not used
-    # direnv.enable = true;
+    direnv.enable = true;
     navi.enable = true;
-    lazygit.enable = true;
     fzf.enable = true;
     htop.enable = true;
     bat.enable = true;
@@ -64,7 +111,6 @@
       # use oracle or openjdk 8, 11, or 17 for scala metals
       # package = zulu;
     };
-    sbt.enable = true;
     go.enable = true;
     neovim = {
       enable = true;

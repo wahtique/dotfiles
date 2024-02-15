@@ -88,9 +88,6 @@ zi light le0me55i/zsh-extract
 zi ice wait lucid has"cod" for dim-an/cod
 
 # FZF dependent plugins
-# better cd using fzf
-# zi ice use"init.zsh" has"fzf"
-# zi load "b4b4r07/enhancd"
 
 # zoxide : better cd + autojump 
 # `x` for cd 
@@ -158,9 +155,15 @@ alias sc="scala-cli"
 alias sbtc="sbt --client"
 # chezmoi
 alias cz="chezmoi"
+# reload dotfiles
+# chezmoi hook will also :
+# - update nix packages 
+# - build new derivation
+# - cleanup old generations
+# - source ~/.zshrc
+# - update zi
+# - update zsh plugins 
 alias cza="chezmoi apply"
-# re-apply dotfiles, rebuild home and source everything 
-alias f5="chezmoi apply && source ~/.zshrc"
 # exa is not maintainned
 # eza is a maintainned fork
 alias exa="eza"

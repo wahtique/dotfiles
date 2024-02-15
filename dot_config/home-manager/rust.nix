@@ -6,14 +6,15 @@
     (import "${fetchTarball "https://github.com/nix-community/fenix/archive/main.tar.gz"}/overlay.nix")
   ];
   home = {
-    packages = [
-      (pkgs.fenix.complete.withComponents [
+    packages = with pkgs; [
+      (fenix.complete.withComponents [
         "cargo"
         "clippy"
         "rust-src"
         "rustc"
         "rustfmt"
       ])
+      rust-analyzer
     ];
     sessionPath = [ "$HOME/.cargo/bin" ];
   };
