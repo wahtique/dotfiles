@@ -5,6 +5,7 @@
     metals
     scalafmt
     mill
+    bloop
   ];
 
   programs = {
