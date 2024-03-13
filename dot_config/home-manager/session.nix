@@ -32,6 +32,8 @@
       "$HOME/.bifrost/bin"
       # npm packages
       "$HOME/.npm-packages/bin"
+      # tools
+      "$HOME/tools"
     ];
   };
 }
