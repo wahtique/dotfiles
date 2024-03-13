@@ -1,5 +1,3 @@
-{ config, pkgs, ... }:
-
 {
   home = {
     # You can also manage environment variables but you will have to manually
