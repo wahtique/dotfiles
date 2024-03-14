@@ -27,6 +27,11 @@
         interactive = {
           diffFilter = "diff-so-fancy --patch";
         };
+        url= {
+          "ssh://git@github.com" = {
+            insteadOf = "https://github.com";
+          };
+        };
       };
     };
     lazygit.enable = true;
