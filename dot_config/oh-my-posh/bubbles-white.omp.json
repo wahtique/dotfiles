@@ -14,7 +14,19 @@
           "foreground": "#111111",
           "background": "#f1f1f1",
           "leading_diamond": "\ue0b6",
-          "template": " \udb80\ude4b {{.Path}} {{ if not (.Segments.Contains \"git\") }}<#f1f1f1,transparent>\ue0b4</>{{ end }}",
+          "template": " {{ if (.Segments.Contains \"git\") }}\udb80\ude4b {{.Path}}{{ end }} ",
+          "properties": {
+            "style": "letter"
+          }
+        },
+        {
+          "type": "path",
+          "style": "diamond",
+          "foreground": "#111111",
+          "background": "#f1f1f1",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "template": " {{ if not (.Segments.Contains \"git\") }}\udb80\ude4b {{.Path}}{{ end }} ",
           "properties": {
             "style": "letter"
           }
@@ -50,13 +62,13 @@
           "alias": "git"
         },
         {
-          "type": "exit",
+          "type": "status",
           "style": "diamond",
           "foreground": "#111111",
           "background": "#f1f1f1",
           "leading_diamond": " \ue0b6",
           "trailing_diamond": "\ue0b4",
-          "template": " \udb80\uded4 {{.Meaning}} "
+          "template": " {{ if eq .Code 0 }}\uf00c{{ else }}\uf071 {{ reason .Code }}{{ end }} "
         },
         {
           "type": "executiontime",
