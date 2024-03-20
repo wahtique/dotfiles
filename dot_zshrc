@@ -48,7 +48,7 @@ compinit
 ############################################
 
 # oh-my-posh
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/bubbles-white.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/bubbles-white.omp.yaml)"
 enable_poshtransientprompt
 
 ############################################
