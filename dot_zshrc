@@ -151,22 +151,32 @@ zi wait lucid atload"zicompinit; zicdreplay" blockf for \
 # home manager
 alias hm="home-manager"
 # scala 
-alias sc="scala-cli"
-alias sbtc="sbt --client"
+if (( $+commands[scala-cli] )); then
+  alias sc="scala-cli"
+fi
+if (( $+commands[sbt] )); then
+  alias sbtc="sbt --client"
+fi
+
 # chezmoi
-alias cz="chezmoi"
-# reload dotfiles
-# chezmoi hook will also :
-# - update nix packages 
-# - build new derivation
-# - cleanup old generations
-# - source ~/.zshrc
-# - update zi
-# - update zsh plugins 
-alias cza="chezmoi apply"
-# exa is not maintainned
-# eza is a maintainned fork
-alias exa="eza"
+if (( $+commands[chezmoi] )); then
+  alias cz="chezmoi"
+  # reload dotfiles
+  # chezmoi hook will also :
+  # - update nix packages 
+  # - build new derivation
+  # - cleanup old generations
+  # - source ~/.zshrc
+  # - update zi
+  # - update zsh plugins 
+  alias cza="chezmoi apply"
+fi
+
+if (( $+commands[eza] )); then
+  # exa is not maintainned
+  # eza is a maintainned fork
+  alias exa="eza"
+fi
 
 # use ctrl+n to show cheat sheets
 bindkey '^n' navi_widget
