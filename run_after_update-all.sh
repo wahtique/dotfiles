@@ -24,8 +24,10 @@ if command -v home-manager >/dev/null 2>&1; then
   home-manager switch
 fi
 
+# sometimes completions need to be cleaned up
+find -L $HOME/.zi/completions -name . -o -type d -prune -o -type l -exec rm {} +
+
 # init shell
-#
 source ~/.zshrc
 
 # update zi then update zsh plugins
