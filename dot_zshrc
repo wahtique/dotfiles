@@ -172,7 +172,6 @@ alias cz="chezmoi"
 # - update zsh plugins 
 alias cza="chezmoi apply"
 
-
 if (( $+commands[eza] )); then
   # exa is not maintainned
   # eza is a maintainned fork
