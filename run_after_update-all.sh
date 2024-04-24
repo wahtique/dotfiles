@@ -14,7 +14,8 @@ if command -v nix >/dev/null 2>&1; then
   # update nix packages
   nix-channel --update
   # cleanup old generations
-  nix-collect-garbage --delete-older-than 30d
+  # turning it on see mto break home-manager on my linux
+  # nix-collect-garbage --delete-older-than 30d
 
 fi
 
@@ -22,7 +23,7 @@ fi
 if command -v home-manager >/dev/null 2>&1; then
   toilet HOME
   home-manager switch
-fi
+fi  
 
 # sometimes completions need to be cleaned up
 find -L $HOME/.zi/completions -name . -o -type d -prune -o -type l -exec rm {} +
