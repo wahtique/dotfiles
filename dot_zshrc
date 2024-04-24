@@ -79,7 +79,7 @@ zi light ael-code/zsh-colored-man-pages
 zi ice use"ssh-agent.zsh" from"github"
 zi load bobsoppe/zsh-ssh-agent
 # `extract <filename>` and voila !
-zi light le0me55i/zsh-extract
+# zi light le0me55i/zsh-extract
 # timewarrior aliases
 # zi ice has"timew"
 # zi light svenXY/timewarrior
