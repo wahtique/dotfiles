@@ -14,8 +14,11 @@ if command -v nix >/dev/null 2>&1; then
   # update nix packages
   nix-channel --update
   # cleanup old generations
-  # turning it on see mto break home-manager on my linux
-  # nix-collect-garbage --delete-older-than 30d
+  # turning it on seem to break home-manager on some nix installs
+  # deactivete it if needed
+  {{- if .nixCleanup }}
+  nix-collect-garbage --delete-older-than 30d
+  {{- end }}
 
 fi
 
