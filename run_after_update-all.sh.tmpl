@@ -38,7 +38,7 @@ source ~/.zshrc
 # not need to update zinit as it is updated by home-manager
 if command -v zinit >/dev/null 2>&1; then
   toilet ZINIT
-  zinit update --parallel
+  zinit update --parallel 100
   source ~/.zshrc
   echo "\n"
 fi
