@@ -175,6 +175,8 @@ alias cz="chezmoi"
 # - update zi
 # - update zsh plugins 
 alias cza="chezmoi apply"
+# same as apply but update from git before
+alias czu="chezmoi update"
 
 if (( $+commands[eza] )); then
   # exa is not maintainned
