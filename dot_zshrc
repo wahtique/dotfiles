@@ -126,8 +126,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
 # ssh completion using $HOME/.ssh/config
 zi light sunlei/zsh-ssh
 
-zi load atuinsh/atuin
-
 # fix for broken history 
 # leave it before syntax highlighting plugin to not break 
 # syntax highlighting in history search 
@@ -137,6 +135,19 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
+
+
+# better history
+zi load atuinsh/atuin
+
+export ATUIN_NOBIND="true"
+eval "$(atuin init zsh)"
+
+bindkey '^r' atuin-search
+
+# bind to the up key, which depends on terminal mode
+bindkey '^[[A' atuin-up-search
+bindkey '^[OA' atuin-up-search
 
 zi ice pick'cli.zsh'
 zi light sudosubin/zsh-github-cli
