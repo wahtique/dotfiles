@@ -38,7 +38,8 @@ source ~/.zshrc
 if command -v zi >/dev/null 2>&1; then
   toilet ZI
   zi self-update -n
-  zi update --all --reset -q -n
+  zi update --all -q -n
+  # zi update --all --reset -q -n
   echo "\n"
 fi
 
