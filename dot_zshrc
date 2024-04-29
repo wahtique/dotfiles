@@ -142,6 +142,10 @@ zi light sudosubin/zsh-github-cli
 zi wait lucid atload"zicompinit; zicdreplay" blockf for \
   zdharma/fast-syntax-highlighting
 
+# auto expand aliases
+zi ice lucid nocompile
+zi load MenkeTechnologies/zsh-expand
+
 ############################################
 ########### ENVIRONMENT ####################
 ############################################
