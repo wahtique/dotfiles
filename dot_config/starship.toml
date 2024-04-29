@@ -1,0 +1,39 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# PROMPT
+
+# right prompt: 
+# - dipslays the status of the last command if not 0
+right_format = """$status"""
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# use our custom colors
+palette = 'custom'
+
+# FRAGMENTS
+
+[directory]
+truncation_length = 3
+truncate_to_repo = false
+fish_style_pwd_dir_length = 3
+style = 'green'
+
+[gcloud]
+disabled = true
+
+[java]
+style = 'dimmed-gray'
+
+[status]
+disabled = false
+# like default but with a whiteespace
+format = '[$symbol $status]($style) '
+
+# COLOR PALETTES
+
+[palettes.custom]
+dimmed-gray = '245'
+orange = '#ef7300'

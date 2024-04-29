@@ -59,9 +59,13 @@ autoload -Uz _zinit
 ############################################
 
 # oh-my-posh
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/bubbles-white.omp.json)"
+# eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/bubbles-white.omp.json)"
 # disable transient prompt as cross referencing paths seem to be broken
 # enable_poshtransientprompt
+
+# zinit light spaceship-prompt/spaceship-prompt
+
+eval "$(starship init zsh)"
 
 ############################################
 ############# zinit ###########################
