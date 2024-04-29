@@ -1,0 +1,10 @@
+Generate command autocompletions for various shells
+
+Usage: release-plz generate-completions [OPTIONS] [SHELL]
+
+Arguments:
+  [SHELL]  Shell option [default: bash] [possible values: bash, elvish, fish, powershell, zsh]
+
+Options:
+  -v, --verbose  Print source location and additional information in logs. To change the log level, use the `RUST_FLAG` environment variable
+  -h, --help     Print help
