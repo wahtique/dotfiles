@@ -24,17 +24,23 @@ fpath+=(
 )
 
 ############################################
-######### ZI ###############################
+######### ZINIT ############################
 ############################################
 
-# init ZI
-source "${XDG_CONFIG_HOME:-$HOME/.config}/zi/init.zsh" && zzinit
+# source zinit
+
+# install if necessary
+# should never happen anyway
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
 ############################################
 ######### NIX ##############################
 ############################################
 
-zi load "nix-community/nix-zsh-completions"
+zinit load "nix-community/nix-zsh-completions"
 
 ############################################
 
@@ -43,88 +49,86 @@ zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
 
+# compat with zinit
+# keep after loading compinit
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
 ############################################
 ########### PROMPT #########################
 ############################################
 
 # oh-my-posh
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/bubbles-white.omp.json)"
-enable_poshtransientprompt
+# disable transient prompt as cross referencing paths seem to be broken
+# enable_poshtransientprompt
 
 ############################################
-############# ZI ###########################
+############# zinit ###########################
 ############################################
 
 # plugins 
 
 # autopair delimiters for zsh
-zi ice wait lucid pick'autopair.zsh'
-zi load hlissner/zsh-autopair
+zinit ice wait lucid pick'autopair.zsh'
+zinit load hlissner/zsh-autopair
 # direnv
-zi load ptavares/zsh-direnv
+zinit load ptavares/zsh-direnv
 # git aliases
 # some aliases are overriden by forgit
-zi snippet OMZP::git
+zinit snippet OMZP::git
 # <esc> <esc> for the fuck
-zi ice wait'1' lucid  has"thefuck"
-zi light laggardkernel/zsh-thefuck
+zinit ice wait'1' lucid  has"thefuck"
+zinit light laggardkernel/zsh-thefuck
 # aliases exa by ls
-zi ice has"exa"
-zi light "RitchieS/zsh-exa"
+zinit ice has"exa"
+zinit light "RitchieS/zsh-exa"
 # fix for latest versions of eza 
 alias ls='exa --group-directories-first --icons --color-scale all'
 # add colors to `man`
-zi light ael-code/zsh-colored-man-pages
+zinit light ael-code/zsh-colored-man-pages
 # ssh agent
-zi ice use"ssh-agent.zsh" from"github"
-zi load bobsoppe/zsh-ssh-agent
+zinit ice use"ssh-agent.zsh" from"github"
+zinit load bobsoppe/zsh-ssh-agent
 # `extract <filename>` and voila !
-# zi light le0me55i/zsh-extract
+# zinit light le0me55i/zsh-extract
 # timewarrior aliases
-# zi ice has"timew"
-# zi light svenXY/timewarrior
+# zinit ice has"timew"
+# zinit light svenXY/timewarrior
 # generate autocompletes from `--help` for most cli tools
 # requires the corresponding bin
-zi ice wait lucid has"cod" for dim-an/cod
+zinit ice wait lucid has"cod" for dim-an/cod
 
 # FZF dependent plugins
 
-# zoxide : better cd + autojump 
-# `x` for cd 
-# `xi` for interactive cd
-zi has'zoxide' wait lucid for \
-  z-shell/zsh-zoxide
-# ALT + \ for interactive zi
-zle -N __zoxide_zi
-bindkey '^[\\' __zoxide_zi
 #fzf for tab completion
-zi ice has"fzf"
-zi light Aloxaf/fzf-tab
+zinit ice has"fzf"
+zinit light Aloxaf/fzf-tab
 # A zsh plugin to search in the local tree of subdirectories for files
 # ALT+R to search hand Read
 # ALT+E to search and Edit
-zi ice wait lucid has'fzf' pick'fzf-finder.plugin.zsh'
-zi light leophys/zsh-plugin-fzf-finder
+zinit ice wait lucid has'fzf' pick'fzf-finder.plugin.zsh'
+zinit light leophys/zsh-plugin-fzf-finder
 # CTRL+R to search history
-zi ice lucid wait'0' has"fzf"
-zi light joshskidmore/zsh-fzf-history-search
+zinit ice lucid wait'0' has"fzf"
+zinit light joshskidmore/zsh-fzf-history-search
 # CTRL+N for cheatsheets
 # REQUIRES NAVI
-zi ice has"navi" has"fzf"
-zi load "icatalina/zsh-navi-plugin"
+zinit ice has"navi" has"fzf"
+zinit load "icatalina/zsh-navi-plugin"
 # alias finder
-zi ice wait lucid has"fzf"
-zi light akash329d/zsh-alias-finder
+zinit ice wait lucid has"fzf"
+zinit light akash329d/zsh-alias-finder
 # git fzf
-zi ice wait lucid has"fzf"
-zi load wfxr/forgit
+zinit ice wait lucid has"fzf"
+zinit load wfxr/forgit
 
 # these should be after the fzf plugins
-zi load "zsh-users/zsh-autosuggestions"
+zinit load "zsh-users/zsh-autosuggestions"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
 
 # ssh completion using $HOME/.ssh/config
-zi light sunlei/zsh-ssh
+zinit light sunlei/zsh-ssh
 
 # fix for broken history 
 # leave it before syntax highlighting plugin to not break 
@@ -137,23 +141,27 @@ bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
 # better history
-zi ice wait lucid has"atuin"
-zi load atuinsh/atuin
+zinit ice wait lucid has"atuin"
+zinit load atuinsh/atuin
 
-zi ice pick'cli.zsh'
-zi light sudosubin/zsh-github-cli
+zinit ice pick'cli.zsh'
+zinit light sudosubin/zsh-github-cli
 
-zi wait lucid atload"zicompinit; zicdreplay" blockf for \
+zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
   zdharma/fast-syntax-highlighting
 
 # auto expand aliases
-export ZPWR_EXPAND_BLACKLIST=(x cz)
-zi ice lucid nocompile
-zi load MenkeTechnologies/zsh-expand
+export ZPWR_EXPAND_BLACKLIST=(x cz ls)
+zinit ice lucid nocompile
+zinit load MenkeTechnologies/zsh-expand
 
 # aliases tips
-zi ice from'gh-r' as'program'
-zi light decayofmind/zsh-fast-alias-tips
+zinit ice from'gh-r' as'program'
+zinit light decayofmind/zsh-fast-alias-tips
+
+# zoxide 
+# keep AT THE END
+eval "$(zoxide init zsh)"
 
 ############################################
 ########### ENVIRONMENT ####################

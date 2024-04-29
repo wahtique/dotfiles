@@ -10,6 +10,7 @@
       "segments": [
         {
           "type": "path",
+          "alias": "CurrentPath",
           "style": "diamond",
           "foreground": "#111111",
           "background": "#f1f1f1",
@@ -180,7 +181,7 @@
   ],
   "transient_prompt": {
     "foreground": "#111111",
-    "template": "<#f1f1f1, transparent>\ue0b6</><#111111,#f1f1f1> \udb80\ude4b {{.Segments.Path.Path}} </><#f1f1f1, transparent>\ue0b4</> "
+    "template": "<#f1f1f1, transparent>\ue0b6</><#111111,#f1f1f1> \udb80\ude4b {{.Segments.CurrentPath.Path}} </><#f1f1f1, transparent>\ue0b4</> "
   },
   "secondary_prompt": {
     "foreground": "#f1f1f1",

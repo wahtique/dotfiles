@@ -29,17 +29,16 @@ if command -v home-manager >/dev/null 2>&1; then
 fi  
 
 # sometimes completions need to be cleaned up
-find -L $HOME/.zi/completions -name . -o -type d -prune -o -type l -exec rm {} +
+find -L $HOME/.local/share/zinit/completions -type l -exec rm -- {} +
 
 # init shell
 source ~/.zshrc
 
-# update zi then update zsh plugins
-if command -v zi >/dev/null 2>&1; then
-  toilet ZI
-  zi self-update -n
-  zi update --all -q -n
-  # zi update --all --reset -q -n
+# update zinit plugins
+# not need to update zinit as it is updated by home-manager
+if command -v zinit >/dev/null 2>&1; then
+  toilet ZINIT
+  zinit update --parallel
   echo "\n"
 fi
 

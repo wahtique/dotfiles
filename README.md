@@ -4,7 +4,7 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
 
 ## What's included
 
-- plugin list managed with [ZI](https://z.digitalclouds.dev/) adding
+- plugin list managed with [ZINIT](https://github.com/zdharma-continuum/zinit) adding
   - `ALT+E` to **E**dit or `ALT+R` to **R**ead files chosen with fzf
   - `ALT+\` to jump to previously visitd directory with zoxide interactive mode
   - `CTRL+R` to search command history
