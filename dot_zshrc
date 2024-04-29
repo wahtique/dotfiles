@@ -137,6 +137,7 @@ bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
 # better history
+zi ice wait has"atuin"
 zi load atuinsh/atuin
 
 zi ice pick'cli.zsh'
