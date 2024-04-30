@@ -27,13 +27,8 @@ fpath+=(
 ######### ZINIT ############################
 ############################################
 
-# source zinit
-
-# install if necessary
-# should never happen anyway
+# init zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
 ############################################
@@ -44,12 +39,11 @@ zinit load "nix-community/nix-zsh-completions"
 
 ############################################
 
-# init completion after Nix and ZI
+# init completion after Nix and zinit
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
 
-# compat with zinit
 # keep after loading compinit
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -59,13 +53,8 @@ autoload -Uz _zinit
 ############################################
 
 # oh-my-posh
-# eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/bubbles-white.omp.json)"
-# disable transient prompt as cross referencing paths seem to be broken
-# enable_poshtransientprompt
-
-# zinit light spaceship-prompt/spaceship-prompt
-
-eval "$(starship init zsh)"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/bubbles-white.omp.json)"
+enable_poshtransientprompt
 
 ############################################
 ############# zinit ###########################
@@ -94,11 +83,7 @@ zinit light ael-code/zsh-colored-man-pages
 # ssh agent
 zinit ice use"ssh-agent.zsh" from"github"
 zinit load bobsoppe/zsh-ssh-agent
-# `extract <filename>` and voila !
-# zinit light le0me55i/zsh-extract
-# timewarrior aliases
-# zinit ice has"timew"
-# zinit light svenXY/timewarrior
+
 # generate autocompletes from `--help` for most cli tools
 # requires the corresponding bin
 zinit ice wait lucid has"cod" for dim-an/cod
@@ -114,8 +99,9 @@ zinit light Aloxaf/fzf-tab
 zinit ice wait lucid has'fzf' pick'fzf-finder.plugin.zsh'
 zinit light leophys/zsh-plugin-fzf-finder
 # CTRL+R to search history
-zinit ice lucid wait'0' has"fzf"
-zinit light joshskidmore/zsh-fzf-history-search
+# history handled by atuin
+# zinit ice lucid wait'0' has"fzf"
+# zinit light joshskidmore/zsh-fzf-history-search
 # CTRL+N for cheatsheets
 # REQUIRES NAVI
 zinit ice has"navi" has"fzf"
@@ -127,9 +113,16 @@ zinit light akash329d/zsh-alias-finder
 zinit ice wait lucid has"fzf"
 zinit load wfxr/forgit
 
+# better cd
+# `cd` => interactive search
+# `cd -` => search last 10 visited
+# `cd .` => search in current dir
+zinit ice wait lucid has"fzf" src"init.sh" \ 
+zinit load "b4b4r07/enhancd"
+
 # these should be after the fzf plugins
-zinit load "zsh-users/zsh-autosuggestions"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
+zinit load "zsh-users/zsh-autosuggestions"
 
 # ssh completion using $HOME/.ssh/config
 zinit light sunlei/zsh-ssh
@@ -155,7 +148,7 @@ zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
   zdharma/fast-syntax-highlighting
 
 # auto expand aliases
-export ZPWR_EXPAND_BLACKLIST=(x cz ls)
+export ZPWR_EXPAND_BLACKLIST=(x cz ls cd)
 zinit ice lucid nocompile
 zinit load MenkeTechnologies/zsh-expand
 
@@ -165,7 +158,12 @@ zinit light decayofmind/zsh-fast-alias-tips
 
 # zoxide 
 # keep AT THE END
+export _ZO_ECHO=1 # print path before cd-ing
 eval "$(zoxide init zsh)"
+# ALT + \ for interactive zoxide query
+zle -N __zoxide_zi
+bindkey '^[\\' __zoxide_zi
+
 
 ############################################
 ########### ENVIRONMENT ####################

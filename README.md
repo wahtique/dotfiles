@@ -7,7 +7,7 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
 - plugin list managed with [ZINIT](https://github.com/zdharma-continuum/zinit) adding
   - `ALT+E` to **E**dit or `ALT+R` to **R**ead files chosen with fzf
   - `ALT+\` to jump to previously visitd directory with zoxide interactive mode
-  - `CTRL+R` to search command history
+  - `CTRL+R` or `ARROW-UP` to search command history with atuin
   - `fish` like inline auto-complete
   - `fzf` tab completion
   - auto-completion generation from `--help`

@@ -31,17 +31,17 @@ fi
 # sometimes completions need to be cleaned up
 find -L $HOME/.local/share/zinit/completions -type l -exec rm -- {} +
 
-# init shell
-source ~/.zshrc
-
 # update zinit plugins
 # not need to update zinit as it is updated by home-manager
-if command -v zinit >/dev/null 2>&1; then
-  toilet ZINIT
-  zinit update --parallel 100
-  source ~/.zshrc
-  echo "\n"
-fi
+toilet ZINIT
+# init zinit for updates
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+source "${ZINIT_HOME}/zinit.zsh"
+# update everything
+zinit update --parallel 100
+echo "\n"
 
 toilet -F border DONE
+
+source $HOME/.zshrc
 
