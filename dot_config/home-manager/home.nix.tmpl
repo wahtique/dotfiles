@@ -89,7 +89,7 @@
       nil
       cachix
       #
-      # runtimes / interpreters
+      # sdks / runtimes / interpreters
       #
       lua
       nodejs_18
@@ -100,6 +100,10 @@
       #   echo "Hello, ${config.home.username}!"
       # '')
     ];
+
+    # multiple jdks because latest is not always compatible with everything
+    # eg. sbt-buildinfo
+    file."jdks/zulu17".source = pkgs.zulu17;
   };
 
   programs = {

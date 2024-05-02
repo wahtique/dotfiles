@@ -73,11 +73,16 @@ zinit snippet OMZP::git
 # <esc> <esc> for the fuck
 zinit ice wait'1' lucid  has"thefuck"
 zinit light laggardkernel/zsh-thefuck
-# aliases exa by ls
+
+# exa is not maintainned
+# eza is a maintainned fork
+alias exa="eza"
+# replace ls by eza
 zinit ice has"exa"
 zinit light "RitchieS/zsh-exa"
 # fix for latest versions of eza 
-alias ls='exa --group-directories-first --icons --color-scale all'
+alias ls='eza --group-directories-first --icons --color-scale all'
+
 # add colors to `man`
 zinit light ael-code/zsh-colored-man-pages
 # ssh agent
@@ -86,7 +91,10 @@ zinit load bobsoppe/zsh-ssh-agent
 
 # generate autocompletes from `--help` for most cli tools
 # requires the corresponding bin
-zinit ice wait lucid has"cod" for dim-an/cod
+# zinit ice wait lucid has"cod" 
+# zinit load dim-an/cod
+# for whatever reason the plugin does not seem to work
+source <(cod init $$ zsh)
 
 # FZF dependent plugins
 
@@ -117,7 +125,8 @@ zinit load wfxr/forgit
 # `cd` => interactive search
 # `cd -` => search last 10 visited
 # `cd .` => search in current dir
-zinit ice wait lucid has"fzf" src"init.sh" \ 
+export ENHANCD_FILTER="fzf --height=~50% --layout=reverse-list --info=inline --color=dark"
+zinit ice wait lucid has"fzf"
 zinit load "b4b4r07/enhancd"
 
 # these should be after the fzf plugins
@@ -196,12 +205,6 @@ alias cz="chezmoi"
 alias cza="chezmoi apply"
 # same as apply but update from git before
 alias czu="chezmoi update"
-
-if (( $+commands[eza] )); then
-  # exa is not maintainned
-  # eza is a maintainned fork
-  alias exa="eza"
-fi
 
 # use ctrl+n to show cheat sheets
 bindkey '^n' navi_widget
