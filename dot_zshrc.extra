@@ -76,12 +76,9 @@ zinit light laggardkernel/zsh-thefuck
 
 # exa is not maintainned
 # eza is a maintainned fork
-alias exa="eza"
 # replace ls by eza
 zinit ice has"exa"
 zinit light "RitchieS/zsh-exa"
-# fix for latest versions of eza 
-alias ls='eza --group-directories-first --icons --color-scale all'
 
 # add colors to `man`
 zinit light ael-code/zsh-colored-man-pages
@@ -177,34 +174,6 @@ bindkey '^[\\' __zoxide_zi
 ############################################
 ########### ENVIRONMENT ####################
 ############################################
-
-# aliases
-
-# home manager
-alias hm="home-manager"
-# scala 
-if (( $+commands[scala-cli] )); then
-  alias sc="scala-cli"
-fi
-if (( $+commands[sbt] )); then
-  alias sbtc="sbt --client"
-fi
-
-# chezmoi
-# no guards around this because the command is not always available 
-# before sourcing this
-alias cz="chezmoi"
-# reload dotfiles
-# chezmoi hook will also :
-# - update nix packages 
-# - build new derivation
-# - cleanup old generations
-# - source ~/.zshrc
-# - update zi
-# - update zsh plugins 
-alias cza="chezmoi apply"
-# same as apply but update from git before
-alias czu="chezmoi update"
 
 # use ctrl+n to show cheat sheets
 bindkey '^n' navi_widget

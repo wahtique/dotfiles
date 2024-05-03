@@ -1,9 +1,0 @@
-NIX_INIT="$HOME/.nix-profile/etc/profile.d/nix.sh" 
-if [ -e $NIX_INIT ]; then
-  source $NIX_INIT
-fi
-
-HM_INIT="$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-if [ -e $HM_INIT ]; then
-  source $HM_INIT
-fi
