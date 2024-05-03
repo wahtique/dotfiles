@@ -1,7 +1,3 @@
-############################################
-############# zinit ###########################
-############################################
-
 # load completion
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -101,19 +97,3 @@ zinit light decayofmind/zsh-fast-alias-tips
 # ALT + \ for interactive zoxide query
 zle -N __zoxide_zi
 bindkey '^[\\' __zoxide_zi
-
-
-############################################
-########### ENVIRONMENT ####################
-############################################
-
-# source secrets
-if [[ -f ~/.secrets ]]; then
-  source ~/.secrets
-fi
-
-# source profile 
-if [[ -f ~/.profile ]]; then
-  source ~/.profile
-fi
-
