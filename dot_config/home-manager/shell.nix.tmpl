@@ -39,23 +39,6 @@
       # make fzf search hidden files too
       defaultCommand = "ag --hidden --ignore .git -g '' ";
     };
-    gh = {
-      enable = true;
-      extensions = with pkgs; [
-        gh-dash # dashboard
-        gh-eco # explore the ecosystem
-        gh-markdown-preview # preview md
-      ];
-      settings = {
-        git_protocol = "ssh";
-        editor = "code";
-        prompt = "enabled";
-        pager = "bat";
-        aliases = {
-          md = "markdown-preview";
-        };
-      };
-    };
     htop.enable = true;
     navi = {
       enable = true;
