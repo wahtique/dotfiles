@@ -53,8 +53,8 @@ autoload -Uz _zinit
 ############################################
 
 # oh-my-posh
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/bubbles-white.omp.json)"
-enable_poshtransientprompt
+# eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/bubbles-white.omp.json)"
+# enable_poshtransientprompt
 
 ############################################
 ############# zinit ###########################

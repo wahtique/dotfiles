@@ -56,7 +56,7 @@
       # shell
       #
       zinit # plugin manager
-      oh-my-posh # prompt ; cross shell
+      # oh-my-posh # prompt ; cross shell
       atuin # better zsh history
       fd # better find
       cod # turn any --help into completion
@@ -123,6 +123,14 @@
       viAlias = true;
     };
     thefuck.enable = true;
+    oh-my-posh = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = builtins.fromJSON(
+        builtins.unsafeDiscardStringContext(
+          builtins.readFile "/home/{{ .username }}/.config/oh-my-posh/bubbles-white.omp.json"
+      ));
+    };
     zsh = {
       enable = true;
       shellAliases = {
