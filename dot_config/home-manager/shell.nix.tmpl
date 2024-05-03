@@ -53,9 +53,8 @@
         highlight = "fg=#6f6c5d";
       };
       completionInit = ''
-        zstyle :compinstall filename "$HOME/.zshrc"
-        autoload -Uz compinit
-        compinit
+        zinit ice lucid atload'bindkey -v' multisrc'completion/completion.plugin.zsh editor/editor.plugin.zsh'
+        zinit load belak/zsh-utils
       '';
       history = {
         path = "$HOME/.histfile";

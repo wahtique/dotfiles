@@ -29,11 +29,8 @@ zinit ice use"ssh-agent.zsh" from"github"
 zinit load bobsoppe/zsh-ssh-agent
 
 # generate autocompletes from `--help` for most cli tools
-# requires the corresponding bin
-# zinit ice wait lucid has"cod" 
-# zinit load dim-an/cod
-# for whatever reason the plugin does not seem to work
-source <(cod init $$ zsh)
+zinit ice wait'1' lucid
+zinit load dim-an/cod
 
 # FZF dependent plugins
 
