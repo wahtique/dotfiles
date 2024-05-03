@@ -62,7 +62,9 @@
         size = 10000;
       };
       sessionVariables = {
+        # ALT+E(dit) : fuzzy search for files to open in $EDITOR
         FZF_FINDER_EDITOR_BINDKEY="^[e";
+        # ALT+R(ead) : fuzzy search for files to open with default pager
         FZF_FINDER_PAGER_BINDKEY="^[r";
         # make fzf finder plugin search hidden files too
         FZF_FINDER_FD_OPTS="--hidden -t f";
@@ -86,9 +88,24 @@
         c = "code";
         ci = "code-insiders";
       };
+      # set some zsh options 
+      # autocd = cd into into directories without typing cd
+      # extendedglob = enable advanced globbing
+      # nomatch = don't throw an error if a glob doesn't match
+      # notify = notify when a job completes
+      # unset beep = disable the bell sound
+      # then 
+      # init zinit plugin manager + its completions
       initExtraBeforeCompInit = ''
-        source $HOME/.init.zsh
-      '';
+        setopt autocd extendedglob nomatch notify
+        unsetopt beep
+        # init zinit
+        ZINIT_HOME="''${XDG_DATA_HOME:-''${HOME}/.local/share}/zinit/zinit.git"
+        source "''${ZINIT_HOME}/zinit.zsh"
+        fpath+=(
+          $HOME/.local/share/zinit/completions  
+        )
+        '';
       initExtra = ''
         source $HOME/.plugins.zsh
         if [[ -f ~/.secrets ]]; then
