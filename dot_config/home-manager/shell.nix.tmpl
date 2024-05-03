@@ -30,7 +30,7 @@
       enable = true;
       enableZshIntegration = true;
       # make fzf search hidden files too
-      defaultCommand = "ag --hidden --ignore .git -g \"\"";
+      defaultCommand = "ag --hidden --ignore .git -g '' ";
     };
     htop.enable = true;
     navi = {
@@ -67,6 +67,8 @@
         FZF_FINDER_PAGER_BINDKEY="^[r";
         # make fzf finder plugin search hidden files too
         FZF_FINDER_FD_OPTS="--hidden -t f";
+        # print path before cding for zoxide
+        _ZO_ECHO = 1;
       };
       shellAliases = {
         # HOME MANAGER
@@ -86,11 +88,21 @@
         ci = "code-insiders";
       };
       initExtraBeforeCompInit = ''
-        source $HOME/.zshrc.init
+        source $HOME/.init.zsh
       '';
       initExtra = ''
-        source $HOME/.zshrc.plugins
+        source $HOME/.plugins.zsh
+        if [[ -f ~/.secrets ]]; then
+          source ~/.secrets
+        fi
+        if [[ -f ~/.profile ]]; then
+          source ~/.profile
+        fi
       '';
+    };
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
     };
   };
 }

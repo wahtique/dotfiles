@@ -35,10 +35,10 @@ find -L $HOME/.local/share/zinit/completions -type l -exec rm -- {} +
 # not need to update zinit as it is updated by home-manager
 toilet ZINIT
 # init zinit for updates
-#ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-#source "${ZINIT_HOME}/zinit.zsh"
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+source "${ZINIT_HOME}/zinit.zsh"
 # update everything
-#zinit update --all
+zinit update --all --parallel 20 -v
 echo "\n"
 
 toilet -F border DONE

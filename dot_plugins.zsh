@@ -61,7 +61,7 @@ zinit load wfxr/forgit
 # `cd` => interactive search
 # `cd -` => search last 10 visited
 # `cd .` => search in current dir
-export ENHANCD_FILTER="fzf --height=~50% --layout=reverse-list --info=inline --color=dark"
+export ENHANCD_FILTER='fzf --ansi --height=~60% --info=inline --color=dark'
 zinit ice wait lucid has"fzf"
 zinit load "b4b4r07/enhancd"
 
@@ -98,9 +98,6 @@ zinit ice from'gh-r' as'program'
 zinit light decayofmind/zsh-fast-alias-tips
 
 # zoxide 
-# keep AT THE END
-export _ZO_ECHO=1 # print path before cd-ing
-eval "$(zoxide init zsh)"
 # ALT + \ for interactive zoxide query
 zle -N __zoxide_zi
 bindkey '^[\\' __zoxide_zi
