@@ -52,10 +52,6 @@
         enable = true;
         highlight = "fg=#6f6c5d";
       };
-      completionInit = ''
-        zinit ice lucid atload'bindkey -v' multisrc'completion/completion.plugin.zsh editor/editor.plugin.zsh'
-        zinit load belak/zsh-utils
-      '';
       history = {
         path = "$HOME/.histfile";
         save = 10000;
@@ -95,9 +91,9 @@
       # notify = notify when a job completes
       # unset beep = disable the bell sound
       # then 
-      # init zinit plugin manager + its completions
+      # init zinit and load plugins
       initExtraBeforeCompInit = ''
-        setopt autocd extendedglob nomatch notify
+        setopt extendedglob nomatch notify
         unsetopt beep
         # init zinit
         ZINIT_HOME="''${XDG_DATA_HOME:-''${HOME}/.local/share}/zinit/zinit.git"
@@ -105,9 +101,15 @@
         fpath+=(
           $HOME/.local/share/zinit/completions  
         )
-        '';
-      initExtra = ''
         source $HOME/.plugins.zsh
+        '';
+      completionInit = ''
+        autoload -Uz compinit
+        compinit
+        autoload -Uz _zinit
+        (( ''${+_comps} )) && _comps[zinit]=_zinit
+      '';
+      initExtra = ''
         if [[ -f ~/.secrets ]]; then
           source ~/.secrets
         fi

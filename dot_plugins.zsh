@@ -1,8 +1,6 @@
-# load completion
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# plugins 
+# fixes ( among others ) for forward/backward word movements
+zinit ice lucid atload'bindkey -v' src'editor/editor.plugin.zsh'
+zinit load belak/zsh-utils
 
 # autopair delimiters for zsh
 zinit ice wait lucid pick'autopair.zsh'
