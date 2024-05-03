@@ -10,9 +10,16 @@
 
   programs = {
     sbt.enable = true;
-    zsh.shellAliases = {
-      sc = "scala-cli";
-      sbtc = "sbt --client";
+    zsh = {
+      shellAliases = {
+        sc = "scala-cli";
+        sbtc = "sbt --client";
+      };
+      initExtraBeforeCompInit = ''
+        fpath+=(
+          "$HOME/.local/share/scalacli/completions/zsh"
+        )
+      '';
     };
   };
 }

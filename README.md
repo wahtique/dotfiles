@@ -8,6 +8,7 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
   - `ALT+E` to **E**dit or `ALT+R` to **R**ead files chosen with fzf
   - `ALT+\` to jump to previously visitd directory with zoxide interactive mode
   - `CTRL+R` or `ARROW-UP` to search command history with atuin
+  - `CTRL+G`for cheatsheets powered by `navi`
   - `fish` like inline auto-complete
   - `fzf` tab completion
   - auto-completion generation from `--help`

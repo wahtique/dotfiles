@@ -1,64 +1,10 @@
-#############################################
-################# ZSH #######################
-#############################################
-
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
-setopt autocd extendedglob nomatch notify
-# remove terminal beeps
-unsetopt beep
-bindkey -v
-# trick found on SO to prevent ctrl+ left or right arrow
-# from actually printing something 
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-# End of lines configured by zsh-newuser-install
-
-fpath+=(
-  # scala-cli completions
-  "$HOME/.local/share/scalacli/completions/zsh"
-  # sbt client completions
-  ${SBT_SOURCE_DIR}/client/completions 
-)
-
-############################################
-######### ZINIT ############################
-############################################
-
-# init zinit
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-source "${ZINIT_HOME}/zinit.zsh"
-
-############################################
-######### NIX ##############################
-############################################
-
-zinit load "nix-community/nix-zsh-completions"
-
-############################################
-
-# init completion after Nix and zinit
-zstyle :compinstall filename "$HOME/.zshrc"
-autoload -Uz compinit
-compinit
-
-# keep after loading compinit
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-############################################
-########### PROMPT #########################
-############################################
-
-# oh-my-posh
-# eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/bubbles-white.omp.json)"
-# enable_poshtransientprompt
-
 ############################################
 ############# zinit ###########################
 ############################################
+
+# load completion
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 # plugins 
 
@@ -103,14 +49,7 @@ zinit light Aloxaf/fzf-tab
 # ALT+E to search and Edit
 zinit ice wait lucid has'fzf' pick'fzf-finder.plugin.zsh'
 zinit light leophys/zsh-plugin-fzf-finder
-# CTRL+R to search history
-# history handled by atuin
-# zinit ice lucid wait'0' has"fzf"
-# zinit light joshskidmore/zsh-fzf-history-search
-# CTRL+N for cheatsheets
-# REQUIRES NAVI
-zinit ice has"navi" has"fzf"
-zinit load "icatalina/zsh-navi-plugin"
+
 # alias finder
 zinit ice wait lucid has"fzf"
 zinit light akash329d/zsh-alias-finder
@@ -126,10 +65,6 @@ export ENHANCD_FILTER="fzf --height=~50% --layout=reverse-list --info=inline --c
 zinit ice wait lucid has"fzf"
 zinit load "b4b4r07/enhancd"
 
-# these should be after the fzf plugins
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6f6c5d"
-zinit load "zsh-users/zsh-autosuggestions"
-
 # ssh completion using $HOME/.ssh/config
 zinit light sunlei/zsh-ssh
 
@@ -144,8 +79,8 @@ bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
 # better history
-zinit ice wait lucid has"atuin"
-zinit load atuinsh/atuin
+# zinit ice wait lucid has"atuin"
+# zinit load atuinsh/atuin
 
 zinit ice pick'cli.zsh'
 zinit light sudosubin/zsh-github-cli
@@ -174,26 +109,6 @@ bindkey '^[\\' __zoxide_zi
 ############################################
 ########### ENVIRONMENT ####################
 ############################################
-
-# use ctrl+n to show cheat sheets
-bindkey '^n' navi_widget
-
-export FZF_FINDER_EDITOR_BINDKEY='^[e'
-export FZF_FINDER_PAGER_BINDKEY='^[r'
-
-# make fzf search hidden files too
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-
-# make fzf finder plugin search hidden files too
-export FZF_FINDER_FD_OPTS="--hidden -t f"
-
-# vscode
-if (( $+commands[code] )); then
-  alias c=code
-fi
-if (( $+commands[code-insiders] )); then
-  alias ci=code-insiders
-fi
 
 # source secrets
 if [[ -f ~/.secrets ]]; then
