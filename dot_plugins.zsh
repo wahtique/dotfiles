@@ -10,9 +10,6 @@ zinit load ptavares/zsh-direnv
 # git aliases
 # some aliases are overriden by forgit
 zinit snippet OMZP::git
-# <esc> <esc> for the fuck
-zinit ice wait'1' lucid  has"thefuck"
-zinit light laggardkernel/zsh-thefuck
 
 # exa is not maintainned
 # eza is a maintainned fork
@@ -69,15 +66,10 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
-# better history
-# zinit ice wait lucid has"atuin"
-# zinit load atuinsh/atuin
-
 zinit ice pick'cli.zsh'
 zinit light sudosubin/zsh-github-cli
 
-zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
-  zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # auto expand aliases
 export ZPWR_EXPAND_BLACKLIST=(x cz ls cd)

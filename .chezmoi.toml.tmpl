@@ -18,19 +18,10 @@
 {{- else -}}
 {{-   $githubUsername = promptString "githubUsername" -}}
 {{- end -}}
-
-{{- $nixCleanup := "" -}}
-{{- if hasKey . "nixCleanup" -}}
-{{-   $nixCleanup = .nixCleanup -}}
-{{- else -}}
-{{-   $nixCleanup = promptBool "nixCleanup" -}}
-{{- end -}}
-
 [data]
     email = {{ $email | quote }}
     username = {{ $username | quote}}
     githubUsername = {{ $githubUsername | quote }}
-    nixCleanup = {{ $nixCleanup }}
     
 [git]
     autoCommit = true

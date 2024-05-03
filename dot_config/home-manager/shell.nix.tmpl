@@ -2,18 +2,11 @@
 {
   home.packages = with pkgs; [
     zinit # plugin manager
-    atuin # better zsh history
-    fd # better find
     cod # turn any --help into completion
     tree # pretty print directories
-    zoxide # z on steroids
     neofetch # flexx your OS
     silver-searcher # ag
-    eza # maintained fork of exa
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    diff-so-fancy # fancy diffs ( for git )
-    tealdeer # tldr in rust
-    ripgrep # better grep
     meld # gui differ
     banner # print big banners
     figlet # better banners
@@ -26,16 +19,58 @@
       enableZshIntegration = true;
     };
     bat.enable = true;
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true; 
+    };
+    eza = {
+      enable = true;
+      enableZshIntegration = true;
+      git = true;
+      icons = true;
+    };
+    fd = {
+      enable = true;
+    };
     fzf = {
       enable = true;
       enableZshIntegration = true;
       # make fzf search hidden files too
       defaultCommand = "ag --hidden --ignore .git -g '' ";
     };
+    gh = {
+      enable = true;
+      extensions = with pkgs; [
+        gh-dash # dashboard
+        gh-eco # explore the ecosystem
+        gh-markdown-preview # preview md
+      ];
+      settings = {
+        git_protocol = "ssh";
+        editor = "code";
+        prompt = "enabled";
+        pager = "bat";
+        aliases = {
+          md = "markdown-preview";
+        };
+      };
+    };
     htop.enable = true;
     navi = {
       enable = true;
       enableZshIntegration = true;
+    };
+    ripgrep = {
+      enable = true;
+      arguments = [
+        "--max-columns-preview"
+        "--pretty"
+      ];
+    };
+    tealdeer = {
+      enable = true;
+      settings.updates.auto_update = true;
     };
     oh-my-posh = {
       enable = true;
@@ -45,7 +80,6 @@
           builtins.readFile "/home/{{ .username }}/.config/oh-my-posh/bubbles-white.omp.json"
       ));
     };
-    thefuck.enable = true;
     zsh = {
       enable = true;
       autosuggestion = {
@@ -106,8 +140,7 @@
       completionInit = ''
         autoload -Uz compinit
         compinit
-        autoload -Uz _zinit
-        (( ''${+_comps} )) && _comps[zinit]=_zinit
+        zinit cdreplay -q
       '';
       initExtra = ''
         if [[ -f ~/.secrets ]]; then

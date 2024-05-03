@@ -1,4 +1,8 @@
+{ pkgs, ...}:
 {
+  home.packages = with pkgs; [
+    diff-so-fancy # fancy diffs ( for git )
+  ];
   programs = {
     git = {
       enable = true;

@@ -13,13 +13,6 @@ if command -v nix >/dev/null 2>&1; then
   fi
   # update nix packages
   nix-channel --update
-  # cleanup old generations
-  # turning it on seem to break home-manager on some nix installs
-  # deactivete it if needed
-  {{- if .nixCleanup }}
-  nix-collect-garbage --delete-older-than 30d
-  {{- end }}
-
 fi
 
 # build new derivation
