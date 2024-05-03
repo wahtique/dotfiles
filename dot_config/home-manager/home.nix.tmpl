@@ -3,9 +3,10 @@
 {
   imports = [
     ./session.nix
-    ./rust.nix
-    ./scala.nix
     ./git.nix
+    ./shell.nix
+    ./sdks/rust.nix
+    ./sdks/scala.nix
   ];
 
   targets.genericLinux.enable = true;
@@ -53,27 +54,6 @@
 
     packages = with pkgs; [
       #
-      # shell
-      #
-      zinit # plugin manager
-      # oh-my-posh # prompt ; cross shell
-      atuin # better zsh history
-      fd # better find
-      cod # turn any --help into completion
-      tree # pretty print directories
-      zoxide # z on steroids
-      neofetch # flexx your OS
-      silver-searcher # ag
-      eza # maintained fork of exa
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-      diff-so-fancy # fancy diffs ( for git )
-      tealdeer # tldr in rust
-      ripgrep # better grep
-      meld # gui differ
-      banner # print big banners
-      figlet # better banners
-      toilet # even better banners
-      #
       # dev
       #
       devbox
@@ -107,13 +87,8 @@
     # eg. sbt-buildinfo
     file."jdks/zulu17".source = pkgs.zulu17;
   };
-
   programs = {
     home-manager.enable = true;
-    navi.enable = true;
-    fzf.enable = true;
-    htop.enable = true;
-    bat.enable = true;
     java.enable  = true;
     go.enable = true;
     neovim = {
@@ -122,47 +97,6 @@
       vimAlias = true;
       viAlias = true;
     };
-    thefuck.enable = true;
-    oh-my-posh = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = builtins.fromJSON(
-        builtins.unsafeDiscardStringContext(
-          builtins.readFile "/home/{{ .username }}/.config/oh-my-posh/bubbles-white.omp.json"
-      ));
-    };
-    zsh = {
-      enable = true;
-      shellAliases = {
-        # HOME MANAGER
-        hm = "home-manager";
-        hms = "home-manager switch";
-        # CHEZMOI
-        cz = "chezmoi";
-        # reload dotfiles
-        # chezmoi hook will also :
-        # - update nix packages 
-        # - build new derivation
-        # - cleanup old generations
-        # - source ~/.zshrc
-        # - update zi
-        # - update zsh plugins 
-        cza = "chezmoi apply";
-        # same as apply but update from git before
-        czu = "chezmoi update";
-        # SHELL TOOLS
-        # eza is a maintained fork of exa
-        exa = "eza";
-        # compatibility fix for latest versions of eza  with zsh-exa
-        ls = "eza --group-directories-first --icons --color-scale all";
-        # VS CODE
-        c = "code";
-        ci = "code-insiders";
-      };
-      
-      initExtraFirst = ''
-        source $HOME/.zshrc.extra
-      '';
-    };
+    
   };
 }
