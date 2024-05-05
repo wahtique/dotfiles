@@ -49,6 +49,7 @@
       just # make for humans
       aoc-cli # advent of code cli
       openapi-generator-cli # generate SDKs from open-api specs
+      pinentry-gnome3
       #
       # sdks / runtimes / interpreters
       #
@@ -68,6 +69,7 @@
       enable = true;
       frequency = "daily";
     };
+    ssh-agent.enable = true;
   };
 
   programs = {
@@ -82,6 +84,13 @@
       vimAlias = true;
       viAlias = true;
     };
-    
+    ssh = {
+      enable = true;
+      addKeysToAgent = "yes";
+      forwardAgent = true;
+      includes = [
+        "$HOME/.ssh/config.*"
+      ];
+    };
   };
 }

@@ -20,8 +20,8 @@ zinit light "RitchieS/zsh-exa"
 # add colors to `man`
 zinit light ael-code/zsh-colored-man-pages
 # ssh agent
-zinit ice use"ssh-agent.zsh" from"github"
-zinit load bobsoppe/zsh-ssh-agent
+# zinit ice use"ssh-agent.zsh" from"github"
+# zinit load bobsoppe/zsh-ssh-agent
 
 # generate autocompletes from `--help` for most cli tools
 zinit ice wait'1' lucid

@@ -18,7 +18,7 @@ fi
 # build new derivation
 if command -v home-manager >/dev/null 2>&1; then
   toilet HOME
-  home-manager switch
+  home-manager switch -b backup
 fi  
 
 # sometimes completions need to be cleaned up
