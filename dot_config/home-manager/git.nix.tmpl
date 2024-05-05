@@ -39,21 +39,21 @@
       };
     };
     lazygit.enable = true;
-  };
-  gh = {
-    enable = true;
-    extensions = with pkgs; [
-      gh-dash # dashboard
-      gh-eco # explore the ecosystem
-      gh-markdown-preview # preview md
-    ];
-    settings = {
-      git_protocol = "ssh";
-      editor = "code";
-      prompt = "enabled";
-      pager = "bat";
-      aliases = {
-        md = "markdown-preview";
+    gh = {
+      enable = true;
+      extensions = with pkgs; [
+        gh-dash # dashboard
+        gh-eco # explore the ecosystem
+        gh-markdown-preview # preview md
+      ];
+      settings = {
+        git_protocol = "ssh";
+        editor = "code";
+        prompt = "enabled";
+        pager = "bat";
+        aliases = {
+          md = "markdown-preview";
+        };
       };
     };
   };

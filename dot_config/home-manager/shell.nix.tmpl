@@ -13,6 +13,31 @@
     toilet # even better banners
   ];
 
+  systemd.user = {
+    timers.zinit-update = {
+      Unit.Description = "zinit plugins update";
+
+      Install.WantedBy = [ "timers.target" ];
+
+      Timer = {
+        OnCalendar = "weekly";
+        Unit = "zinit-update.service";
+        Persistent = true;
+      };
+    };
+    services.zinit-update = {
+      Unit.Description = "zinit plugins updatee";
+
+      Service.ExecStart = toString
+        (pkgs.writeShellScript "zinit-update" ''
+          #!/usr/bin/env zsh
+          echo "Update zinit plugins"
+          source ${pkgs.zinit}/zinit.git/zinit.zsh
+          zinit update --all
+        '');
+    };
+  };
+
   programs = {
     atuin = {
       enable = true;

@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     nil # nix lsp
-    nixfmt # opinionated formatter
+    nixfmt-classic # opinionated formatter
     cachix # derivation caching
   ];
 }

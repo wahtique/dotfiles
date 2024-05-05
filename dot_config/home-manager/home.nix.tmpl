@@ -61,9 +61,15 @@
       #   echo "Hello, ${config.home.username}!"
       # '')
     ];
-
-
   };
+
+  services = {
+    home-manager.autoUpgrade = {
+      enable = true;
+      frequency = "daily";
+    };
+  };
+
   programs = {
     home-manager.enable = true;
     go.enable = true;
