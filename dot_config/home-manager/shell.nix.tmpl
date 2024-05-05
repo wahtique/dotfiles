@@ -26,14 +26,13 @@
       };
     };
     services.zinit-update = {
-      Unit.Description = "zinit plugins updatee";
+      Unit.Description = "zinit plugins update";
 
+      # force sh to run the update all in zsh interactive mode
       Service.ExecStart = toString
-        (pkgs.writeShellScript "zinit-update" ''
-          #!/usr/bin/env zsh
+        (pkgs.writeShellScript "zinit-update.zsh" ''
           echo "Update zinit plugins"
-          source ${pkgs.zinit}/zinit.git/zinit.zsh
-          zinit update --all
+          /usr/bin/env zsh -i -c "zinit update --all"
         '');
     };
   };

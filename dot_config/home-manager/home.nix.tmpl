@@ -64,10 +64,48 @@
     ];
   };
 
+  systemd.user = {
+      timers.home-manager-auto-upgrade = {
+        Unit.Description = "Home Manager upgrade timer";
+
+        Install.WantedBy = [ "timers.target" ];
+
+        Timer = {
+          OnCalendar = "daily";
+          Unit = "home-manager-auto-upgrade.service";
+          Persistent = true;
+        };
+      };
+
+      services.home-manager-auto-upgrade = {
+        Unit.Description = "Home Manager upgrade";
+
+        Service.ExecStart = toString
+          (pkgs.writeShellScript "home-manager-auto-upgrade" ''
+            echo "Update Nix's channels"
+            /usr/bin/env zsh -i -c "nix-channel --update"
+            echo "Upgrade Home Manager"
+            /usr/bin/env zsh -i -c "home-manager switch"
+          '');
+      };
+    };
+
   services = {
-    home-manager.autoUpgrade = {
+    gpg-agent = {
       enable = true;
-      frequency = "daily";
+      enableZshIntegration = true;
+      # useful for gpg agent forwarding
+      enableExtraSocket = true;
+      defaultCacheTtl = 34560000;
+      maxCacheTtl = 34560000;
+      extraConfig = ''
+        {{ if eq .chezmoi.os "linux" }}
+        {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+        # WSL-specific code
+        pinentry-program "/mnt/c/Program Files (x86)/GnuPG/bin/pinentry-basic.exe"
+        {{   end }}
+        {{ end }}
+      '';
     };
     ssh-agent.enable = true;
   };
@@ -83,6 +121,12 @@
       withPython3 = true;
       vimAlias = true;
       viAlias = true;
+    };
+    gpg = {
+      enable = true;
+      # backup current `pubring.kbx` and `trustdb.gpg` before disabling ! 
+      mutableTrust = true; 
+      mutableKeys = true;
     };
     ssh = {
       enable = true;
