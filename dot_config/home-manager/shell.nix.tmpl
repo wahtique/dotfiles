@@ -43,6 +43,18 @@
       enableZshIntegration = true;
     };
     bat.enable = true;
+    bottom = {
+      enable = true;
+      settings = {
+        flags = {
+          avg_cpu = true;
+          color = "gruvbox";
+          group_processes = true;
+          tree = true;
+          temperature_type = "c";
+        };
+      };
+    };
     direnv = {
       enable = true;
       enableZshIntegration = true;
