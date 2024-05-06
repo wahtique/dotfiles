@@ -149,8 +149,7 @@
         setopt extendedglob nomatch notify
         unsetopt beep
         # init zinit
-        ZINIT_HOME="''${XDG_DATA_HOME:-''${HOME}/.local/share}/zinit/zinit.git"
-        source "''${ZINIT_HOME}/zinit.zsh"
+        source "${pkgs.zinit}/share/zinit/zinit.zsh"
         fpath+=(
           $HOME/.local/share/zinit/completions  
         )
