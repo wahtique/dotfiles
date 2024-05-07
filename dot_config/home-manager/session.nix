@@ -2,14 +2,15 @@
   home = {
     sessionVariables = {
       EDITOR = "vim";
-      SBT_OPTS = "-Xms1g -Xmx4g -Xss8M -XX:ReservedCodeCacheSize=256m -XX:+UseParallelGC";
+      SBT_OPTS =
+        "-Xms1g -Xmx4g -Xss8M -XX:ReservedCodeCacheSize=256m -XX:+UseParallelGC";
       # intellij options
       IDE_VM_OPTIONS = "-Xmx2048m";
     };
 
     sessionPath = [
       # coursier + g8
-      "$HOME/.local/share/coursier/bin"      
+      "$HOME/.local/share/coursier/bin"
       # alternative bin
       "$HOME/.local/bin"
       # golang

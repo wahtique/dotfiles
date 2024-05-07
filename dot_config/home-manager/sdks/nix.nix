@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     nil # nix lsp
     nixfmt-classic # opinionated formatter

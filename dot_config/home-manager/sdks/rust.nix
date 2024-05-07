@@ -3,7 +3,10 @@
 {
   nixpkgs.overlays = [
     # fenix for rust toolchain
-    (import "${fetchTarball "https://github.com/nix-community/fenix/archive/main.tar.gz"}/overlay.nix")
+    (import "${
+        fetchTarball
+        "https://github.com/nix-community/fenix/archive/main.tar.gz"
+      }/overlay.nix")
   ];
   home = {
     packages = with pkgs; [
