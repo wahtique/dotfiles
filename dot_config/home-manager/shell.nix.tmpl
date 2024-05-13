@@ -152,9 +152,6 @@
         unsetopt beep
         # init zinit
         source "${pkgs.zinit}/share/zinit/zinit.zsh"
-        fpath+=(
-          $HOME/.local/share/zinit/completions  
-        )
         source $HOME/.plugins.zsh
         '';
       completionInit = ''
