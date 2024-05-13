@@ -1,16 +1,9 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./session.nix
-    ./git.nix
-    ./shell.nix
-    ./sdks/nix.nix
-    ./sdks/java.nix
-    ./sdks/rust.nix
-    ./sdks/scala.nix
-  ];
-
+  imports = [./session.nix ./git.nix ./shell.nix] 
+    ++ (map (name: ./sdks/${name}) (builtins.attrNames (builtins.readDir ./sdks)));
+    
   targets.genericLinux.enable = true;
 
   nix = {
