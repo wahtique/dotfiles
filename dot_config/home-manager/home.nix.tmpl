@@ -1,8 +1,16 @@
 { pkgs, ... }:
 
 {
-  imports = [./session.nix ./git.nix ./shell.nix] 
-    ++ (map (name: ./sdks/${name}) (builtins.attrNames (builtins.readDir ./sdks)));
+  imports = [
+    ./session.nix 
+    ./git.nix 
+    ./shell.nix
+    ./sdks/java.nix 
+    ./sdks/nix.nix
+    ./sdks/rust.nix
+    ./sdks/scala.nix
+  ]; 
+    # ++ (map (name: ./sdks/${name}) (builtins.attrNames (builtins.readDir ./sdks)));
     
   targets.genericLinux.enable = true;
 
@@ -42,7 +50,16 @@
       just # make for humans
       aoc-cli # advent of code cli
       openapi-generator-cli # generate SDKs from open-api specs
+      yq
       pinentry-gnome3
+      google-cloud-sdk
+      ansible
+      kubectl
+      lens
+      wireguard-go
+      wireguard-tools
+      terraform
+      terraform-ls
       #
       # sdks / runtimes / interpreters
       #
