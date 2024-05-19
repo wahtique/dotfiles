@@ -60,17 +60,15 @@
       wireguard-tools
       terraform
       terraform-ls
+      libressl
       #
       # sdks / runtimes / interpreters
       #
       lua
-      nodejs_18
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
+      # node
+      nodejs
+      nodePackages.npm
+      corepack
     ];
   };
 

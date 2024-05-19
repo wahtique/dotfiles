@@ -22,7 +22,7 @@
       cargo-tarpaulin # code coverage
       cargo-release # release management
       sqlx-cli # sqlx cli
-      mold # faster linker
+      mold-wrapped # faster linker
       rust-analyzer
     ];
     sessionPath = [ "$HOME/.cargo/bin" ];

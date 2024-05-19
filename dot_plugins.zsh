@@ -11,12 +11,6 @@ zinit load ptavares/zsh-direnv
 # some aliases are overriden by forgit
 zinit snippet OMZP::git
 
-# exa is not maintainned
-# eza is a maintainned fork
-# replace ls by eza
-zinit ice has"exa"
-zinit light "RitchieS/zsh-exa"
-
 # add colors to `man`
 zinit light ael-code/zsh-colored-man-pages
 # ssh agent
