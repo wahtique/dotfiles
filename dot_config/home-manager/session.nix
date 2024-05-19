@@ -6,6 +6,7 @@
         "-Xms1g -Xmx4g -Xss8M -XX:ReservedCodeCacheSize=256m -XX:+UseParallelGC";
       # intellij options
       IDE_VM_OPTIONS = "-Xmx2048m";
+      MANPATH = ":$HOME/.local/share/zinit";
     };
 
     sessionPath = [

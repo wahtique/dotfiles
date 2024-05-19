@@ -1,0 +1,6 @@
+# tmp fix for https://github.com/zdharma-continuum/zinit/issues/418
+# also need to ln this file to zinit actual path in nix store
+[".local/share/zinit/polaris/man/man1/zinit.1"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/zdharma-continuum/zinit/main/doc/zinit.1"
+  refreshPeriod = "24h"
