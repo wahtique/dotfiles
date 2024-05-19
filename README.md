@@ -27,11 +27,13 @@ They can be installed before applying chezmoi's dotfiles for the first time but 
 ## Installation
 
 - CHECK zsh is your default shell, or set it with `chsh`
+- Install [nix](https://nixos.org/download.html) and [home-manager](https://nix-community.github.io/home-manager/)
 - Ensure github is properly setup
   - check [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) to setup ssh with your a rsa key
 - Fork this repo !
 - Install chezmoi (with your github username ofc)
-
+- Run
+  
 ```shell
 sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply $GITHUB_USERNAME
 ```

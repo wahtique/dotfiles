@@ -2,6 +2,8 @@
 
 if command -v toilet >/dev/null 2>&1; then
   toilet -F border UPDATING
+else 
+  echo "############ UPDATING ############"
 fi
 
 if command -v nix >/dev/null 2>&1; then
@@ -17,14 +19,22 @@ fi
 
 # build new derivation
 if command -v home-manager >/dev/null 2>&1; then
-  toilet HOME
+  if command -v banner >/dev/null 2>&1; then
+    toilet HOME
+  else
+    echo "############ HOME ############"
+  fi
   home-manager switch -b backup
 fi  
 
 # sometimes completions need to be cleaned up
 find -L $HOME/.local/share/zinit/completions -type l -exec rm -- {} +
 
-toilet -F border DONE
+if command -v toilet >/dev/null 2>&1; then
+  toilet -F border DONE
+else 
+  echo "############ DONE ############"
+fi
 
 source $HOME/.zshrc
 
