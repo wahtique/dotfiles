@@ -52,7 +52,7 @@
       aoc-cli # advent of code cli
       openapi-generator-cli # generate SDKs from open-api specs
       yq
-      pinentry-gnome3
+      pinentry-qt
       google-cloud-sdk
       ansible
       kubectl
@@ -113,9 +113,10 @@
         # WSL-specific code
         pinentry-program "/mnt/c/Program Files (x86)/GnuPG/bin/pinentry-basic.exe"
         {{  else }}
-        pinentry-program pinentry-gnome3
+        pinentry-program pinentry-qt
         {{   end }}
         {{ end }}
+        allow-loopback-pinentry
       '';
     };
     ssh-agent.enable = true;
@@ -163,6 +164,9 @@
         verify-options = "show-uid-validity";
         # Inform GPG the you use (for meta data)
         charset = "utf-8";
+        # Use loopback pinentry
+        pinentry-mode = "loopback";
+        
       };  
     };
     ssh = {
