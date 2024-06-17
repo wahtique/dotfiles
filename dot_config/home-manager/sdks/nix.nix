@@ -3,5 +3,6 @@
     nil # nix lsp
     nixfmt-classic # opinionated formatter
     cachix # derivation caching
+    nh
   ];
 }
