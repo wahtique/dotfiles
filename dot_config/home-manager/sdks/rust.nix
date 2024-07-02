@@ -27,6 +27,7 @@
       sqlx-cli # sqlx cli
       mold-wrapped # faster linker
       rust-analyzer
+      rust-script
     ];
     sessionPath = [ "$HOME/.cargo/bin" ];
   };
