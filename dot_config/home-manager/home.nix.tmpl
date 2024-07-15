@@ -5,6 +5,7 @@
     ./session.nix 
     ./git.nix 
     ./shell.nix
+    ./sdks/node.nix
     ./sdks/java.nix 
     ./sdks/nix.nix
     ./sdks/rust.nix
@@ -67,11 +68,6 @@
       # sdks / runtimes / interpreters
       #
       lua
-      # node
-      nodejs
-      nodePackages.npm
-      nodePackages.ts-node
-      corepack_latest
     ];
   };
 
