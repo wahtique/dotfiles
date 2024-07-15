@@ -78,3 +78,6 @@ zinit light decayofmind/zsh-fast-alias-tips
 # ALT + \ for interactive zoxide query
 zle -N __zoxide_zi
 bindkey '^[\\' __zoxide_zi
+
+zinit ice atclone"./zplug.zsh" atpull"%atclone"
+zinit light g-plane/pnpm-shell-completion
