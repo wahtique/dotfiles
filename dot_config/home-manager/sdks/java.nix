@@ -5,5 +5,8 @@
     file."jdks/zulu17".source = pkgs.zulu17;
   };
   # use the latest jdk as default
-  programs.java.enable = true;
+  programs.java = {
+    enable = true;
+    package = pkgs.temurin-bin;
+  };
 }
