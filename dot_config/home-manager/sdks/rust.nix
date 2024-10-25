@@ -24,6 +24,7 @@
       cargo-nextest # next gen test runner
       cargo-tarpaulin # code coverage
       cargo-release # release management
+      cargo-mutants # mutation testing
       sqlx-cli # sqlx cli
       mold-wrapped # faster linker
       rust-analyzer
