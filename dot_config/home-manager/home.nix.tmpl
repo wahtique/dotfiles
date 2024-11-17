@@ -109,12 +109,12 @@
         {{ if eq .chezmoi.os "linux" }}
         {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
         # WSL-specific code
-        pinentry-program "/mnt/c/Program\ Files\ \(x86\)/GnuPG/bin/pinentry-basic.exe"
+        pinentry-program "/mnt/c/Program Files (x86)/Gpg4win/bin/pinentry.exe"
         {{   else }}
         pinentry-program pinentry-qt
+        allow-loopback-pinentry
         {{   end }}
         {{ end }}
-        allow-loopback-pinentry
       '';
     };
     ssh-agent.enable = true;
@@ -160,7 +160,7 @@
         # Inform GPG the you use (for meta data)
         charset = "utf-8";
         # Use loopback pinentry
-        pinentry-mode = "loopback";
+        # pinentry-mode = "loopback";
         
       };  
     };
