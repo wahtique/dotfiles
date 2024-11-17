@@ -109,8 +109,8 @@
         {{ if eq .chezmoi.os "linux" }}
         {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
         # WSL-specific code
-        pinentry-program "/mnt/c/Program Files (x86)/GnuPG/bin/pinentry-basic.exe"
-        {{  else }}
+        pinentry-program "/mnt/c/Program\ Files\ \(x86\)/GnuPG/bin/pinentry-basic.exe"
+        {{   else }}
         pinentry-program pinentry-qt
         {{   end }}
         {{ end }}
