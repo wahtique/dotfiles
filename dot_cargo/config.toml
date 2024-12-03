@@ -2,7 +2,7 @@
 rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 
 [build]
-jobs = 6
+jobs = 8
 
 [profile.dev]
 debug = "none"
