@@ -1,0 +1,7 @@
+[[rule]]
+executalbe = "/usr/bin/*"
+policy = 'trust'
+
+[[rule]]
+executable = "/home/{{ .username }}/.nix-profile/bin/*"
+policy = 'trust'
