@@ -13,6 +13,8 @@ zinit snippet OMZP::git
 
 # add colors to `man`
 zinit light ael-code/zsh-colored-man-pages
+
+# deativated : use nix bg service instead
 # ssh agent
 # zinit ice use"ssh-agent.zsh" from"github"
 # zinit load bobsoppe/zsh-ssh-agent
@@ -39,6 +41,7 @@ zinit light akash329d/zsh-alias-finder
 zinit ice wait lucid has"fzf"
 zinit load wfxr/forgit
 
+# deactivate : use zoxide instead
 # better cd
 # `cd` => interactive search
 # `cd -` => search last 10 visited
