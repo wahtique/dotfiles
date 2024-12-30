@@ -62,54 +62,6 @@
         theme = "catppucin-mocha";
       };
     };
-    bottom = {
-      enable = true;
-      settings = {
-        flags = {
-          avg_cpu = true;
-          group_processes = true;
-          tree = true;
-          temperature_type = "c";
-          # catppuccin mocha theme
-          # https://github.com/catppuccin/bottom
-          styles = {
-            tables = {
-              headers = { color = "#f5e0dc"; };
-            };
-            cpu = {
-              all_entry_color = "#f5e0dc";
-              avg_entry_color = "#eba0ac";
-              cpu_core_colors = ["#f38ba8" "#fab387" "#f9e2af" "#a6e3a1" "#74c7ec" "#cba6f7"];
-            };
-            memory = {
-              ram_color = "#a6e3a1";
-              swap_color = "#fab387";
-              gpu_colors = ["#74c7ec" "#cba6f7" "#f38ba8" "#fab387" "#f9e2af" "#a6e3a1"];
-              arc_color = "#89dceb";
-            };
-            network = {
-              rx_color = "#a6e3a1";
-              tx_color = "#f38ba8";
-            };
-            widgets = {
-              widget_title = { color = "#f2cdcd"; };
-              border_color = "#585b70";
-              selected_border_color = "#f5c2e7";
-              text = { color = "#cdd6f4"; };
-              selected_text = { color = "#11111b"; bg_color = "#cba6f7"; };
-            };
-            graphs = {
-              graph_color = "#a6adc8";
-            };
-            battery = {
-              high_battery_color = "#a6e3a1";
-              medium_battery_color = "#f9e2af";
-              low_battery_color = "#f38ba8";
-            };
-          };
-        };
-      };
-    };
     direnv = {
       enable = true;
       enableZshIntegration = true;
@@ -133,10 +85,9 @@
     btop = {
       enable = true;
       settings = {
-        theme = "catppuccin_mocha";
+        color_theme = "catppuccin_mocha";
       };
     };
-    htop.enable = true;
     navi = {
       enable = true;
       enableZshIntegration = true;
