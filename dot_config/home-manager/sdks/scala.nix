@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [ 
-    scala-next # aka dotty aka scala 3
     scala-cli
     metals # lsp
     bloop # build server
@@ -14,6 +13,7 @@
       shellAliases = {
         sc = "scala-cli";
         sbtc = "sbt --client";
+        scala = "scala-cli";
       };
       initExtraBeforeCompInit = ''
         fpath+=(
