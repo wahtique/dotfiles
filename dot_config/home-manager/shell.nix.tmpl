@@ -39,6 +39,7 @@
         (pkgs.writeShellScript "zinit-update.zsh" ''
           echo "Update zinit plugins"
           /usr/bin/env zsh -i -c "zinit update --all"
+          /usr/bin/env zsh -i -c "zinit update OMZP::git"
         '');
     };
   };
@@ -132,6 +133,8 @@
         FZF_FINDER_FD_OPTS="--hidden -t f";
         # print path before cding for zoxide
         _ZO_ECHO = 1;
+        # forbid corepack from adding packageManager prop to package.json
+        COREPACK_ENABLE_AUTO_PIN = "0";
       };
       shellAliases = {
         # HOME MANAGER

@@ -7,7 +7,6 @@
       # intellij options
       IDE_VM_OPTIONS = "-Xmx2048m";
       MANPATH = ":$HOME/.local/share/zinit";
-      COREPACK_ENABLE_AUTO_PIN = "0";
     };
 
     sessionPath = [
