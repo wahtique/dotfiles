@@ -63,31 +63,6 @@
           "alias": "git"
         },
         {
-          "type": "status",
-          "style": "diamond",
-          "foreground": "#111111",
-          "background": "#f1f1f1",
-          "leading_diamond": " \ue0b6",
-          "trailing_diamond": "\ue0b4",
-          "template": " {{ if eq .Code 0 }}\uf00c{{ else }}\uf071 {{ reason .Code }}{{ end }} "
-        },
-        {
-          "type": "executiontime",
-          "style": "diamond",
-          "foreground": "#111111",
-          "background": "#f1f1f1",
-          "leading_diamond": " \ue0b6",
-          "trailing_diamond": "\ue0b4",
-          "template": " \udb80\udd09 {{.FormattedMs}} "
-        }
-      ],
-      "newline": true
-    },
-    {
-      "type": "prompt",
-      "alignment": "right",
-      "segments": [
-        {
           "type": "go",
           "style": "diamond",
           "foreground": "p:black",
@@ -162,7 +137,33 @@
           "leading_diamond": " \ue0b6",
           "trailing_diamond": "\ue0b4",
           "template": "\ue7a8 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+        },
+        {
+          "type": "status",
+          "style": "diamond",
+          "foreground": "#111111",
+          "background": "#f1f1f1",
+          "leading_diamond": " \ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "template": " {{ if eq .Code 0 }}\uf00c{{ else }}\uf071 {{ reason .Code }}{{ end }} "
+        },
+        {
+          "type": "executiontime",
+          "style": "diamond",
+          "foreground": "#111111",
+          "background": "#f1f1f1",
+          "leading_diamond": " \ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "template": " \udb80\udd09 {{.FormattedMs}} "
         }
+      ],
+      "newline": true
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        
       ]
     },
     {
