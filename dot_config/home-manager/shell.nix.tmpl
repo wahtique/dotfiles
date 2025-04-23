@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
     zinit # plugin manager
@@ -158,34 +158,38 @@
         # just
         j = "just";
       };
-      # set some zsh options 
-      # autocd = cd into into directories without typing cd
-      # extendedglob = enable advanced globbing
-      # nomatch = don't throw an error if a glob doesn't match
-      # notify = notify when a job completes
-      # unset beep = disable the bell sound
-      # then 
-      # init zinit and load plugins
-      initExtraBeforeCompInit = ''
-        setopt extendedglob nomatch notify
-        unsetopt beep
-        # init zinit
-        source "${pkgs.zinit}/share/zinit/zinit.zsh"
-        source $HOME/.plugins.zsh
-        '';
+
       completionInit = ''
         autoload -Uz compinit
         compinit
         zinit cdreplay -q
       '';
-      initExtra = ''
-        if [[ -f ~/.secrets ]]; then
-          source ~/.secrets
-        fi
-        if [[ -f ~/.profile ]]; then
-          source ~/.profile
-        fi
-      '';
+      
+      initContent = lib.mkMerge [
+        # set some zsh options 
+        # autocd = cd into into directories without typing cd
+        # extendedglob = enable advanced globbing
+        # nomatch = don't throw an error if a glob doesn't match
+        # notify = notify when a job completes
+        # unset beep = disable the bell sound
+        # then 
+        # init zinit and load plugins
+        (lib.mkBefore ''
+          setopt extendedglob nomatch notify
+          unsetopt beep
+          # init zinit
+          source "${pkgs.zinit}/share/zinit/zinit.zsh"
+          source $HOME/.plugins.zsh
+        '')
+        (lib.mkAfter ''
+          if [[ -f ~/.secrets ]]; then
+            source ~/.secrets
+          fi
+          if [[ -f ~/.profile ]]; then
+            source ~/.profile
+          fi
+        '')
+      ];
     };
     zoxide = {
       enable = true;
