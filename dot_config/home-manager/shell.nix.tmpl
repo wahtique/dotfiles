@@ -31,7 +31,12 @@
       };
     };
     services.zinit-update = {
-      Unit.Description = "zinit plugins update";
+      Unit = {
+        Description = "zinit plugins update";
+        After = [ "network.target" ];
+      };
+
+      Install.WantedBy = [ "default.target" ];
 
       # force sh to run the update all in zsh interactive mode
       Service.ExecStart = toString
@@ -62,6 +67,13 @@
         theme = "catppucin-mocha";
       };
     };
+    btop = {
+      enable = true;
+      settings = {
+        color_theme = "catppuccin_mocha";
+        proc_tree = true;
+      };
+    };
     direnv = {
       enable = true;
       enableZshIntegration = true;
@@ -82,11 +94,13 @@
       # make fzf search hidden files too
       defaultCommand = "ag --hidden --ignore .git -g '' ";
     };
-    btop = {
+    jq = {
+      enable = true;
+    };
+    jqp = {
       enable = true;
       settings = {
-        color_theme = "catppuccin_mocha";
-        proc_tree = true;
+        theme.name = "catppuccin-mocha";
       };
     };
     navi = {

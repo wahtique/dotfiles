@@ -72,31 +72,31 @@
     ];
   };
 
-  systemd.user = {
-      timers.home-manager-auto-upgrade = {
-        Unit.Description = "Home Manager upgrade timer";
+  # systemd.user = {
+  #   timers.home-manager-auto-upgrade = {
+  #     Unit.Description = "Home Manager upgrade timer";
 
-        Install.WantedBy = [ "timers.target" ];
+  #     Install.WantedBy = [ "timers.target" ];
 
-        Timer = {
-          OnCalendar = "daily";
-          Unit = "home-manager-auto-upgrade.service";
-          Persistent = true;
-        };
-      };
+  #     Timer = {
+  #       OnCalendar = "daily";
+  #       Unit = "home-manager-auto-upgrade.service";
+  #       Persistent = true;
+  #     };
+  #   };
 
-      services.home-manager-auto-upgrade = {
-        Unit.Description = "Home Manager upgrade";
+  #   services.home-manager-auto-upgrade = {
+  #     Unit.Description = "Home Manager upgrade";
 
-        Service.ExecStart = toString
-          (pkgs.writeShellScript "home-manager-auto-upgrade" ''
-            echo "Update Nix's channels"
-            /usr/bin/env zsh -i -c "nix-channel --update"
-            echo "Upgrade Home Manager"
-            /usr/bin/env zsh -i -c "home-manager switch"
-          '');
-      };
-    };
+  #     Service.ExecStart = toString
+  #       (pkgs.writeShellScript "home-manager-auto-upgrade" ''
+  #         echo "Update Nix's channels"
+  #         /usr/bin/env zsh -i -c "nix-channel --update"
+  #         echo "Upgrade Home Manager"
+  #         /usr/bin/env zsh -i -c "home-manager switch"
+  #       '');
+  #   };
+  # };
 
   services = {
     gpg-agent = {
@@ -119,6 +119,21 @@
       '';
     };
     ssh-agent.enable = true;
+    home-manager = {
+      autoUpgrade = {
+        enable = true;
+        frequency = "daily";
+      };
+      autoExpire = {
+        enable = true;
+        frequency = "weekly";
+        timestamp = "-30 days";
+        store = {
+          cleanup = true;
+          options = "--delete-older-than 30d";
+        };
+      };
+    };
   };
 
   programs = {
