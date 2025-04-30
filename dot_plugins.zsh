@@ -66,7 +66,8 @@ bindkey "^[[B" down-line-or-beginning-search
 zinit ice pick'cli.zsh'
 zinit light sudosubin/zsh-github-cli
 
-zinit light zdharma-continuum/fast-syntax-highlighting
+zinit ice lucid atload"fast-theme XDG:catppuccin-mocha > null"
+zinit light zdharma-continuum/fast-syntax-highlighting 
 
 # auto expand aliases
 export ZPWR_EXPAND_BLACKLIST=(x cz ls cd)

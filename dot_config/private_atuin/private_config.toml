@@ -205,3 +205,6 @@ scroll_exits = true
 # This ensures that sync v2 is enabled for new installs only
 # In a later release it will become the default across the board
 records = true
+
+[theme]
+name = "catppuccin-mocha-mauve"
