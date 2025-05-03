@@ -53,6 +53,26 @@
       enable = true;
       enableZshIntegration = true;
       daemon.enable = true;
+      settings = {
+        auto_sync = false;
+        update_check = false;
+        search_mode = "fuzzy";
+        filter_mode = "global";
+        workspaces = true;
+        style = "compact";
+        inline_height = 15;
+        show_preview = true;
+        stats = {
+          common_prefix = ["sudo"];
+          ignored_commands = [
+            "cd"
+            "ls"
+            "vi"
+            "nvim"
+          ];
+        };
+        theme.name = "catppuccin-mocha-mauve";
+      };
       themes = {
         "catppuccin-mocha-mauve" = {
           theme.name = "catppuccin-mocha-mauve";
