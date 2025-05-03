@@ -1,11 +1,63 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [
-    docker
-    kubernetes
-    k9s
-    kubernetes-helm
-  ];
+  home.packages = with pkgs; [ docker kubernetes kubernetes-helm ];
   programs = {
+    k9s = {
+      enable = true;
+      settings = {
+        k9s = {
+          liveViewAutoRefresh = false;
+          screenDumpDir = "$HOME/.local/state/k9s/screen-dumps";
+          refreshRate = 2;
+          maxConnRetry = 5;
+          readOnly = false;
+          noExitOnCtrlC = false;
+          ui = {
+            headless = false;
+            logoless = true;
+            crumbsless = false;
+            reactive = true;
+            noIcons = false;
+            defaultsToFullScreen = false;
+            skin = "catppucin-mocha";
+          };
+          disablePodCounting = false;
+          shellPod = {
+            image = "busybox:1.35.0";
+            namespace = "default";
+            limits = {
+              cpu = "100m";
+              memory = "100Mi";
+            };
+          };
+          imageScans.enabled = false;
+          logger = {
+            tail = 100;
+            buffer = 500;
+            sinceSeconds = -1;
+            textWrap = false;
+          };
+          thresholds = {
+            cpu = {
+              warn = 70;
+              critical = 90;
+            };
+            memory = {
+              warn = 70;
+              critical = 90;
+            };
+          };
+        };
+      };
+      skins = {
+        catppucin-mocha = {
+          src = pkgs.fetchurl {
+            url =
+              "https://raw.githubusercontent.com/catppuccin/k9s/refs/heads/main/dist/catppuccin-mocha.yaml";
+            hash = "sha256-rwkJQa7wiZ6Eb3wy4IilNov1iHI7dDTUTFq79Tw52pc=";
+          };
+        };
+      };
+    };
     lazydocker = {
       enable = true;
       settings = {
@@ -21,9 +73,7 @@
             defaultFgColor = [ "#cdd6f4" ];
             searchingActiveBorderColor = [ "#f9e2af" ];
           };
-          authorColors = {
-            "*" = "#b4befe";
-          };
+          authorColors = { "*" = "#b4befe"; };
         };
       };
     };
