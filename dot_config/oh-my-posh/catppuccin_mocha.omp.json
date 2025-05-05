@@ -75,7 +75,7 @@
           "type": "path",
           "style": "plain",
           "foreground": "p:path",
-          "template": "{{ .Path }}",
+          "template": "{{ .Path }} ",
           "properties": {
             "style": "letter"
           }
