@@ -34,8 +34,7 @@
     "true": "p:green",
     "false": "p:red",
     "time": "p:overlay1",
-    "os-fg": "p:base",
-    "os-bg": "p:overlay1",
+    "os-fg": "p:rosewater",
     "root-fg": "p:base",
     "root-bg": "p:yellow",
     "path": "p:yellow",
@@ -63,10 +62,20 @@
       "newline": true,
       "segments": [
         {
+          "type": "os",
+          "style": "plain",
+          "foreground": "p:os-fg",
+          "template": "{{ .Icon }} ",
+          "properties": {
+            "endeavouros": "\uF303",
+            "windows": "\ue70f"
+          }
+        },
+        {
           "type": "path",
           "style": "plain",
           "foreground": "p:path",
-          "template": "{{ .Path }} ",
+          "template": "{{ .Path }}",
           "properties": {
             "style": "letter"
           }
@@ -75,14 +84,13 @@
           "type": "git",
           "style": "plain",
           "foreground": "p:git",
-          "template": "{{ .HEAD }} ",
           "properties": {
             "branch_icon": "\ue725 ",
             "cherry_pick_icon": "\ue29b ",
             "commit_icon": "\uf417 ",
-            "fetch_status": false,
-            "fetch_stash_count": false,
-            "fetch_upstream_icon": false,
+            "fetch_status": true,
+            "fetch_stash_count": true,
+            "fetch_upstream_icon": true,
             "merge_icon": "\ue727 ",
             "no_commits_icon": "\uf0c3 ",
             "rebase_icon": "\ue728 ",
