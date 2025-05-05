@@ -1,5 +1,4 @@
-{ pkgs, lib, ... }:
-{
+{ pkgs, lib, ... }: {
   home.packages = with pkgs; [
     zinit # plugin manager
     cod # turn any --help into completion
@@ -13,9 +12,9 @@
     toilet # even better banners
     dust # disk usage for humans
     yazi # file explorer
-    ruff  # python linter
     sd # sed for humans
     bunyan-rs # color logs
+    vivid # ls / eza colors gen
   ];
 
   systemd.user = {
@@ -39,12 +38,11 @@
       Install.WantedBy = [ "default.target" ];
 
       # force sh to run the update all in zsh interactive mode
-      Service.ExecStart = toString
-        (pkgs.writeShellScript "zinit-update.zsh" ''
-          echo "Update zinit plugins"
-          /usr/bin/env zsh -i -c "zinit update --all"
-          /usr/bin/env zsh -i -c "zinit update OMZP::git"
-        '');
+      Service.ExecStart = toString (pkgs.writeShellScript "zinit-update.zsh" ''
+        echo "Update zinit plugins"
+        /usr/bin/env zsh -i -c "zinit update --all"
+        /usr/bin/env zsh -i -c "zinit update OMZP::git"
+      '');
     };
   };
 
@@ -63,13 +61,8 @@
         inline_height = 15;
         show_preview = true;
         stats = {
-          common_prefix = ["sudo"];
-          ignored_commands = [
-            "cd"
-            "ls"
-            "vi"
-            "nvim"
-          ];
+          common_prefix = [ "sudo" ];
+          ignored_commands = [ "cd" "ls" "vi" "nvim" ];
         };
         theme.name = "catppuccin-mocha-mauve";
       };
@@ -93,14 +86,13 @@
       themes = {
         catppucin-mocha = {
           src = pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Mocha.tmTheme";
+            url =
+              "https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Mocha.tmTheme";
             hash = "sha256-UDJ6FlLzwjtLXgyar4Ld3w7x3/zbbBfYLttiNDe4FGY=";
           };
         };
       };
-      config = {
-        theme = "catppucin-mocha";
-      };
+      config = { theme = "catppucin-mocha"; };
     };
     btop = {
       enable = true;
@@ -112,7 +104,7 @@
     direnv = {
       enable = true;
       enableZshIntegration = true;
-      nix-direnv.enable = true; 
+      nix-direnv.enable = true;
     };
     eza = {
       enable = true;
@@ -120,23 +112,17 @@
       git = true;
       icons = "auto";
     };
-    fd = {
-      enable = true;
-    };
+    fd = { enable = true; };
     fzf = {
       enable = true;
       enableZshIntegration = true;
       # make fzf search hidden files too
       defaultCommand = "ag --hidden --ignore .git -g '' ";
     };
-    jq = {
-      enable = true;
-    };
+    jq = { enable = true; };
     jqp = {
       enable = true;
-      settings = {
-        theme.name = "catppuccin-mocha";
-      };
+      settings = { theme.name = "catppuccin-mocha"; };
     };
     navi = {
       enable = true;
@@ -144,10 +130,7 @@
     };
     ripgrep = {
       enable = true;
-      arguments = [
-        "--max-columns-preview"
-        "--pretty"
-      ];
+      arguments = [ "--max-columns-preview" "--pretty" ];
     };
     tealdeer = {
       enable = true;
@@ -156,10 +139,9 @@
     oh-my-posh = {
       enable = true;
       enableZshIntegration = true;
-      settings = builtins.fromJSON(
-        builtins.unsafeDiscardStringContext(
-          builtins.readFile "/home/{{ .username }}/.config/oh-my-posh/bubbles-white.omp.json"
-      ));
+      settings = builtins.fromJSON (builtins.unsafeDiscardStringContext
+        (builtins.readFile
+          "/home/{{ .username }}/.config/oh-my-posh/bubbles-white.omp.json"));
     };
     zsh = {
       enable = true;
@@ -174,15 +156,17 @@
       };
       sessionVariables = {
         # ALT+E(dit) : fuzzy search for files to open in $EDITOR
-        FZF_FINDER_EDITOR_BINDKEY="^[e";
+        FZF_FINDER_EDITOR_BINDKEY = "^[e";
         # ALT+R(ead) : fuzzy search for files to open with default pager
-        FZF_FINDER_PAGER_BINDKEY="^[r";
+        FZF_FINDER_PAGER_BINDKEY = "^[r";
         # make fzf finder plugin search hidden files too
-        FZF_FINDER_FD_OPTS="--hidden -t f";
+        FZF_FINDER_FD_OPTS = "--hidden -t f";
         # print path before cding for zoxide
         _ZO_ECHO = 1;
         # forbid corepack from adding packageManager prop to package.json
         COREPACK_ENABLE_AUTO_PIN = "0";
+        # eza theme 
+        EZA_COLORS = "$(vivid generate catppuccin-mocha)";
       };
       shellAliases = {
         # HOME MANAGER
@@ -213,7 +197,7 @@
         compinit
         zinit cdreplay -q
       '';
-      
+
       initContent = lib.mkMerge [
         # set some zsh options 
         # autocd = cd into into directories without typing cd

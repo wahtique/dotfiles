@@ -12,6 +12,7 @@
     ./sdks/scala.nix
     ./sdks/k8s.nix
     ./sdks/flutter.nix
+    ./sdks/python.nix
   ]; 
     # ++ (map (name: ./sdks/${name}) (builtins.attrNames (builtins.readDir ./sdks)));
     
@@ -71,32 +72,6 @@
       lua
     ];
   };
-
-  # systemd.user = {
-  #   timers.home-manager-auto-upgrade = {
-  #     Unit.Description = "Home Manager upgrade timer";
-
-  #     Install.WantedBy = [ "timers.target" ];
-
-  #     Timer = {
-  #       OnCalendar = "daily";
-  #       Unit = "home-manager-auto-upgrade.service";
-  #       Persistent = true;
-  #     };
-  #   };
-
-  #   services.home-manager-auto-upgrade = {
-  #     Unit.Description = "Home Manager upgrade";
-
-  #     Service.ExecStart = toString
-  #       (pkgs.writeShellScript "home-manager-auto-upgrade" ''
-  #         echo "Update Nix's channels"
-  #         /usr/bin/env zsh -i -c "nix-channel --update"
-  #         echo "Upgrade Home Manager"
-  #         /usr/bin/env zsh -i -c "home-manager switch"
-  #       '');
-  #   };
-  # };
 
   services = {
     gpg-agent = {
