@@ -9,15 +9,13 @@ zinit load hlissner/zsh-autopair
 zinit load ptavares/zsh-direnv
 # git aliases
 # some aliases are overriden by forgit
-zinit snippet OMZP::git
+zinit wait lucid for \
+  OMZP::archlinux \
+  OMZP::eza \
+  OMZP::git
 
 # add colors to `man`
 zinit light ael-code/zsh-colored-man-pages
-
-# deativated : use nix bg service instead
-# ssh agent
-# zinit ice use"ssh-agent.zsh" from"github"
-# zinit load bobsoppe/zsh-ssh-agent
 
 # generate autocompletes from `--help` for most cli tools
 zinit ice wait'1' lucid
