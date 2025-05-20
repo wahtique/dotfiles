@@ -53,7 +53,7 @@
   },
   "transient_prompt": {
     "foreground": "p:time",
-    "template": "{{ now | date \"15:04:05\" }} {{ if gt .Code 0 }}<p:false>\udb80\udd76</>{{ else }}<p:true>\udb80\udd76</>{{ end }} "
+    "template": "{{ now | date \"15:04:05\" }} "
   },
   "blocks": [
     {
