@@ -3,6 +3,7 @@
 zinit snippet OMZP::git
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::eza
+zinit snippet OMZP::dotenv
 
 # fixes ( among others ) for forward/backward word movements
 zinit ice lucid atload'bindkey -v' src'editor/editor.plugin.zsh'
