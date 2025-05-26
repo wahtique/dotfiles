@@ -1,9 +1,10 @@
 # git aliases
 # some aliases are overriden by forgit
-zinit snippet OMZP::git
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::eza
-zinit snippet OMZP::dotenv
+zinit wait lucid git for \
+  OMZP::git \
+  OMZP::archlinux \
+  OMZP::eza \
+  OMZP::dotenv
 
 # fixes ( among others ) for forward/backward word movements
 zinit ice lucid atload'bindkey -v' src'editor/editor.plugin.zsh'
@@ -13,7 +14,7 @@ zinit load belak/zsh-utils
 zinit ice wait lucid pick'autopair.zsh'
 zinit load hlissner/zsh-autopair
 # direnv
-zinit load ptavares/zsh-direnv\
+zinit load ptavares/zsh-direnv
 
 # add colors to `man`
 zinit light ael-code/zsh-colored-man-pages
