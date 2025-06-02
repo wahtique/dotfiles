@@ -19,6 +19,7 @@
         "rust-src"
         "rustc"
         "rustfmt"
+        "rust-analyzer"
       ])
       cargo-deny # generate list of licenses 
       cargo-nextest # next gen test runner
@@ -27,7 +28,7 @@
       cargo-mutants # mutation testing
       sqlx-cli # sqlx cli
       mold-wrapped # faster linker
-      rust-analyzer
+      # rust-analyzer
       rust-script
     ];
     sessionPath = [ "$HOME/.cargo/bin" ];
