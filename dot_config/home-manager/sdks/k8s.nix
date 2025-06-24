@@ -1,5 +1,10 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ docker kubernetes kubernetes-helm ];
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    docker
+    kubernetes
+    kubernetes-helm
+  ];
   programs = {
     k9s = {
       enable = true;
@@ -18,7 +23,7 @@
             reactive = true;
             noIcons = false;
             defaultsToFullScreen = false;
-            skin = "catppucin-mocha";
+            skin = "catppuccin-mocha";
           };
           disablePodCounting = false;
           shellPod = {
@@ -49,13 +54,12 @@
         };
       };
       skins = {
-        catppucin-mocha = {
-          src = pkgs.fetchurl {
-            url =
-              "https://raw.githubusercontent.com/catppuccin/k9s/refs/heads/main/dist/catppuccin-mocha.yaml";
+        catppuccin-mocha = (
+          pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/catppuccin/k9s/refs/heads/main/dist/catppuccin-mocha.yaml";
             hash = "sha256-rwkJQa7wiZ6Eb3wy4IilNov1iHI7dDTUTFq79Tw52pc=";
-          };
-        };
+          }
+        );
       };
     };
     lazydocker = {
@@ -63,7 +67,10 @@
       settings = {
         gui = {
           theme = {
-            activeBorderColor = [ "#cba6f7" "bold" ];
+            activeBorderColor = [
+              "#cba6f7"
+              "bold"
+            ];
             inactiveBorderColor = [ "#a6adc8" ];
             optionsTextColor = [ "#89b4fa" ];
             selectedLineBgColor = [ "#313244" ];
@@ -73,7 +80,9 @@
             defaultFgColor = [ "#cdd6f4" ];
             searchingActiveBorderColor = [ "#f9e2af" ];
           };
-          authorColors = { "*" = "#b4befe"; };
+          authorColors = {
+            "*" = "#b4befe";
+          };
         };
       };
     };
