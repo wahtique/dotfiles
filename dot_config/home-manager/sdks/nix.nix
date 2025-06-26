@@ -3,6 +3,7 @@
     nil # nix lsp
     nixfmt-rfc-style # opinionated formatter
     cachix # derivation caching
-    nh
+    nh # nix helper
+    nix-output-monitor # nom
   ];
 }

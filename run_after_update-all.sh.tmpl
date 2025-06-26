@@ -24,7 +24,11 @@ if command -v home-manager >/dev/null 2>&1; then
   else
     echo "############ HOME ############"
   fi
-  $HOME/.nix-profile/bin/home-manager switch -b backup
+  if command -v nh >/dev/null 2>&1; then
+    $HOME/.nix-profile/bin/nh switch -b backup
+  else
+    $HOME/.nix-profile/bin/home-manager switch -b backup
+  fi
 fi  
 
 # sometimes completions need to be cleaned up
