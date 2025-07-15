@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    nodejs
+    # nodejs
     nodePackages.npm
     nodePackages.ts-node
     corepack_latest
