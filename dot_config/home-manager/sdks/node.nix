@@ -4,5 +4,6 @@
     nodePackages.npm
     nodePackages.ts-node
     corepack_latest
+    cypress
   ];
 }
