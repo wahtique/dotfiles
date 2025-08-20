@@ -105,6 +105,18 @@
         theme = "catppucin-mocha";
       };
     };
+    broot = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        imports = [
+            {
+                luma = "dark";
+                file = "skins/catppuccin-frappe-mauve.hjson";
+            }
+        ];
+      };
+    };
     btop = {
       enable = true;
       settings = {

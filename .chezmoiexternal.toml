@@ -3,4 +3,10 @@
 [".local/share/zinit/polaris/man/man1/zinit.1"]
   type = "file"
   url = "https://raw.githubusercontent.com/zdharma-continuum/zinit/main/doc/zinit.1"
-  refreshPeriod = "24h"
+  refreshPeriod = "168h"
+
+# broot theme
+[".config/broot/skins/catppuccin-frappe-mauve.hjson"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/catppuccin/broot/refs/heads/main/themes/mocha/catppuccin-mocha-mauve.hjson"
+  refreshPeriod = "168h"
