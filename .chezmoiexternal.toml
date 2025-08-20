@@ -17,6 +17,12 @@
   url = "https://raw.githubusercontent.com/catppuccin/btop/refs/heads/main/themes/catppuccin_mocha.theme"
   refreshPeriod = "168h"
 
+# kitty theme
+[".config/kitty/catppuccin_mocha.conf"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/catppuccin/kitty/refs/heads/main/themes/mocha.conf"
+  refreshPeriod = "168h"
+
 # ZSH fast syntax highlighting
 [".config/fsh/catppuccin-mocha.ini"]
   type = "file"
