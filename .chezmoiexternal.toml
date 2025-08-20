@@ -6,7 +6,7 @@
   refreshPeriod = "168h"
 
 # broot theme
-[".config/broot/skins/catppuccin-frappe-mauve.hjson"]
+[".config/broot/skins/catppuccin-mocha-mauve.hjson"]
   type = "file"
   url = "https://raw.githubusercontent.com/catppuccin/broot/refs/heads/main/themes/mocha/catppuccin-mocha-mauve.hjson"
   refreshPeriod = "168h"
