@@ -36,3 +36,20 @@ sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply $GITHUB_USERNAME
 ```
 
 - Run `chezmoi apply` and (hopefully) rock'n roll baby !
+
+## Troubleshooting
+
+### Permission denied on `/nix/var/nix/builds`
+
+Depending on Nix install method, permissions on the nix store can be reset to `root` after an update.
+
+```shell
+error: creating directory '/nix/var/nix/builds/nix-build-home-manager.drv-32870-1704007560': Permission denied
+error: program '/usr/bin/nix-build' failed with exit code 1
+```
+
+To fix, you can try changing the ownership of the nix store back to your user:
+
+```shell
+sudo chown -R $USER /nix/var/nix
+```
