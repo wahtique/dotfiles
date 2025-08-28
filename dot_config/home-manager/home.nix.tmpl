@@ -2,20 +2,20 @@
 
 {
   imports = [
-    ./session.nix 
-    ./git.nix 
+    ./session.nix
+    ./git.nix
     ./shell.nix
     ./sdks/node.nix
-    ./sdks/java.nix 
+    ./sdks/java.nix
     ./sdks/nix.nix
     ./sdks/rust.nix
     ./sdks/scala.nix
     ./sdks/k8s.nix
     # ./sdks/flutter.nix
     ./sdks/python.nix
-  ]; 
-    # ++ (map (name: ./sdks/${name}) (builtins.attrNames (builtins.readDir ./sdks)));
-    
+  ];
+  # ++ (map (name: ./sdks/${name}) (builtins.attrNames (builtins.readDir ./sdks)));
+
   targets.genericLinux.enable = true;
 
   nix = {
@@ -42,7 +42,7 @@
     username = "{{ .username }}";
     homeDirectory = "/home/{{ .username }}";
 
-    stateVersion = "24.11"; 
+    stateVersion = "24.11";
 
     packages = with pkgs; [
       #
@@ -55,14 +55,14 @@
       aoc-cli # advent of code cli
       openapi-generator-cli # generate SDKs from open-api specs
       yq
-      (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
+      (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
       ansible
       kubectl
       terraform
       terraform-ls
       libressl
       git-absorb # magic git fixup
-      act # run github action locally  
+      act # run github action locally
       lldb # debugger for native code
       lazysql
       #
@@ -121,8 +121,8 @@
     };
     gpg = {
       enable = true;
-      # backup current `pubring.kbx` and `trustdb.gpg` before disabling ! 
-      mutableTrust = true; 
+      # backup current `pubring.kbx` and `trustdb.gpg` before disabling !
+      mutableTrust = true;
       mutableKeys = true;
       settings = {
         # Harden storage
@@ -134,7 +134,20 @@
         # Use modern ciphers for messages / files
         personal-cipher-preferences = "AES256";
         personal-digest-preferences = "SHA512";
-        default-preference-list = [ "SHA512" "SHA384" "SHA256" "RIPEMD160" "AES256" "AES192" "TWOFISH" "BLOWFISH" "ZLIB" "BZIP2" "ZIP" "Uncompressed" ];
+        default-preference-list = [
+          "SHA512"
+          "SHA384"
+          "SHA256"
+          "RIPEMD160"
+          "AES256"
+          "AES192"
+          "TWOFISH"
+          "BLOWFISH"
+          "ZLIB"
+          "BZIP2"
+          "ZIP"
+          "Uncompressed"
+        ];
         cipher-algo = "AES256";
         digest-algo = "SHA512";
         cert-digest-algo = "SHA512";
@@ -151,13 +164,17 @@
         charset = "utf-8";
         # Use loopback pinentry
         # pinentry-mode = "loopback";
-        
-      };  
+
+      };
     };
     ssh = {
       enable = true;
-      addKeysToAgent = "yes";
-      forwardAgent = true;
+      matchBlocks = {
+        "*" = {
+          addKeysToAgent = "yes";
+          forwardAgent = true;
+        };
+      };
       includes = [
         "$HOME/.ssh/config.*"
       ];
