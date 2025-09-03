@@ -14,9 +14,15 @@
     autoPush = true
 
 [edit]
-    {{ if and .hasGUI (findExecutable "code" (list "bin" "/usr/bin" ".nix-profile/bin")) }}
+    {{ if or ( lookPath "code") (findExecutable "code" (list "bin" "/usr/bin" ".nix-profile/bin")) }}
     command = "code"
     args = ["--wait"]
-    {{ else }}
+    {{ else if or ( lookPath "nvim") (findExecutable "nvim" (list "bin" "/usr/bin" ".nix-profile/bin")) }}
     command = "nvim"
+    {{ else if or ( lookPath "vim") (findExecutable "vim" (list "bin" "/usr/bin" ".nix-profile/bin")) }}
+    command = "vim"
+    {{ else if or ( lookPath "vi") (findExecutable "vi" (list "bin" "/usr/bin" ".nix-profile/bin")) }}
+    command = "vi"
+    {{ else }}
+    command = "nano"
     {{ end }}
