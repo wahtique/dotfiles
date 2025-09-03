@@ -65,3 +65,9 @@ If not, add yourself to `nix-users` group:
 ```shell
 sudo gpasswd -a $USER nix-users
 ```
+
+Alternavively, you can directly own the whole directory if the previous solution did not work:
+
+```shell
+sudo chown -R $USER /nix
+```
