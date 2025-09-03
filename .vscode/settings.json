@@ -1,6 +1,8 @@
 {
   "files.associations": {
     "**/*.nix.tmpl": "nix",
-    "**/*.sh.tmpl": "shell"
+    "**/*.sh.tmpl": "shell",
+    "**/*.toml.tmpl": "toml",
+    "*.toml.tmpl": "toml",
   }
 }

@@ -1,31 +1,22 @@
-{{- $email := "" -}}
-{{- if hasKey . "email" -}}
-{{-   $email = .email -}}
-{{- else -}}
-{{-   $email = promptString "email" -}}
-{{- end -}}
+{{ $email := promptStringOnce . "email" "What is your email address" }}
+{{ $username := promptStringOnce . "username" "What is your username" }}
+{{ $githubUsername := promptStringOnce . "githubUsername" "What is your GitHub username" }}
+{{ $hasGUI := promptBoolOnce . "hasGUI" "Does this machine have a GUI" }}
 
-{{- $username := "" -}}
-{{- if hasKey . "username" -}}
-{{-   $username = .username -}}
-{{- else -}}
-{{-   $username = promptString "username" -}}
-{{- end -}}
-
-{{- $githubUsername := "" -}}
-{{- if hasKey . "githubUsername" -}}
-{{-   $githubUsername = .githubUsername -}}
-{{- else -}}
-{{-   $githubUsername = promptString "githubUsername" -}}
-{{- end -}}
 [data]
     email = {{ $email | quote }}
     username = {{ $username | quote}}
     githubUsername = {{ $githubUsername | quote }}
+    hasGUI = {{ $hasGUI }}
     
 [git]
     autoCommit = true
     autoPush = true
 
 [edit]
+    {{ if and .hasGUI (findExecutable "code" (list "bin" "/usr/bin" ".nix-profile/bin")) }}
+    command = "code"
+    args = ["--wait"]
+    {{ else }}
     command = "nvim"
+    {{ end }}
