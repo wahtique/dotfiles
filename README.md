@@ -48,8 +48,20 @@ error: creating directory '/nix/var/nix/builds/nix-build-home-manager.drv-32870-
 error: program '/usr/bin/nix-build' failed with exit code 1
 ```
 
-To fix, you can try changing the ownership of the nix store back to your user:
+To fix, you can try changing the ownership of the nix store to the `nix-users` group:
 
 ```shell
-sudo chown -R $USER /nix/var/nix
+sudo chown -R :nix-users /nix/var/nix
+```
+
+Make sure your user is part of the `nix-users` group :
+
+```shell
+groups $USER
+```
+
+If not, add yourself to `nix-users` group:
+
+```shell
+sudo gpasswd -a $USER nix-users
 ```
