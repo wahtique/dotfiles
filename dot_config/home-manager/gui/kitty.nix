@@ -16,7 +16,11 @@
         enable_audio_bell = false;
         enabled_layouts = "tall:bias=50;full_size=1;mirrored=false";
       };
-      themeFile = "catppuccin_mocha.conf";
+      # import theme file with cz
+      # packaged does not seem to be maintained
+      extraConfig = ''
+        include catppuccin_mocha.conf
+      '';
     };
   };
 }
