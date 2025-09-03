@@ -6,4 +6,10 @@
     nh # nix helper
     nix-output-monitor # nom
   ];
+  programs = {
+    nix-your-shell = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+  };
 }
