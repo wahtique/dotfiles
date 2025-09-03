@@ -70,7 +70,7 @@ zinit ice lucid atload"fast-theme XDG:catppuccin-mocha > null"
 zinit light zdharma-continuum/fast-syntax-highlighting 
 
 # auto expand aliases
-export ZPWR_EXPAND_BLACKLIST=(x cz ls cd)
+export ZPWR_EXPAND_BLACKLIST=(x cz ls cd kubectl)
 zinit ice lucid nocompile
 zinit load MenkeTechnologies/zsh-expand
 

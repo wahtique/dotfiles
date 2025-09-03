@@ -62,6 +62,11 @@
         );
       };
     };
+    kubecolor = {
+      enable = true;
+      enableAlias = true;
+      enableZshIntegration = true;
+    };
     lazydocker = {
       enable = true;
       settings = {
