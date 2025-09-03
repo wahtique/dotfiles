@@ -1,5 +1,0 @@
-#compdef _bleep bleep
-
-function _bleep {
-  eval "$(bleep _complete-zsh $CURRENT $words[@])"
-}
