@@ -1,3 +1,7 @@
 .gitconfig
 prompt.png
 README.md
+
+{{ if not .hasGUI }}
+.config/home-manager/gui
+{{ end }}

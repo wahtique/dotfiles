@@ -13,9 +13,9 @@
     ./sdks/k8s.nix
     # ./sdks/flutter.nix
     ./sdks/python.nix
-  ];
-  # ++ (map (name: ./sdks/${name}) (builtins.attrNames (builtins.readDir ./sdks)));
-
+  ]
+  ++ (map (name: ./gui/${name}) (builtins.attrNames (builtins.readDir ./gui)));
+  
   targets.genericLinux.enable = true;
 
   nix = {
