@@ -3,5 +3,5 @@ prompt.png
 README.md
 
 {{ if not .hasGUI }}
-.config/home-manager/gui
+.config/home-manager/gui/*.nix
 {{ end }}
