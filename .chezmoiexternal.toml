@@ -11,12 +11,6 @@
   url = "https://raw.githubusercontent.com/catppuccin/broot/refs/heads/main/themes/mocha/catppuccin-mocha-mauve.hjson"
   refreshPeriod = "168h"
 
-# btop++ theme
-[".config/btop/themes/catppuccin_mocha.theme"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/catppuccin/btop/refs/heads/main/themes/catppuccin_mocha.theme"
-  refreshPeriod = "168h"
-
 # kitty theme
 [".config/kitty/catppuccin_mocha.conf"]
   type = "file"
