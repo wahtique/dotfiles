@@ -20,6 +20,7 @@ in
     gc = {
       automatic = true;
       options = "--delete-older-than 30d";
+      persistent = true;
     };
   };
 
@@ -40,7 +41,7 @@ in
     username = "{{ .username }}";
     homeDirectory = "/home/{{ .username }}";
 
-    stateVersion = "25.05";
+    stateVersion = "25.11";
   };
 
   services = {
