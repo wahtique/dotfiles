@@ -10,6 +10,8 @@ in
     targets = {
       vim.enable = false;
       neovim.enable = false;
+      gtk.enable = false;
+      gnome.enable = false;
     };
   };
 }
