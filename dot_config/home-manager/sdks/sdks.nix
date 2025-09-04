@@ -6,7 +6,7 @@
     terraform
     terraform-ls
     lldb # debugger for native code
-
+    gopls
   ];
 
   programs = {
