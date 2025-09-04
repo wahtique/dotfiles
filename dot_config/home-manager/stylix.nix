@@ -3,13 +3,6 @@ let
   stylix = builtins.fetchTarball "https://github.com/nix-community/stylix/archive/master.tar.gz";
 in
 {
-  home.packages = [
-    (pkgs.catppuccin-kde.override {
-      flavour = [ "mocha" ];
-      accents = [ "mauve" ];
-      winDecStyles = [ "modern" ];
-    })
-  ];
   imports = [ (import stylix).homeModules.stylix ];
   stylix = {
     enable = true;
@@ -19,10 +12,6 @@ in
       neovim.enable = false;
       gtk.enable = false;
       gnome.enable = false;
-      kde = {
-        enable = true;
-        decorations = "CatppuccinMocha-Modern";
-      };
     };
   };
 }
