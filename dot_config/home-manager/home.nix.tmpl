@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 let
   nur = builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz";
 in
@@ -41,31 +41,6 @@ in
     homeDirectory = "/home/{{ .username }}";
 
     stateVersion = "25.05";
-
-    packages = with pkgs; [
-      #
-      # dev
-      #
-      devbox
-      melody # regex but readable
-      sops # secret ops using AGE
-      just # make for humans
-      aoc-cli # advent of code cli
-      openapi-generator-cli # generate SDKs from open-api specs
-      yq
-      ansible
-      terraform
-      terraform-ls
-      libressl
-      git-absorb # magic git fixup
-      act # run github action locally
-      lldb # debugger for native code
-      lazysql
-      #
-      # sdks / runtimes / interpreters
-      #
-      lua
-    ];
   };
 
   services = {
@@ -85,16 +60,6 @@ in
       };
     };
   };
-  
-  programs = {
-    home-manager.enable = true;
-    go.enable = true;
-    neovim = {
-      enable = true;
-      withPython3 = true;
-      vimAlias = true;
-      viAlias = true;
-    };
-    
-  };
+
+  programs.home-manager.enable = true;
 }

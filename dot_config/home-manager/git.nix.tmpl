@@ -1,7 +1,9 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     diff-so-fancy # fancy diffs ( for git )
+    git-absorb # magic git fixup
+    act # run github action locally
   ];
   programs = {
     git = {
@@ -34,7 +36,7 @@
         interactive = {
           diffFilter = "diff-so-fancy --patch";
         };
-        url= {
+        url = {
           "ssh://git@github.com" = {
             insteadOf = "https://github.com";
           };
@@ -46,7 +48,10 @@
       settings = {
         gui = {
           theme = {
-            activeBorderColor = [ "#cba6f7" "bold" ];
+            activeBorderColor = [
+              "#cba6f7"
+              "bold"
+            ];
             inactiveBorderColor = [ "#a6adc8" ];
             optionsTextColor = [ "#89b4fa" ];
             selectedLineBgColor = [ "#313244" ];
@@ -65,7 +70,7 @@
     gh = {
       enable = true;
       extensions = with pkgs; [
-        gh-copilot  # github copilot
+        gh-copilot # github copilot
         gh-dash # dashboard
         gh-eco # explore the ecosystem
         gh-markdown-preview # preview md
