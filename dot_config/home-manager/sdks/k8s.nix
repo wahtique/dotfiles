@@ -2,6 +2,8 @@
 {
   home.packages = with pkgs; [
     docker
+    (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
+    kubectl
     kubernetes
     kubernetes-helm
   ];
