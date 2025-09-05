@@ -11,10 +11,6 @@ in
       # todo : configure this with nixvim
       vim.enable = false;
       neovim.enable = false;
-      # todo : mk this work 
-      # currently config is always overridden by kde
-      gtk.enable = false;
-      gnome.enable = false;
     };
   };
 }
