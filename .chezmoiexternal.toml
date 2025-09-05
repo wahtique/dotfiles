@@ -22,9 +22,3 @@
   type = "file"
   url = "https://raw.githubusercontent.com/catppuccin/zsh-fsh/refs/heads/main/themes/catppuccin-mocha.ini"
   refreshPeriod = "168h"
-
-# Yazi theme 
-[".config/yazi/theme.toml"]
-  type = "file"
-  url = "https://github.com/catppuccin/yazi/raw/refs/heads/main/themes/mocha/catppuccin-mocha-mauve.toml"
-  refreshPeriod = "168h"
