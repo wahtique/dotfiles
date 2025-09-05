@@ -3,7 +3,7 @@
   home.packages = [
     (pkgs.catppuccin-kde.override {
       flavour = [ "mocha" ];
-      accents = [ "mauve" ];
+      accents = [ "pink" ];
       winDecStyles = [ "modern" ];
     })
   ];
