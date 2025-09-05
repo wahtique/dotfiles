@@ -41,15 +41,6 @@ zinit light akash329d/zsh-alias-finder
 zinit ice wait lucid has"fzf"
 zinit load wfxr/forgit
 
-# deactivate : use zoxide instead
-# better cd
-# `cd` => interactive search
-# `cd -` => search last 10 visited
-# `cd .` => search in current dir
-# export ENHANCD_FILTER='fzf --ansi --height=~60% --info=inline --color=dark'
-# zinit ice wait lucid has"fzf"
-# zinit load "b4b4r07/enhancd"
-
 # ssh completion using $HOME/.ssh/config
 zinit light sunlei/zsh-ssh
 
