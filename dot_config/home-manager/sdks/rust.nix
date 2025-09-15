@@ -13,7 +13,7 @@
       # tmp use rustup manually until "cannot use rustfmt: rustup not found" in intellij is fixed
       # see https://youtrack.jetbrains.com/issue/RUST-14013/Cant-use-rustfmt-without-rustup
       #  
-      (fenix.stable.withComponents [
+      (fenix.latest.withComponents [
         "cargo"
         "clippy"
         "rust-src"
