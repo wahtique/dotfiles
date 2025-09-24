@@ -10,7 +10,7 @@
   stylix = {
     targets = {
       kde = {
-        enable = true;
+        enable = false;
         decorations = "CatppuccinMocha-Modern";
       };
     };
