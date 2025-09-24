@@ -22,9 +22,6 @@ in
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono NF";
       };
-      serif = config.stylix.fonts.monospace;
-      sansSerif = config.stylix.fonts.monospace;
-      emoji = config.stylix.fonts.monospace;
     };
     targets = {
       # todo : configure this with nixvim
