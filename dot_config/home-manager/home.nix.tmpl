@@ -10,6 +10,7 @@ in
     ./shell.nix
     ./ssh.nix
     ./stylix.nix
+    ./syncthing.nix
   ]
   ++ (map (name: ./sdks/${name}) (builtins.attrNames (builtins.readDir ./sdks)))
   ++ (map (name: ./gui/${name}) (builtins.attrNames (builtins.readDir ./gui)));
