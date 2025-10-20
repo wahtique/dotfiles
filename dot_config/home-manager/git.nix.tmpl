@@ -8,9 +8,11 @@
   programs = {
     git = {
       enable = true;
-      userName = "{{ .githubUsername }}";
-      userEmail = "{{ .email }}";
-      extraConfig = {
+      user = {
+        name = "{{ .githubUsername }}";
+        email = "{{ .email }}";
+      };
+      settings = {
         core = {
           editor = "vim";
           pager = "diff-so-fancy | bat";
