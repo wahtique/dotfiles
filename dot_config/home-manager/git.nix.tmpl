@@ -8,17 +8,22 @@
   programs = {
     git = {
       enable = true;
-      user = {
-        name = "{{ .githubUsername }}";
-        email = "{{ .email }}";
-      };
       settings = {
         core = {
           editor = "vim";
           pager = "diff-so-fancy | bat";
         };
+        diff = {
+          colorMoved = "default";
+        };
         init = {
           defaultBranch = "main";
+        };
+        interactive = {
+          diffFilter = "diff-so-fancy --patch";
+        };
+        merge = {
+          conflictStyle = "diff3";
         };
         pull = {
           rebase = "true";
@@ -26,26 +31,22 @@
         push = {
           autoSetupRemote = true;
         };
+        rerere = {
+          enabled = "true";
+        };
         rebase = {
           autoStash = "true";
-        };
-        merge = {
-          conflictStyle = "diff3";
-        };
-        diff = {
-          colorMoved = "default";
-        };
-        interactive = {
-          diffFilter = "diff-so-fancy --patch";
         };
         url = {
           "ssh://git@github.com" = {
             insteadOf = "https://github.com";
           };
         };
-        rerere = {
-          enabled = "true";
+        user = {
+          name = "{{ .githubUsername }}";
+          email = "{{ .email }}";
         };
+
       };
     };
     lazygit = {
