@@ -1,7 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
-    ruff
-    pyright
-    uv
+    pyright # static type checker
+    # astral-sh tools
+    ruff # formatter / linter 
+    ty # static type checker
+    uv # package / project manager
   ];
 }
