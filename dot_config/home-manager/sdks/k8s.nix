@@ -25,7 +25,6 @@
             reactive = true;
             noIcons = false;
             defaultsToFullScreen = false;
-            skin = "catppuccin-mocha";
           };
           disablePodCounting = false;
           shellPod = {
@@ -54,14 +53,6 @@
             };
           };
         };
-      };
-      skins = {
-        catppuccin-mocha = (
-          pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/catppuccin/k9s/refs/heads/main/dist/catppuccin-mocha.yaml";
-            hash = "sha256-rwkJQa7wiZ6Eb3wy4IilNov1iHI7dDTUTFq79Tw52pc=";
-          }
-        );
       };
     };
     kubecolor = {
