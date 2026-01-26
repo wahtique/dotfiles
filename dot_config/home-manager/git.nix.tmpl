@@ -4,6 +4,8 @@
     diff-so-fancy # fancy diffs ( for git )
     git-absorb # magic git fixup
     act # run github action locally
+    github-copilot-cli # github copilot
+
   ];
   programs = {
     git = {
@@ -68,7 +70,6 @@
     gh = {
       enable = true;
       extensions = with pkgs; [
-        gh-copilot # github copilot
         gh-dash # dashboard
         gh-eco # explore the ecosystem
         gh-markdown-preview # preview md
