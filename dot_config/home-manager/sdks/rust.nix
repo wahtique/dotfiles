@@ -30,6 +30,7 @@
       mold # faster linker
       # rust-analyzer
       rust-script
+      cargo-cache # cargo cache management
     ];
     sessionPath = [ "$HOME/.cargo/bin" ];
   };
