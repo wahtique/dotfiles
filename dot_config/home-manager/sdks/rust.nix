@@ -31,6 +31,7 @@
       # rust-analyzer
       rust-script
       cargo-cache # cargo cache management
+      cargo-duplicates
     ];
     sessionPath = [ "$HOME/.cargo/bin" ];
   };
