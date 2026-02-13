@@ -14,8 +14,6 @@ Dotfiles repo managed using [chezmoi](https://www.chezmoi.io/#considering-using-
   - auto-completion generation from `--help`
 - `Catppuccin` theme for `oh-my-posh`
 - [home-manager](https://github.com/nix-community/home-manager) config to setup dependencies
-- ~~[LunarVim](https://www.lunarvim.org/) config~~
-- [NvChad](https://nvchad.com/) config
 - and much more ( well just a little for now but much more soon ! )
 
 Programs are managed using [nix](https://nixos.org/) and [home-manager](https://github.com/nix-community/home-manager).
