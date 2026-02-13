@@ -75,10 +75,16 @@ sudo chown -R $USER /nix
 Override derivation. For example, replace `vscode-1.109.0` with `1.10.2` :
 
 ```nix
-pkgs.vscode.overrideDerivation (oldAttrs: {
-  hash ="sha256-ST5i8gvNtAaBbmcpcg9GJipr8e5d0A0qbdG1P9QViek=";
+pkgs.vscode.overrideAttrs (oldAttrs: rec {
+  hash = "sha256-ST5i8gvNtAaBbmcpcg9GJipr8e5d0A0qbdG1P9QViek=";
+  plat = "linux-x64";
+  archive_fmt = "tar.gz";
   version = "1.109.2";
-  rev = "591199df409fbf59b4b52d5ad4ee0470152a9b31";
+  src = pkgs.fetchurl {
+    name = "VSCode_${version}_${plat}.${archive_fmt}";
+    url = "https://update.code.visualstudio.com/${version}/${plat}/stable";
+    inherit hash;
+  };
 });
 
 ```
