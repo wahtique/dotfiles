@@ -55,7 +55,6 @@
         pkgs.writeShellScript "zinit-update.zsh" ''
           echo "Update zinit plugins"
           /usr/bin/env zsh -i -c "zinit update --all"
-          /usr/bin/env zsh -i -c "zinit update OMZP::git"
         ''
       );
     };
@@ -238,7 +237,7 @@
             }
 
           ];
-          prepend_previewers = [];
+          prepend_previewers = [ ];
         };
       };
     };
