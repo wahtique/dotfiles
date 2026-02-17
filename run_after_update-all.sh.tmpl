@@ -1,40 +1,79 @@
 #!/usr/bin/env zsh
 
-if command -v toilet >/dev/null 2>&1; then
-  toilet -F border UPDATING
+# gum may not be avaialable on first run
+if command -v gum >/dev/null 2>&1; then
+  gum log --time datetime --level info "Update Home : start"
 else 
   echo "############ UPDATING ############"
 fi
 
+# update nix channels
 if command -v nix >/dev/null 2>&1; then
-  # possibly not avaialable on first run
-  if command -v banner >/dev/null 2>&1; then
-    toilet NIX
+  if command -v gum >/dev/null 2>&1; then
+    gum log --time datetime --level info "Update Nix channels : start"
+    gum spin --show-output --title "Updating..." -- nix-channel --update
   else
     echo "############ NIX ############"  
+    nix-channel --update
   fi
-  # update nix packages
-  nix-channel --update
+  if command -v gum >/dev/null 2>&1; then
+    if [ $? -eq 0 ]; then
+      gum log --time datetime --level info "Update Nix channels : done"
+    else
+      gum log --time datetime --level error "Update Nix channels : failed"
+    fi
+  fi
 fi
 
-# build new derivation
+# build and switch to the new home-manager configuration
 if command -v home-manager >/dev/null 2>&1; then
-  if command -v banner >/dev/null 2>&1; then
-    toilet HOME
+  if command -v gum >/dev/null 2>&1; then
+    gum log --time datetime --level info "Build new home derivation : start"
   else
     echo "############ HOME ############"
   fi
-  $HOME/.nix-profile/bin/home-manager switch -b backup
-fi  
+  gum spin --show-output --title "Building..." -- $HOME/.nix-profile/bin/home-manager switch -b backup
+  if command -v gum >/dev/null 2>&1; then
+    if [ $? -eq 0 ]; then
+      gum log --time datetime --level info "Build new home derivation : done"
+    else
+      gum log --time datetime --level error "Build new home derivation : failed"
+    fi
+  fi
+fi
 
 # sometimes completions need to be cleaned up
-find -L $HOME/.local/share/zinit/completions -type l -exec rm -- {} +
+if command -v gum >/dev/null 2>&1; then
+  gum log --time datetime --level info "Clean up completions : start"
+  gum spin --show-output --title "Cleaning..." -- find -L $HOME/.local/share/zinit/completions -type l -exec rm -- {} +
+  if [ $? -eq 0 ]; then
+    gum log --time datetime --level info "Clean up completions : done"
+  else
+    gum log --time datetime --level error "Clean up completions : failed"
+  fi
+else 
+  find -L $HOME/.local/share/zinit/completions -type l -exec rm -- {} +
+fi
 
-if command -v toilet >/dev/null 2>&1; then
-  toilet -F border DONE
+# source zshrc
+if command -v gum >/dev/null 2>&1; then
+  gum log --time datetime --level info "Reload zshrc : start"
+  gum spin --show-output --title "Reloading..." -- source $HOME/.zshrc 
+else 
+  source $HOME/.zshrc
+fi
+if command -v gum >/dev/null 2>&1; then
+  if [ $? -eq 0 ]; then
+    gum log --time datetime --level info "Reload zshrc : done"
+  else
+    gum log --time datetime --level error "Reload zshrc : failed"
+  fi
+fi
+
+
+if command -v gum >/dev/null 2>&1; then
+  gum log --time datetime --level info "Update Home : done"
 else 
   echo "############ DONE ############"
 fi
-
-source $HOME/.zshrc
 
