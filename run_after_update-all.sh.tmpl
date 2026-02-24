@@ -58,10 +58,8 @@ fi
 # source zshrc
 if command -v gum >/dev/null 2>&1; then
   gum log --time datetime --level info "Reload zshrc : start"
-  gum spin --show-output --title "Reloading..." -- source $HOME/.zshrc 
-else 
-  source $HOME/.zshrc
 fi
+source $HOME/.zshrc
 if command -v gum >/dev/null 2>&1; then
   if [ $? -eq 0 ]; then
     gum log --time datetime --level info "Reload zshrc : done"
@@ -70,6 +68,15 @@ if command -v gum >/dev/null 2>&1; then
   fi
 fi
 
+# optionally update zinit plugins
+# this may take some toime hence why it's deactivated by default 
+if (( ${+functions[zinit]} )); then
+  if command -v gum >/dev/null 2>&1; then
+    if gum confirm "Update zinit plugins ? [y/N]" --default=no; then 
+      zinit update --all -p 8
+    fi
+  fi
+fi
 
 if command -v gum >/dev/null 2>&1; then
   gum log --time datetime --level info "Update Home : done"
