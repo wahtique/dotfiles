@@ -1,62 +1,18 @@
 #!/usr/bin/env zsh
 
-GUM_AVAILABLE=false
-if command -v gum >/dev/null 2>&1; then
-  GUM_AVAILABLE=true
-fi
+LOG_LEVEL=${LOG_LEVEL:-info}
+GUM_LOG_LEVEL=$LOG_LEVEL
 
-# Log depending on whether gum is available or not
-# if available, log first arg and use the otthers as structured data, 
-# otherwise just print the first arg
-function _info() {
-  if $GUM_AVAILABLE; then
-    gum log --time stampmilli --level info --structured $@
-  else
-    echo $1
-  fi
-}
+source logging.zsh
 
-function _error() {
-  if $GUM_AVAILABLE; then
-    gum log --time stampmilli --level error --structured $@
-  else
-    echo "ERROR: $1" >&2
-  fi
-}
+_debug "Sourced logging.zsh"
 
-# Run a taskl with reporting
-# first arg is the task name, the rest is the command to run
-function _task() {
-  if $GUM_AVAILABLE; then
-    _info "$1 : start"
-    gum spin --show-output --show-error --show-stderr --title "$1..." -- ${@:2}
-    _info "$1 : done"
-  else
-    echo "$1 : start"
-    ${@:2}
-    echo "$1 : done"
-  fi
-}
+# source zshrc
+_info "Reload .zshrc : start"
+source $HOME/.zshrc
+_info "Reload .zshrc : done"
 
-# Ask for confirmation, return true if confirmed, false otherwise
-# Default to false, with a timeout of 5 seconds
-# First arg is the question
-function _confirm() {
-  if $GUM_AVAILABLE; then
-    return $(gum confirm "$1" --default=no --timeout=5s)
-  else
-    read -q -t 5 "CONFIRMATION?$1 [y/N] " 
-    if [[ $CONFIRMATION =~ ^[Yy]$ ]]; then 
-      return 0
-    else
-      return 1
-    fi
-  fi
-}
-
-_info "Running post-update script"
-
-_info "Checking env ..."
+_debug "Checking env ..."
 
 NIX_AVAILABLE=false
 if command -v nix >/dev/null 2>&1; then
@@ -68,40 +24,38 @@ if command -v home-manager >/dev/null 2>&1; then
   HOME_MANAGER_AVAILABLE=true
 fi
 
-_info "Updating Home ..." \
-  nix $NIX_AVAILABLE \
-  home_manager $HOME_MANAGER_AVAILABLE \
+ZINIT_AVAILABLE=false
+if (( ${+functions[zinit]} )); then
+  ZINIT_AVAILABLE=true
+fi
+
+_debug "Env check done : NIX_AVAILABLE=$NIX_AVAILABLE, HOME_MANAGER_AVAILABLE=$HOME_MANAGER_AVAILABLE, ZINIT_AVAILABLE=$ZINIT_AVAILABLE"
+
+_info "Updating Home ..."
 
 if $NIX_AVAILABLE; then
   _task "Update Nix channels" nix-channel --update
+else
+  _info "nix not found, skipping channel update"
 fi
 
 if $HOME_MANAGER_AVAILABLE; then
   _task "Switch Home Manager derivation" $HOME/.nix-profile/bin/home-manager switch -b backup
-fi
-
-# sometimes completions need to be cleaned up
-_task "Clean up completions" find -L $HOME/.local/share/zinit/completions -type l -exec rm -- {} +  
-
-# source zshrc
-_info "Reload .zshrc : start"
-source $HOME/.zshrc
-_info "Reload .zshrc : done"
-
-ZINIT_AVAILABLE=false
-if (( ${+functions[zinit]} )); then
-  ZINIT_AVAILABLE=true
+else
+  _info "home-manager not found, skipping home update"
 fi
 
 # optionally update zinit plugins
 # this may take some toime hence why it's deactivated by default 
 if $ZINIT_AVAILABLE; then
   if _confirm "Update zinit plugins ? [y/N]"; then 
+    # sometimes completions need to be cleaned up before updating
+    _task "Clean up completions" find -L $HOME/.local/share/zinit/completions -type l -exec rm -- {} +  
     zinit update --all -p 8
   fi
 else 
-  _error "Zinit not available, skipping plugin update"
+  _info "zinit not found, skipping zinit plugins update"
 fi
 
-_info "Running post-update script : done"
+_info "Updating home : done"
 
