@@ -2,6 +2,7 @@
 
 LOG_LEVEL=${LOG_LEVEL:-info}
 GUM_LOG_LEVEL=$LOG_LEVEL
+GUM_LOG_TIME_FORMAT="15:04:05.000"
 
 GUM_AVAILABLE=false
 if command -v gum >/dev/null 2>&1; then
@@ -24,7 +25,7 @@ function _format_pairs() {
 
 function _debug() {
   if $GUM_AVAILABLE; then
-    gum log --time stampmilli --level debug --min-level $GUM_LOG_LEVEL --structured $@ 
+    gum log --time $GUM_LOG_TIME_FORMAT --level debug --min-level $GUM_LOG_LEVEL --structured $@ 
   else
     if [[ "$LOG_LEVEL" == "debug" ]]; then
       echo "DEBUG: $1 $(_format_pairs "$@")"
@@ -37,7 +38,7 @@ function _debug() {
 # otherwise just print the first arg
 function _info() {
   if $GUM_AVAILABLE; then
-    gum log --time stampmilli --level info --min-level $GUM_LOG_LEVEL --structured $@
+    gum log --time $GUM_LOG_TIME_FORMAT --level info --min-level $GUM_LOG_LEVEL --structured $@
   else
     echo "INFO: $1 $(_format_pairs "$@")"
   fi
@@ -45,7 +46,7 @@ function _info() {
 
 function _error() {
   if $GUM_AVAILABLE; then
-    gum log --time stampmilli --level error --min-level $GUM_LOG_LEVEL --structured $@
+    gum log --time $GUM_LOG_TIME_FORMAT --level error --min-level $GUM_LOG_LEVEL --structured $@
   else
     echo "ERROR: $1 $(_format_pairs "$@")" >&2
   fi
