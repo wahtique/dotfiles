@@ -8,11 +8,10 @@ source logging.zsh
 _debug "Sourced logging.zsh"
 
 # source zshrc
-_info "Reload .zshrc : start"
+_info "Sourcing .zshrc..."
 source $HOME/.zshrc
-_info "Reload .zshrc : done"
 
-_debug "Checking env ..."
+_debug "Checking env..."
 
 NIX_AVAILABLE=false
 if command -v nix >/dev/null 2>&1; then
@@ -31,7 +30,7 @@ fi
 
 _debug "Env check done : NIX_AVAILABLE=$NIX_AVAILABLE, HOME_MANAGER_AVAILABLE=$HOME_MANAGER_AVAILABLE, ZINIT_AVAILABLE=$ZINIT_AVAILABLE"
 
-_info "Updating Home ..."
+_info "Updating Home..."
 
 if $NIX_AVAILABLE; then
   _task "Update Nix channels" nix-channel --update
@@ -56,6 +55,9 @@ if $ZINIT_AVAILABLE; then
 else 
   _info "zinit not found, skipping zinit plugins update"
 fi
+
+_info "Reloading .zshrc after update..."
+source $HOME/.zshrc
 
 _info "Updating home : done"
 
