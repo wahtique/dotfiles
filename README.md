@@ -72,14 +72,14 @@ sudo chown -R $USER /nix
 
 ### Package not up to date on `nixpkgs/unstable`
 
-Override derivation. For example, replace `vscode-1.109.0` with `1.10.2` :
+Override derivation. For example, replace `vscode-1.109.0` with `1.110.2` :
 
 ```nix
 pkgs.vscode.overrideAttrs (oldAttrs: rec {
   hash = "sha256-ST5i8gvNtAaBbmcpcg9GJipr8e5d0A0qbdG1P9QViek=";
   plat = "linux-x64";
   archive_fmt = "tar.gz";
-  version = "1.109.2";
+  version = "1.110.2";
   src = pkgs.fetchurl {
     name = "VSCode_${version}_${plat}.${archive_fmt}";
     url = "https://update.code.visualstudio.com/${version}/${plat}/stable";
