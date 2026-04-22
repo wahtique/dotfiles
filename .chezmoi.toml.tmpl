@@ -17,6 +17,8 @@
     {{ if or ( lookPath "code") (findExecutable "code" (list "bin" "/usr/bin" ".nix-profile/bin")) }}
     command = "code"
     args = ["--wait"]
+    {{ else if or ( lookPath "hx") (findExecutable "hx" (list "bin" "/usr/bin" ".nix-profile/bin")) }}
+    command = "hx"
     {{ else if or ( lookPath "nvim") (findExecutable "nvim" (list "bin" "/usr/bin" ".nix-profile/bin")) }}
     command = "nvim"
     {{ else if or ( lookPath "vim") (findExecutable "vim" (list "bin" "/usr/bin" ".nix-profile/bin")) }}
